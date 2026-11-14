@@ -157,6 +157,25 @@ test("a buyer can withdraw a proposal that has not been answered", async ({ page
   await expect(page.getByText(/proposals? waiting for your answer/)).toHaveCount(0);
 });
 
+test("a buyer sees the new proposal state after sending or withdrawing on a phone", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await propose(page);
+  const waiting = page.getByRole("heading", { name: "Waiting for Ruth Adeyemi to answer" });
+  await expect(waiting).toBeFocused();
+  await expect(waiting).toBeInViewport();
+
+  const language = page.locator("#language");
+  await language.focus();
+  await language.selectOption("fr");
+  await expect(language).toBeFocused();
+  await language.selectOption("en");
+
+  await page.getByRole("button", { name: "Withdraw my proposal" }).press("Enter");
+  const form = page.getByRole("heading", { name: "Propose a session to Ruth Adeyemi" });
+  await expect(form).toBeFocused();
+  await expect(form).toBeInViewport();
+});
+
 // Story 4: the session ends and the expert is paid.
 
 async function booked(page: Page): Promise<string> {

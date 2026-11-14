@@ -1,4 +1,4 @@
-import { type FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { type FormEvent, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { formatUsd } from "../../demo/domain/money";
 import { formatRange, overlap, validateRange } from "../../demo/domain/price";
 import { useI18n } from "../../i18n";
@@ -23,6 +23,8 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
   const [units, setUnits] = useState(2);
   const [priceText, setPriceText] = useState("");
   const [timeChoice, setTimeChoice] = useState<TimeChoice | null>(null);
+  const heading = useRef<HTMLHeadingElement>(null);
+  const focusResult = useRef(false);
   const [error, setError] = useState<
     | { readonly code: "price-outside-range" | "invalid-price"; readonly price: number }
     | { readonly code: Exclude<SendError, "price-outside-range"> | "missing-time" }
@@ -49,6 +51,13 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
     void load();
   }, [load]);
 
+  const proposalState = loaded?.last?.proposal.state;
+  useLayoutEffect(() => {
+    if (!focusResult.current) return;
+    focusResult.current = false;
+    heading.current?.focus();
+  }, [proposalState]);
+
   if (loaded === undefined) return <p className="lead">{t("Opening your proposal…")}</p>;
   const { brief, view, last } = loaded;
   const result = view?.match.result;
@@ -56,7 +65,7 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
   if (brief === null || view === null || result === undefined || result.kind !== "match" || view.stale) {
     return (
       <div>
-        <h2 tabIndex={-1}>{t("Propose a session")}</h2>
+        <h2 ref={heading} tabIndex={-1}>{t("Propose a session")}</h2>
         <p className="lead">{t("You need a current match before you can propose a session.")}</p>
         <div className="actions">
           <a className="button-link" href={href("buyer-match")}>
@@ -75,7 +84,7 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
   if (last !== null && last.proposal.state === "waiting") {
     return (
       <div>
-        <h2 tabIndex={-1}>{t("Waiting for {0} to answer", expertName)}</h2>
+        <h2 ref={heading} tabIndex={-1}>{t("Waiting for {0} to answer", expertName)}</h2>
         <p className="lead">
           {t("You proposed {0} at {1} per 15 minutes, {2} in total, on {3}.",
             lengthText(last.proposal.units, locale),
@@ -85,7 +94,10 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
         </p>
         <p className="notice notice--info">{t("Nothing is booked or charged until {0} accepts. They will see your proposal the next time they open Agely; nothing is sent to them.", expertName)}</p>
         <div className="actions">
-          <button type="button" className="secondary" onClick={() => void withdrawProposal(ctx, last.proposal.id).then(load)}>
+          <button type="button" className="secondary" onClick={() => void withdrawProposal(ctx, last.proposal.id).then((withdrawn) => {
+            if (withdrawn.ok) focusResult.current = true;
+            return load();
+          })}>
             {t("Withdraw my proposal")}
           </button>
         </div>
@@ -96,7 +108,7 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
   if (last !== null && last.proposal.state === "accepted" && last.sessionId !== null) {
     return (
       <div>
-        <h2 tabIndex={-1}>{t("{0} accepted", expertName)}</h2>
+        <h2 ref={heading} tabIndex={-1}>{t("{0} accepted", expertName)}</h2>
         <p className="lead">{t("Your session is confirmed.")}</p>
         <div className="actions">
           <a className="button-link" href={href("session", { id: last.sessionId })}>
@@ -115,6 +127,7 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
     const data = new FormData(event.currentTarget);
     const sent = await sendProposal(ctx, brief.id, { units, pricePerUnit: price, startsAt: timeChoice.value, buyerName: String(data.get("name") ?? "") });
     if (sent.ok) {
+      focusResult.current = true;
       setTimeChoice(null);
       setError(null);
       await refresh();
@@ -147,7 +160,7 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
 
   return (
     <form onSubmit={(e) => void onSend(e)}>
-      <h2 tabIndex={-1}>{t("Propose a session to {0}", expertName)}</h2>
+      <h2 ref={heading} tabIndex={-1}>{t("Propose a session to {0}", expertName)}</h2>
       {declined && (
         <p className="notice notice--error" role="alert">
           {t("{0} declined your proposal. You can propose a different time or price.", expertName)}
