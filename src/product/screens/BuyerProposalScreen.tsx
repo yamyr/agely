@@ -14,6 +14,7 @@ import { type ScreenProps, StandIn } from "./shared";
 
 const LENGTHS = [1, 2, 3, 4, 5, 6, 7, 8] as const;
 type SendError = Extract<Awaited<ReturnType<typeof sendProposal>>, { ok: false }>["error"];
+type TimeChoice = { readonly kind: "suggested" | "custom"; readonly value: string };
 
 /** Story 3: the buyer proposes a length, a price inside the shared range and a time (FR-013). */
 export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
@@ -21,6 +22,7 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
   const [loaded, setLoaded] = useState<{ brief: Brief | null; view: MatchView | null; last: ProposalView | null } | undefined>(undefined);
   const [units, setUnits] = useState(2);
   const [priceText, setPriceText] = useState("");
+  const [timeChoice, setTimeChoice] = useState<TimeChoice | null>(null);
   const [error, setError] = useState<
     | { readonly code: "price-outside-range" | "invalid-price"; readonly price: number }
     | { readonly code: Exclude<SendError, "price-outside-range"> | "missing-time" }
@@ -109,13 +111,11 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
     event.preventDefault();
     if (brief === null) return;
     if (!validateRange({ min: price, max: price }).ok) return setError({ code: "invalid-price", price });
+    if (timeChoice === null) return setError({ code: "missing-time" });
     const data = new FormData(event.currentTarget);
-    const other = String(data.get("other") ?? "");
-    const picked = String(data.get("when") ?? "");
-    const startsAt = other !== "" ? new Date(other).toISOString() : picked;
-    if (startsAt === "") return setError({ code: "missing-time" });
-    const sent = await sendProposal(ctx, brief.id, { units, pricePerUnit: price, startsAt, buyerName: String(data.get("name") ?? "") });
+    const sent = await sendProposal(ctx, brief.id, { units, pricePerUnit: price, startsAt: timeChoice.value, buyerName: String(data.get("name") ?? "") });
     if (sent.ok) {
+      setTimeChoice(null);
       setError(null);
       await refresh();
       await load();
@@ -188,15 +188,32 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
       )}
       <fieldset className="choices">
         <legend>{t("When would you like to meet?")}</legend>
-        {times.map((time) => (
-          <label key={time.toISOString()} className="choice">
-            <input type="radio" name="when" value={time.toISOString()} />
-            <span>{formatWhen(time.toISOString(), locale)}</span>
-          </label>
-        ))}
+        {times.map((time) => {
+          const value = time.toISOString();
+          return (
+            <label key={value} className="choice">
+              <input
+                type="radio"
+                name="when"
+                value={value}
+                checked={timeChoice?.kind === "suggested" && timeChoice.value === value}
+                onChange={() => setTimeChoice({ kind: "suggested", value })}
+              />
+              <span>{formatWhen(value, locale)}</span>
+            </label>
+          );
+        })}
         <div className="field">
           <label htmlFor="proposal-other">{t("Or choose another date and time")}</label>
-          <input id="proposal-other" name="other" type="datetime-local" />
+          <input
+            id="proposal-other"
+            type="datetime-local"
+            value={timeChoice?.kind === "custom" ? timeChoice.value : ""}
+            onChange={(event) => {
+              const value = event.target.value;
+              setTimeChoice(value === "" ? null : { kind: "custom", value });
+            }}
+          />
         </div>
       </fieldset>
       <p className="notice notice--info">{t("Nothing is booked or charged until {0} accepts.", expertName)}</p>

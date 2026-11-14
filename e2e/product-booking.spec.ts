@@ -22,6 +22,42 @@ test.beforeEach(async ({ page }) => {
   await buyerMatchedWithRuth(page, "sam@example.com");
 });
 
+test("a buyer can replace a custom time with a suggested time", async ({ page }) => {
+  await page.getByRole("link", { name: "Propose a session" }).click();
+  await page.getByLabel(/^Your name/).fill("Sam Ortiz");
+  const custom = page.getByLabel("Or choose another date and time");
+  await custom.fill("2099-01-15T13:25");
+  await page.getByRole("radio").first().check();
+  await expect(custom).toBeEmpty();
+  await page.getByRole("button", { name: "Send my proposal" }).click();
+
+  await expect(page.getByRole("heading", { name: "Waiting for Ruth Adeyemi to answer" })).toBeVisible();
+  await expect(page.getByText(/You proposed .* at 10:00 AM E[SD]T/)).toBeVisible();
+});
+
+test("a custom time replaces a suggestion and survives a price correction and language change", async ({ page }) => {
+  await page.getByRole("link", { name: "Propose a session" }).click();
+  await page.getByLabel(/^Your name/).fill("Sam Ortiz");
+  const suggested = page.getByRole("radio").first();
+  await suggested.check();
+  const custom = page.locator("#proposal-other");
+  await custom.fill("2099-01-15T13:25");
+  await expect(suggested).not.toBeChecked();
+  await page.getByLabel("Price per 15 minutes").fill("95");
+  await page.getByRole("button", { name: "Send my proposal" }).click();
+  await expect(page.getByRole("alert")).toContainText("outside the range");
+  await page.locator("#language").selectOption("fr");
+  await expect(page.locator("html")).toHaveAttribute("lang", "fr");
+  await expect(custom).toHaveValue("2099-01-15T13:25");
+  await expect(suggested).not.toBeChecked();
+
+  await page.locator("#language").selectOption("en");
+  await page.getByLabel("Price per 15 minutes").fill("75");
+  await page.getByRole("button", { name: "Send my proposal" }).click();
+  await expect(page.getByRole("heading", { name: "Waiting for Ruth Adeyemi to answer" })).toBeVisible();
+  await expect(page.getByText(/You proposed .* at 1:25 PM EST/)).toBeVisible();
+});
+
 test("a buyer proposes, the expert accepts, and both see a confirmed session with a held payment and a link", async ({ page }) => {
   test.slow();
   await page.getByRole("link", { name: "Propose a session" }).click();
