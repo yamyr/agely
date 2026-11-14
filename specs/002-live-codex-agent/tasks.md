@@ -75,7 +75,7 @@ description: "Task list for the live agent via the local Codex CLI"
 ## Phase 6: Polish
 
 - [X] T028 [P] Layout spec covers the live interview at 960×640 (no overflow, 16px floor) in `e2e/layout.spec.ts`
-- [ ] T029 Manual quickstart run with real Codex (steps 1–4); record timings in the PR
+- [X] T029 Manual quickstart run with real Codex (steps 1–4). Timings are in the [verification record](verification.md).
 - [X] T030 Full gate: tsc, Vitest, build, Playwright, cargo fmt/clippy/test
 
 ## Dependencies

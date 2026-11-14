@@ -2,6 +2,16 @@
 
 Status: verified locally for English plus all 17 requested languages, including Tamil and Hindi.
 
+## 0.1.0 native-speaker review handoff
+
+On 2026-11-14, review workbooks were prepared for all 17 draft locales from release `6ac985d`.
+Each workbook contains 898 unique source messages with their draft, context and fields for
+the reviewer’s decision, replacement wording and notes. An independent read of the exported
+files matched all 15,266 source and draft pairs to the release catalogs. `bun run check:i18n`
+also passed. Human language review is pending.
+
+The authenticated desktop check is recorded in the [live Codex verification](../002-live-codex-agent/verification.md).
+
 ## Current result
 
 | Check | Observed result |
