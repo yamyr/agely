@@ -55,7 +55,12 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
   useLayoutEffect(() => {
     if (!focusResult.current) return;
     focusResult.current = false;
-    heading.current?.focus();
+    // WebKit can keep its scroll position when the old focused form is removed.
+    const target = heading.current;
+    if (target === null) return;
+    target.focus({ preventScroll: true });
+    const bounds = target.getBoundingClientRect();
+    if (bounds.top < 0 || bounds.bottom > window.innerHeight) target.scrollIntoView({ block: "center", behavior: "instant" });
   }, [proposalState]);
 
   if (loaded === undefined) return <p className="lead">{t("Opening your proposal…")}</p>;
