@@ -1,4 +1,4 @@
-import type { FormEvent } from "react";
+import { type FormEvent, useLayoutEffect, useRef } from "react";
 import type { Translator } from "../../../site/i18n/core.js";
 import { useI18n } from "../../i18n";
 import { serviceNames } from "../copy";
@@ -97,13 +97,20 @@ export function displayAnswer(answer: InterviewAnswer | undefined, t: Translator
 }
 
 /** One question-and-answer exchange in a conversation. */
-export function Exchange({ question, answer }: { readonly question: string; readonly answer?: string }) {
+export function Exchange({ question, answer, focusQuestion = false }: { readonly question: string; readonly answer?: string; readonly focusQuestion?: boolean }) {
   const { t } = useI18n();
+  const heading = useRef<HTMLHeadingElement>(null);
+
+  // Focus follows an answer, without stealing it when the same question is translated.
+  useLayoutEffect(() => {
+    if (focusQuestion) heading.current?.focus();
+  }, [focusQuestion]);
+
   return (
     <div>
       <div className="turn turn--agent">
         <p className="turn__speaker">Agely</p>
-        <p>{question}</p>
+        <h3 className="turn__question" ref={heading} tabIndex={-1}>{question}</h3>
       </div>
       {answer !== undefined && (
         <div className="turn turn--person">

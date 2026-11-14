@@ -1,4 +1,4 @@
-import { type FormEvent, useEffect, useState } from "react";
+import { type FormEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { restrictedAdviceMessage } from "../../demo/domain/advice";
 import { validateRange } from "../../demo/domain/price";
 import type { AdviceCategory } from "../../demo/domain/advice";
@@ -28,11 +28,18 @@ export function BuyerBriefScreen({ ctx, route, go }: ScreenProps) {
   const [answers, setAnswers] = useState<readonly InterviewAnswer[]>([]);
   const [conversationError, setConversationError] = useState<"invalid-budget" | "unmatched" | null>(null);
   const [error, setError] = useState<ReviewError | null>(null);
+  const reviewHeading = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     void ctx.ports.agent.briefQuestions().then(setQuestions);
     if (!fresh) void myCurrentBrief(ctx).then((result) => setBrief(result.ok ? result.value : null));
   }, [ctx, fresh]);
+
+  const briefId = brief?.id;
+  useLayoutEffect(() => {
+    // A brief opened from the conversation replaces its last reply controls in place.
+    if (answers.length > 0 && briefId !== undefined) reviewHeading.current?.focus();
+  }, [answers.length, briefId]);
 
   if (brief === undefined) return <p className="lead">{t("Opening your brief…")}</p>;
 
@@ -69,7 +76,7 @@ export function BuyerBriefScreen({ ctx, route, go }: ScreenProps) {
         )}
         <div className="conversation">
           {questions.slice(0, answers.length + 1).map((question, index) => (
-            <Exchange key={question.id} question={t(question.text)} answer={displayAnswer(answers[index], t)} />
+            <Exchange key={question.id} question={t(question.text)} answer={displayAnswer(answers[index], t)} focusQuestion={index === answers.length && (index > 0 || conversationError === "unmatched")} />
           ))}
         </div>
         {current !== undefined && <ReplyPicker key={current.id} question={current} onAnswer={(text, suggested) => void give(text, suggested)} />}
@@ -119,7 +126,7 @@ export function BuyerBriefScreen({ ctx, route, go }: ScreenProps) {
 
   return (
     <form onSubmit={(e) => void onConfirm(e)}>
-      <h2 tabIndex={-1}>{t("Your brief")}</h2>
+      <h2 className="brief-review-heading" ref={reviewHeading} tabIndex={-1}>{t("Your brief")}</h2>
       <p>
         <span className={confirmed ? "badge badge--done" : "badge badge--draft"}>{t(confirmed ? "Confirmed" : "Draft: check and confirm")}</span>
       </p>

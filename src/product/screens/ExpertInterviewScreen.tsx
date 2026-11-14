@@ -61,7 +61,7 @@ export function ExpertInterviewScreen({ ctx, account, go, refresh }: ScreenProps
       <div className="conversation">
         <Exchange question={t("What should people call you?")} answer={name ?? undefined} />
         {name !== null && questions.slice(0, answers.length + 1).map((question, index) => (
-          <Exchange key={question.id} question={t(question.text)} answer={displayAnswer(answers[index], t)} />
+          <Exchange key={question.id} question={t(question.text)} answer={displayAnswer(answers[index], t)} focusQuestion={index === answers.length} />
         ))}
       </div>
 
