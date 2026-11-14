@@ -5,6 +5,11 @@
   margin-bottom: var(--space-4);
 }
 
+.product .demo-stage h2:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-accent-strong);
+  outline-offset: var(--focus-ring-offset);
+}
+
 /* A dashed border marks a stand-in, as it marks drafts and demo data elsewhere in Agely. */
 .stand-in {
   margin: var(--space-4) 0;

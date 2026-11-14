@@ -36,7 +36,7 @@ export function SignInScreen({ ctx, onSignedIn }: { readonly ctx: Context; reado
   if (step.at === "email") {
     return (
       <form onSubmit={(e) => void onEmail(e)}>
-        <h2>{t("Sign in to try Agely")}</h2>
+        <h2 tabIndex={-1}>{t("Sign in to try Agely")}</h2>
         <p className="lead">{t("Tell us where to send a sign-in code. There is no password and nothing else to fill in.")}</p>
         <div className="field">
           <label htmlFor="product-email">{t("Your email address")}</label>
@@ -59,7 +59,7 @@ export function SignInScreen({ ctx, onSignedIn }: { readonly ctx: Context; reado
   const [beforeCode, afterCode] = t("Your code is {0}").split("{0}");
   return (
     <form onSubmit={(e) => void onCode(e)}>
-      <h2>{t("Enter your code")}</h2>
+      <h2 tabIndex={-1}>{t("Enter your code")}</h2>
       <p className="lead">{t("We made a six-digit code for {0}.", step.email)}</p>
       {step.standInCode !== undefined && (
         <StandIn ctx={ctx} service="sign-in">
