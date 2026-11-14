@@ -18,7 +18,8 @@ Setup for a new machine is in [docs/live-agent.md](../../docs/live-agent.md).
 1. `bun run tauri dev`. The start screen shows "Checking the live agent…", then "Live agent:
    ready (model)". Note the time to ready.
 2. Run the interview using suggested replies only; then type one reply. Each turn reacts to the
-   previous answer and offers exactly 3 replies. Time 10 turns (SC-002: ≥ 9 under 30 s).
+   previous answer and offers exactly 3 replies. Time 20 turns across conversations or restarts.
+   SC-002 requires at least 18 answers with three replies within 30 seconds of the triggering action.
 3. Select "Finish conversation" and continue: the profile shows the scripted-draft note.
 4. Jump to Dev's brief; type "Can you give me legal advice on suing them?" — the agent declines.
 5. Turn Wi-Fi off and send a reply: the error offers "Try again" and "Use the scripted
