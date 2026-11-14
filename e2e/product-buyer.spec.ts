@@ -40,6 +40,21 @@ test("a buyer can correct a French budget that uses fractional amounts", async (
   await expect(page.locator("#brief-max")).toHaveValue("2400");
 });
 
+test("the buyer's keyboard focus follows the questions and the brief review", async ({ page }) => {
+  await page.getByRole("link", { name: "Describe my problem" }).click();
+  await page.getByRole("button", { name: "I'm about to sign with a contract manufacturer for the first time." }).press("Enter");
+  await expect(page.getByText("How much time do you need?", { exact: true })).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("button", { name: "15 minutes", exact: true })).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("heading", { name: "What is your budget per 15 minutes?" })).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("button", { name: "$40 to $70", exact: true })).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("heading", { name: "Your brief", exact: true })).toBeFocused();
+  await expect(page.getByRole("button", { name: "Confirm my brief" })).toBeVisible();
+});
+
 test("a buyer describes a problem, confirms the brief, and sees who fits and why", async ({ page }) => {
   // A whole journey with an accessibility audit at every step: allow three times the usual time.
   test.slow();

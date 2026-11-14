@@ -68,6 +68,35 @@ const open = async (page: Page, hash: string): Promise<void> => {
   await expect(page.locator(".demo-stage h2").first()).toBeVisible();
 };
 
+test("keyboard focus follows marketplace navigation and stays on the language selector", async ({ page }) => {
+  await seedExperts(page);
+  await page.goto("/?lang=en#/app");
+  await productSignIn(page, "seed-ruth@example.com");
+  await expect(page.getByRole("heading", { name: "What to do next" })).toBeFocused();
+
+  const inbox = page.getByRole("link", { name: "Inbox" });
+  await inbox.press("Enter");
+  const heading = page.getByRole("heading", { name: "Proposals for you" });
+  await expect(heading).toBeFocused();
+  await expect(heading).toHaveCSS("outline-style", "solid");
+
+  const language = page.locator("#language");
+  await language.focus();
+  await language.selectOption("fr");
+  await expect(page.locator("html")).toHaveAttribute("lang", "fr");
+  await expect(language).toBeFocused();
+  await language.selectOption("en");
+
+  await page.goBack();
+  await expect(page.getByRole("heading", { name: "What to do next" })).toBeFocused();
+
+  await page.getByRole("button", { name: "Use Agely as a buyer instead" }).press("Enter");
+  await expect(page.getByRole("button", { name: "Use Agely as an expert instead" })).toBeFocused();
+
+  await page.getByRole("button", { name: "Sign out" }).press("Enter");
+  await expect(page.getByRole("heading", { name: "Sign in to try Agely" })).toBeFocused();
+});
+
 test("every product page is honest about its stand-ins and meets the Older Adults First rules", async ({ page }) => {
   test.setTimeout(240_000);
   await seedExperts(page);

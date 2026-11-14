@@ -1,4 +1,4 @@
-import { type ComponentType, useCallback, useEffect, useState } from "react";
+import { type ComponentType, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useI18n } from "../i18n";
 import { tryOutLimits } from "./copy";
 import type { Account } from "./model/types";
@@ -58,6 +58,7 @@ function ProductRoutes({ ctx }: { readonly ctx: Context }) {
   // undefined while the first read is in flight; null when nobody is signed in.
   const [account, setAccount] = useState<Account | null | undefined>(undefined);
   const [hash, setHash] = useState(() => window.location.hash);
+  const stageRef = useRef<HTMLDivElement>(null);
 
   const refresh = useCallback(async () => {
     const acting = await actingAccount(ctx);
@@ -80,6 +81,29 @@ function ProductRoutes({ ctx }: { readonly ctx: Context }) {
       setHash(page.href);
     }
   }, [hash, page]);
+
+  const routeHref = page?.href;
+  useLayoutEffect(() => {
+    const stage = stageRef.current;
+    if (stage === null || routeHref === undefined) return;
+
+    const previousFocus = document.activeElement;
+    const focusHeading = (): boolean => {
+      if (document.activeElement !== previousFocus && document.activeElement !== document.body) return true;
+      const heading = stage.querySelector<HTMLHeadingElement>('h2[tabindex="-1"]');
+      if (heading === null) return false;
+      heading.focus();
+      return true;
+    };
+    if (focusHeading()) return;
+
+    // A route can show loading copy before the heading. Stop watching once the heading arrives.
+    const observer = new MutationObserver(() => {
+      if (focusHeading()) observer.disconnect();
+    });
+    observer.observe(stage, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [routeHref]);
 
   const go = useCallback((name: RouteName, params?: RouteParams) => {
     window.location.hash = href(name, params);
@@ -122,7 +146,7 @@ function ProductRoutes({ ctx }: { readonly ctx: Context }) {
         </nav>
       )}
 
-      <div className="demo-stage">
+      <div className="demo-stage" ref={stageRef}>
         {page === null && <p className="lead">{t("Opening Agely…")}</p>}
         {page?.name === "sign-in" && <SignInScreen ctx={ctx} onSignedIn={refresh} />}
         {Screen !== null && account != null && page !== null && <Screen key={page.href} ctx={ctx} account={account} params={page.params} route={page.name} go={go} refresh={refresh} />}

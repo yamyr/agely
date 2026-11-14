@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Folosiți tastele săgeată stânga și dreapta pentru a trece de la un expert la altul.",
   " to read the data directly.": " pentru a citi datele direct.",
   "$40 to $70": "$40 până la $70",
   "$50 to $100": "$50 până la $100",
@@ -153,7 +154,7 @@ export default {
   "Experts charge more than buyers can pay.": "Experții cer mai mult decât pot plăti cumpărătorii.",
   "Experts declined": "Experții au refuzat",
   "Experts on Agely": "Experți pe Agely",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "Experții vorbesc cu un agent, vocal sau alegând un răspuns sugerat; tastarea este opțională. Textul are cel puțin 16px, butoanele sunt mari, iar focalizarea tastaturii este mereu vizibilă.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "În demonstrație, poți alege răspunsuri sugerate sau poți tasta modificările profilului. Textul are cel puțin 16 px, butoanele sunt mari, iar focalizarea tastaturii este vizibilă.",
   "Experts who earned": "Experți care au câștigat",
   "Finding, interviewing and choosing people.": "Găsirea, intervievarea și alegerea oamenilor.",
   "First read of a contract-manufacturing agreement": "Prima analiză a unui acord de producție la comandă",
@@ -381,6 +382,7 @@ export default {
   "That code isn't right. Check the six digits and try again.": "Acest cod nu este corect.Verificaţi cele şase cifre şi încercaţi din nou.",
   "That doesn't look like an email address. Check it and try again.": "Aceasta nu pare a fi o adresă de e-mail. Verificați-o și încercați din nou.",
   "That's my name": "Acesta este numele meu",
+  "That time doesn't exist in your time zone. Choose another time.": "Această oră nu există în fusul dumneavoastră orar. Alegeți altă oră.",
   "The agent drafts a workflow": "Agentul pregătește un flux de lucru",
   "The agent suggests": "Agentul sugerează",
   "The agent suggests this range because:": "Agentul sugerează această gamă deoarece:",
@@ -408,7 +410,7 @@ export default {
   "The two of them settle the details between themselves. The price has to sit inside the overlap, and nothing is booked or charged until Margaret accepts.": "Cei doi stabilesc singuri detaliile. Prețul trebuie să fie în intervalul comun; nu se rezervă și nu se taxează nimic până când Margaret acceptă.",
   "The typical expert earns $150 or more a week": "Expertul tipic câștigă cel puțin $150 pe săptămână",
   "Their problem: {0}": "Problema lor: {0}",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "Nu există formular de completat sau profil de scris. Margaret vorbește vocal sau alege un răspuns, iar agentul îi transformă cuvintele într-un profil.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "Demonstrația arată interviul cu Margaret și cum agentul pregătește o schiță a profilului pe baza răspunsurilor ei.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "Nu e nimic de completat, doar vorbim, ce muncă ai făcut şi pentru cât timp?",
   "They agree on a session": "Ei convin asupra unei sesiuni",
   "They draft and suggest. They never decide.": "Ei pregătesc și propun. Nu decid niciodată.",

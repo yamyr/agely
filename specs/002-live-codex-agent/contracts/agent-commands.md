@@ -55,7 +55,8 @@ invoke<AgentTurn>("agent_turn", {
 ## Prompt rules (built in Rust, tested)
 
 The prompt states: the agent role and goal; the persona background; that this is a demo for older
-adults (short, warm, plain sentences, one question at a time); that options are three different
+adults (short, warm, plain sentences, one question at a time); that messages and suggestions
+preserve who did what and ask when details are unclear; that options are three different
 short replies written as `replyAs` in first person (≤ 160 chars); no legal, medical or financial
 advice; never claim to publish, book, accept or pay; do not run commands or read files; set `done`
 when the goal is met or on the last allowed turn and then close politely; the transcript so far.

@@ -3,9 +3,10 @@ import type { AgentBrief } from "./types";
 
 const MARGARET =
   "Margaret Okafor, 68, lives in Columbus, Ohio. She spent 34 years in procurement at an appliance maker, " +
-  "the last twelve as director. She chose suppliers, negotiated contracts, and made sure factories in Mexico " +
-  "and China shipped what was paid for. Proudest fix: a contract manufacturer tied her company's tooling to a " +
-  "three-year volume commitment; she renegotiated so they owned the moulds outright and cut unit cost by 11%. " +
+  "the last twelve as director. She chose suppliers and negotiated contracts. Her employer paid factories in " +
+  "Mexico and China, and she made sure those factories sent her employer the goods it ordered. A contract " +
+  "manufacturer tied tooling to a three-year volume commitment. Margaret renegotiated the deal so her " +
+  "employer owned the moulds outright. The new deal cut her employer's unit cost by 11%. " +
   "She has her CV and a supplier-audit checklist she used for twenty years.";
 
 const DEV =

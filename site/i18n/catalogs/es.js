@@ -1,5 +1,6 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Usa las flechas izquierda y derecha para moverte entre los expertos.",
   " to read the data directly.": " para leer los datos directamente.",
   " with {0}": " con {0}",
   "$40 to $70": "$40 a $70",
@@ -237,7 +238,7 @@ export default {
   "Experts charge more than buyers can pay.": "Los expertos cobran más de lo que los compradores pueden pagar.",
   "Experts declined": "Los expertos rechazaron la propuesta",
   "Experts on Agely": "Expertos en Agely",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "Los expertos hablan con un agente, por voz o eligiendo una respuesta sugerida; escribir es opcional. El texto nunca baja de 16 px, los botones son grandes y el foco del teclado siempre es visible.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "En la demostración puedes elegir respuestas sugeridas o escribir cambios en el perfil. El texto tiene un tamaño mínimo de 16 px, los botones son grandes y el foco del teclado es visible.",
   "Experts who earned": "Expertos que ganaron dinero",
   "Experts with “{0}” charge outside your budget of {1} per 15 minutes. Widening the budget would let Agely match you.": "Los expertos con «{0}» cobran fuera de tu presupuesto de {1} por cada 15 minutos. Ampliarlo permitiría encontrar una coincidencia.",
   "Finding, interviewing and choosing people.": "Encontrar, entrevistar y elegir a las personas.",
@@ -624,6 +625,7 @@ export default {
   "That skill isn't on the profile any more.": "Esa habilidad ya no está en el perfil.",
   "That sounds right.": "Eso me parece bien.",
   "That's my name": "Ese es mi nombre",
+  "That time doesn't exist in your time zone. Choose another time.": "Esa hora no existe en su zona horaria. Elija otra hora.",
   "The agent could not reply. Try again, or use the scripted conversation.": "El agente no pudo responder. Reintenta o usa la conversación preparada.",
   "The agent debriefs Margaret": "El agente hace el resumen final con Margaret",
   "The agent drafts a workflow": "El agente redacta un método",
@@ -670,7 +672,7 @@ export default {
   "The walkthrough uses the scripted conversations.": "El recorrido usa las conversaciones preparadas.",
   "Their problem: {0}": "Su problema: {0}",
   "Then": "Después",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "No hay formularios que rellenar ni perfiles que redactar. Margaret habla, por voz o eligiendo una respuesta sugerida, y un agente convierte sus palabras en un perfil.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "La demostración muestra la entrevista de Margaret y cómo el agente prepara un borrador de su perfil a partir de sus respuestas.",
   "There is no match to continue with.": "No hay una coincidencia para continuar.",
   "There is no match to send a proposal to.": "No hay una coincidencia a la que enviar una propuesta.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "No hay nada que rellenar, solo hablaremos. ¿Qué trabajo hizo y durante cuánto tiempo?",

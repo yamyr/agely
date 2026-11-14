@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Użyj klawiszy strzałek w lewo i w prawo, aby przechodzić między ekspertami.",
   " to read the data directly.": " aby przeczytać dane bezpośrednio.",
   "$40 to $70": "$40 do $70",
   "$50 to $100": "$50 do $100",
@@ -153,7 +154,7 @@ export default {
   "Experts charge more than buyers can pay.": "Eksperci żądają więcej, niż kupujący mogą zapłacić.",
   "Experts declined": "Eksperci odmówili",
   "Experts on Agely": "Eksperci w Agely",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "Eksperci rozmawiają z agentem głosowo lub wybierają sugerowaną odpowiedź; pisanie jest opcjonalne. Tekst ma co najmniej 16px, przyciski są duże, a fokus klawiatury zawsze widoczny.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "W samouczku możesz wybierać sugerowane odpowiedzi lub wpisywać zmiany w profilu. Tekst ma co najmniej 16 px, przyciski są duże, a fokus klawiatury jest widoczny.",
   "Experts who earned": "Eksperci, którzy zarobili",
   "Finding, interviewing and choosing people.": "Znalezienie, przeprowadzenie wywiadu i wybór osób.",
   "First read of a contract-manufacturing agreement": "Pierwsza analiza umowy produkcji kontraktowej",
@@ -381,6 +382,7 @@ export default {
   "That code isn't right. Check the six digits and try again.": "Ten kod jest nieprawidłowy. Sprawdź sześć cyfr i spróbuj ponownie.",
   "That doesn't look like an email address. Check it and try again.": "To nie wygląda jak adres e-mail. Sprawdź i spróbuj ponownie.",
   "That's my name": "To jest moje imię",
+  "That time doesn't exist in your time zone. Choose another time.": "Ta godzina nie występuje w Twojej strefie czasowej. Wybierz inną godzinę.",
   "The agent drafts a workflow": "Agent przygotowuje procedurę",
   "The agent suggests": "Agent proponuje",
   "The agent suggests this range because:": "Agent sugeruje ten zakres, ponieważ:",
@@ -408,7 +410,7 @@ export default {
   "The two of them settle the details between themselves. The price has to sit inside the overlap, and nothing is booked or charged until Margaret accepts.": "Sami ustalają szczegóły. Cena musi mieścić się we wspólnym zakresie; rezerwacja i opłata nastąpią dopiero, gdy Margaret przyjmie propozycję.",
   "The typical expert earns $150 or more a week": "Typowy ekspert zarabia co najmniej $150 tygodniowo",
   "Their problem: {0}": "Ich problem: {0}",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "Nie ma formularza ani profilu do napisania. Margaret mówi głosowo lub wybiera odpowiedź, a agent zamienia jej słowa w profil.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "Samouczek pokazuje rozmowę z Margaret i to, jak agent tworzy szkic jej profilu na podstawie odpowiedzi.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "Nie ma nic do wypełnienia, po prostu porozmawiamy. Jaką pracę wykonywał pan i jak długo?",
   "They agree on a session": "Uzgadniają sesję",
   "They draft and suggest. They never decide.": "Przygotowują i proponują. Nigdy nie decydują.",

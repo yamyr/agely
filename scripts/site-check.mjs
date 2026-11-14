@@ -7,12 +7,12 @@
 // For each page it reports failed requests, script errors, horizontal overflow, text smaller
 // than 16px (constitution principle I) and axe WCAG 2.1 AA violations. Screenshots are written
 // only when a directory is given. Exits 1 if anything was found.
-import { createServer } from "node:http";
-import { existsSync, mkdirSync, readFileSync, statSync } from "node:fs";
-import { extname, join, normalize } from "node:path";
+import { existsSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import AxeBuilder from "@axe-core/playwright";
 import { chromium } from "@playwright/test";
+import { createSiteCheckServer } from "./site-check-server.mjs";
 import { localizedUrl, siteCheckLanguages } from "./site-check-url.js";
 
 const PRODUCT_SIGN_IN = "/demo/#/app";
@@ -28,7 +28,6 @@ const viewFilter = args.find((arg) => arg.startsWith("--view="))?.slice(7);
 if (viewFilter !== undefined && !VIEWS.some(({ name }) => name === viewFilter)) throw new Error("Unknown view filter");
 const languages = siteCheckLanguages(languageFilter);
 const views = VIEWS.filter(({ name }) => viewFilter === undefined || name === viewFilter);
-const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml", ".woff2": "font/woff2", ".mp4": "video/mp4", ".txt": "text/plain" };
 
 const dist = fileURLToPath(new URL("../dist", import.meta.url));
 if (!existsSync(join(dist, "demo", "index.html"))) {
@@ -38,14 +37,7 @@ if (!existsSync(join(dist, "demo", "index.html"))) {
 const shots = args.find((arg) => !arg.startsWith("--"));
 if (shots) mkdirSync(shots, { recursive: true });
 
-const server = createServer((req, res) => {
-  let path = normalize(decodeURIComponent(new URL(req.url, "http://x").pathname));
-  let file = join(dist, path);
-  if (!file.startsWith(dist)) return res.writeHead(403).end();
-  if (existsSync(file) && statSync(file).isDirectory()) file = join(file, "index.html");
-  if (!existsSync(file)) return res.writeHead(404).end();
-  res.writeHead(200, { "content-type": TYPES[extname(file)] ?? "application/octet-stream" }).end(readFileSync(file));
-});
+const server = createSiteCheckServer(dist);
 await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
 

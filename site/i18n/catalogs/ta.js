@@ -1,5 +1,6 @@
 // Model-generated Tamil translation draft; requires language review.
 export default {
+  "Use the left and right arrow keys to move between experts.": "நிபுணர்களுக்கிடையே நகர இடது, வலது அம்புக்குறி விசைகளைப் பயன்படுத்தவும்.",
   " to read the data directly.": " வழியாகத் தரவை நேரடியாகப் படிக்கலாம்.",
   " with {0}": " உடன் {0}",
   "$40 to $70": "40 முதல் 70 அமெரிக்க டாலர் வரை",
@@ -237,7 +238,7 @@ export default {
   "Experts charge more than buyers can pay.": "வாங்குபவர்களால் செலுத்த முடிவதைவிட நிபுணர்கள் அதிகம் கேட்கிறார்கள்.",
   "Experts declined": "நிபுணர்கள் மறுத்தனர்",
   "Experts on Agely": "Agely-யில் நிபுணர்கள்",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "நிபுணர்கள் முகவருடன் குரலிலோ பரிந்துரைத்த பதிலைத் தேர்ந்தெடுத்தோ பேசுகிறார்கள்; தட்டச்சு விருப்பமானது. எழுத்து குறைந்தது 16px; பொத்தான்கள் பெரியவை; விசைப்பலகைக் கவனம் எப்போதும் தெரியும்.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "விளக்கத்தில் பரிந்துரைக்கப்பட்ட பதில்களைத் தேர்ந்தெடுக்கலாம் அல்லது சுயவிவர மாற்றங்களைத் தட்டச்சு செய்யலாம். எழுத்து அளவு குறைந்தது 16 பிக்சல்கள். பொத்தான்கள் பெரியவை. விசைப்பலகைக் கவனம் தெரியும்.",
   "Experts who earned": "சம்பாதித்த நிபுணர்கள்",
   "Experts with “{0}” charge outside your budget of {1} per 15 minutes. Widening the budget would let Agely match you.": "“{0}” திறனுள்ள நிபுணர்களின் விலைகள் 15 நிமிடங்களுக்கு உங்கள் {1} வரம்பை மீறுகின்றன. வரம்பை உயர்த்தினால் Agely பொருத்தமானவரைக் கண்டறியலாம்.",
   "Finding, interviewing and choosing people.": "தேடுதல், நேர்காணல் மற்றும் மக்கள் தேர்வு.",
@@ -624,6 +625,7 @@ export default {
   "That skill isn't on the profile any more.": "அந்தத் திறன் இப்போது சுயவிவரத்தில் இல்லை.",
   "That sounds right.": "அது சரியாகத் தோன்றுகிறது.",
   "That's my name": "அது என் பெயர்",
+  "That time doesn't exist in your time zone. Choose another time.": "உங்கள் நேர மண்டலத்தில் அந்த நேரம் இல்லை. வேறொரு நேரத்தைத் தேர்ந்தெடுக்கவும்.",
   "The agent could not reply. Try again, or use the scripted conversation.": "முகவரால் பதிலளிக்க முடியவில்லை. மீண்டும் முயலுங்கள் அல்லது முன்னெழுதிய உரையாடலைப் பயன்படுத்துங்கள்.",
   "The agent debriefs Margaret": "முகவர் Margaret உடன் அமர்வை மீளாய்வு செய்கிறார்",
   "The agent drafts a workflow": "முகவர் செயல்முறையை வரைகிறார்",
@@ -670,7 +672,7 @@ export default {
   "The walkthrough uses the scripted conversations.": "விளக்கம் முன்னெழுதிய உரையாடல்களைப் பயன்படுத்துகிறது.",
   "Their problem: {0}": "அவர்களது பிரச்சனை: {0}",
   "Then": "பிறகு",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "படிவமோ சுயவிவரமோ எழுத வேண்டாம். Margaret குரலிலோ பரிந்துரைத்த பதிலைத் தேர்ந்தெடுத்தோ பேசுகிறார். முகவர் அதைச் சுயவிவரமாக்குகிறார்.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "இந்த விளக்கத்தில் Margaret-இன் நேர்காணலையும், அவரது பதில்களின் அடிப்படையில் முகவர் அவரது சுயவிவரத்தை எப்படி வரைவாக உருவாக்குகிறார் என்பதையும் காணலாம்.",
   "There is no match to continue with.": "தொடர பொருத்தமானவர் இல்லை.",
   "There is no match to send a proposal to.": "முன்மொழிவை அனுப்ப பொருத்தமானவர் இல்லை.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "நிரப்புவதற்கு எதுவுமில்லை. நாங்கள் பேசலாம். நீங்கள் என்ன வேலை செய்தீர்கள், எவ்வளவு நேரம்?",

@@ -22,6 +22,58 @@ test.beforeEach(async ({ page }) => {
   await buyerMatchedWithRuth(page, "sam@example.com");
 });
 
+test("a buyer can replace a custom time with a suggested time", async ({ page }) => {
+  await page.getByRole("link", { name: "Propose a session" }).click();
+  await page.getByLabel(/^Your name/).fill("Sam Ortiz");
+  const custom = page.getByLabel("Or choose another date and time");
+  await custom.fill("2099-01-15T13:25");
+  await page.getByRole("radio").first().check();
+  await expect(custom).toBeEmpty();
+  await page.getByRole("button", { name: "Send my proposal" }).click();
+
+  await expect(page.getByRole("heading", { name: "Waiting for Ruth Adeyemi to answer" })).toBeVisible();
+  await expect(page.getByText(/You proposed .* at 10:00 AM E[SD]T/)).toBeVisible();
+});
+
+test("a custom time replaces a suggestion and survives a price correction and language change", async ({ page }) => {
+  await page.getByRole("link", { name: "Propose a session" }).click();
+  await page.getByLabel(/^Your name/).fill("Sam Ortiz");
+  const suggested = page.getByRole("radio").first();
+  await suggested.check();
+  const custom = page.locator("#proposal-other");
+  await custom.fill("2099-01-15T13:25");
+  await expect(suggested).not.toBeChecked();
+  await page.getByLabel("Price per 15 minutes").fill("95");
+  await page.getByRole("button", { name: "Send my proposal" }).click();
+  await expect(page.getByRole("alert")).toContainText("outside the range");
+  await page.locator("#language").selectOption("fr");
+  await expect(page.locator("html")).toHaveAttribute("lang", "fr");
+  await expect(custom).toHaveValue("2099-01-15T13:25");
+  await expect(suggested).not.toBeChecked();
+
+  await page.locator("#language").selectOption("en");
+  await page.getByLabel("Price per 15 minutes").fill("75");
+  await page.getByRole("button", { name: "Send my proposal" }).click();
+  await expect(page.getByRole("heading", { name: "Waiting for Ruth Adeyemi to answer" })).toBeVisible();
+  await expect(page.getByText(/You proposed .* at 1:25 PM EST/)).toBeVisible();
+});
+
+test("a buyer can correct a local time skipped when the clocks go forward", async ({ page }) => {
+  await page.clock.setFixedTime(new Date("2027-03-13T12:00:00Z"));
+  await page.getByRole("link", { name: "Propose a session" }).click();
+  await page.getByLabel(/^Your name/).fill("Sam Ortiz");
+  const custom = page.getByLabel("Or choose another date and time");
+  await custom.fill("2027-03-14T02:30");
+  await page.getByRole("button", { name: "Send my proposal" }).click();
+
+  await expect(page.getByRole("alert")).toContainText("That time doesn't exist in your time zone");
+  await expect(custom).toHaveValue("2027-03-14T02:30");
+  await custom.fill("2027-03-14T03:30");
+  await page.getByRole("button", { name: "Send my proposal" }).click();
+  await expect(page.getByRole("heading", { name: "Waiting for Ruth Adeyemi to answer" })).toBeVisible();
+  await expect(page.getByText(/You proposed .* at 3:30 AM EDT/)).toBeVisible();
+});
+
 test("a buyer proposes, the expert accepts, and both see a confirmed session with a held payment and a link", async ({ page }) => {
   test.slow();
   await page.getByRole("link", { name: "Propose a session" }).click();
@@ -119,6 +171,25 @@ test("a buyer can withdraw a proposal that has not been answered", async ({ page
   await productSignOut(page);
   await productSignIn(page, "seed-ruth@example.com");
   await expect(page.getByText(/proposals? waiting for your answer/)).toHaveCount(0);
+});
+
+test("a buyer sees the new proposal state after sending or withdrawing on a phone", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await propose(page);
+  const waiting = page.getByRole("heading", { name: "Waiting for Ruth Adeyemi to answer" });
+  await expect(waiting).toBeFocused();
+  await expect(waiting).toBeInViewport();
+
+  const language = page.locator("#language");
+  await language.focus();
+  await language.selectOption("fr");
+  await expect(language).toBeFocused();
+  await language.selectOption("en");
+
+  await page.getByRole("button", { name: "Withdraw my proposal" }).press("Enter");
+  const form = page.getByRole("heading", { name: "Propose a session to Ruth Adeyemi" });
+  await expect(form).toBeFocused();
+  await expect(form).toBeInViewport();
 });
 
 // Story 4: the session ends and the expert is paid.

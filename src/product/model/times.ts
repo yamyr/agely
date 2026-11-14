@@ -17,6 +17,14 @@ export function suggestedTimes(now: Date): Date[] {
   return times;
 }
 
+/** Convert a datetime-local control's minute to UTC without rolling a skipped time forward. */
+export function localMinuteToInstant(value: string): string | null {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  const localAsUtc = new Date(date.getTime() - date.getTimezoneOffset() * 60_000);
+  return localAsUtc.toJSON() === `${value}:00.000Z` ? date.toISOString() : null;
+}
+
 /** "Thursday 19 November at 10:00 EST": the viewer's own time zone, named so nobody has to guess. */
 export function formatWhen(instant: string, locale: Locale = "en"): string {
   return formatDate(new Date(instant), locale, { weekday: "long", day: "numeric", month: "long", hour: "numeric", minute: "2-digit", timeZoneName: "short" });

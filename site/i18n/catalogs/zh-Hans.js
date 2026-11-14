@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "使用向左和向右箭头键在专家之间切换。",
   " to read the data directly.": " 以直接读取数据。",
   " with {0}": "，使用 {0}",
   "$40 to $70": "40美元至70美元",
@@ -237,7 +238,7 @@ export default {
   "Experts charge more than buyers can pay.": "专家要价高于买家支付能力。",
   "Experts declined": "专家拒绝",
   "Experts on Agely": "Agely 上的专家",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "专家可通过语音或选择建议回复与助手交流，打字是可选项。文字不小于 16px，按钮较大，键盘焦点始终可见。",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "在演示中，您可以选择建议回复，也可以输入对个人简介的修改。文字至少为 16 像素，按钮较大，键盘焦点清晰可见。",
   "Experts who earned": "获得收入的专家",
   "Experts with “{0}” charge outside your budget of {1} per 15 minutes. Widening the budget would let Agely match you.": "具有“{0}”技能的专家，每 15 分钟收费超出您的 {1} 预算。扩大预算便可能找到匹配。",
   "Finding, interviewing and choosing people.": "寻找、面试和挑选人员。",
@@ -624,6 +625,7 @@ export default {
   "That skill isn't on the profile any more.": "资料中已没有这项技能。",
   "That sounds right.": "听起来合适。",
   "That's my name": "那是我的名字",
+  "That time doesn't exist in your time zone. Choose another time.": "您所在的时区没有这个时间。请选择其他时间。",
   "The agent could not reply. Try again, or use the scripted conversation.": "助手无法回复。请重试或使用预设对话。",
   "The agent debriefs Margaret": "助手与 Margaret 回顾咨询",
   "The agent drafts a workflow": "助手起草工作流程",
@@ -670,7 +672,7 @@ export default {
   "The walkthrough uses the scripted conversations.": "演示使用预设对话。",
   "Their problem: {0}": "他们的问题: {0}",
   "Then": "随后",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "无需填表或撰写个人简介。Margaret 用语音或选择建议回复表达，助手将她的话整理成简介。",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "演示展示了 Margaret 的访谈，以及助手如何根据她的回答起草个人简介。",
   "There is no match to continue with.": "没有可继续的匹配。",
   "There is no match to send a proposal to.": "没有可发送提议的匹配对象。",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "没有什么要填写的 我们就谈谈 你做过什么工作 工作多久了",
