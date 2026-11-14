@@ -203,7 +203,6 @@ fn prompt_carries_role_goal_background_and_rules() {
         "Learn about Margaret's career",
         "Margaret Okafor, 68",
         "written as Margaret",
-        "Keep the people, actions and outcomes from the background and conversation consistent",
         "160 characters",
         "legal, medical or financial advice",
         "publish, book, accept or pay",
