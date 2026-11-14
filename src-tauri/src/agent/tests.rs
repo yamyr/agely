@@ -4,7 +4,7 @@ use super::locate::find_codex;
 use super::output::{parse_turn, schema_json, MAX_MESSAGE_CHARS, MAX_OPTION_CHARS};
 use super::prompt::build_prompt;
 use super::status::{candidate_models, configured_model, is_model_rejected, is_signed_in};
-use super::types::{AgentBrief, ErrorCode, Speaker, TranscriptLine};
+use super::types::{AgentBrief, ErrorCode, Speaker, StatusState, TranscriptLine};
 
 fn brief(max_turns: u32) -> AgentBrief {
     AgentBrief {
@@ -239,6 +239,28 @@ fn classifies_login_status() {
     assert!(is_signed_in(true, "Logged in using an API key - sk-***"));
     assert!(!is_signed_in(true, "Not logged in"));
     assert!(!is_signed_in(false, "Logged in using ChatGPT"));
+}
+
+#[cfg(unix)]
+#[test]
+fn a_cli_config_failure_is_not_reported_as_signed_out() {
+    use std::os::unix::fs::PermissionsExt;
+
+    let scratch = super::run::Scratch::new().expect("temporary directory");
+    let bin = scratch.path().join("codex");
+    let fake = |body: &str| {
+        std::fs::write(&bin, format!("#!/bin/sh\n{body}\n")).expect("write fake CLI");
+        std::fs::set_permissions(&bin, std::fs::Permissions::from_mode(0o700))
+            .expect("make fake CLI executable");
+        super::check(Some(bin.clone())).0
+    };
+    assert_eq!(
+        fake("echo 'Not logged in'; exit 1").state,
+        StatusState::NotSignedIn
+    );
+    let failure = fake("echo 'Error loading configuration: private-marker' >&2; exit 1");
+    assert_eq!(failure.state, StatusState::Error);
+    assert!(!failure.detail.contains("private-marker"));
 }
 
 #[test]
