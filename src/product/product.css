@@ -10,7 +10,9 @@
   font: inherit;
 }
 
-.product .demo-stage :is(h2, .turn__question):focus-visible {
+/* These headings receive managed focus. Firefox can omit :focus-visible when the
+   previous control has just left the page, including after a keyboard action. */
+.product .demo-stage :is(h2, .turn__question):focus {
   outline: var(--focus-ring-width) solid var(--color-accent-strong);
   outline-offset: var(--focus-ring-offset);
 }
