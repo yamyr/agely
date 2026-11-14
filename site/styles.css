@@ -751,6 +751,12 @@ a {
   font-weight: 600;
 }
 
+.prototype-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--control-h);
+}
+
 .footer {
   max-width: var(--content-max);
   margin: 0 auto;
