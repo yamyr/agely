@@ -381,6 +381,7 @@ export default {
   "That code isn't right. Check the six digits and try again.": "Koden er ikke riktig. Kontroller de seks sifrene og prøv igjen.",
   "That doesn't look like an email address. Check it and try again.": "Det ser ikke ut som en e-postadresse. Sjekk det og prøv igjen.",
   "That's my name": "Det er navnet mitt",
+  "That time doesn't exist in your time zone. Choose another time.": "Det klokkeslettet finnes ikke i tidssonen din. Velg et annet tidspunkt.",
   "The agent drafts a workflow": "Agenten lager utkast til arbeidsflyt",
   "The agent suggests": "Agenten foreslår",
   "The agent suggests this range because:": "Agenten foreslår dette området fordi:",

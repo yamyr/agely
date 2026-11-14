@@ -381,6 +381,7 @@ export default {
   "That code isn't right. Check the six digits and try again.": "Цей код неправильний. Перевірте шість цифр і спробуйте ще раз.",
   "That doesn't look like an email address. Check it and try again.": "Це не схоже на адресу електронної пошти. Перевірте її і спробуйте ще раз.",
   "That's my name": "Це моє ім'я.",
+  "That time doesn't exist in your time zone. Choose another time.": "У вашому часовому поясі такого часу немає. Виберіть інший час.",
   "The agent drafts a workflow": "Агент готує робочий процес",
   "The agent suggests": "Агент пропонує",
   "The agent suggests this range because:": "Агент пропонує цей діапазон, оскільки:",

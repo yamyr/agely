@@ -381,6 +381,7 @@ export default {
   "That code isn't right. Check the six digits and try again.": "Ten kod jest nieprawidłowy. Sprawdź sześć cyfr i spróbuj ponownie.",
   "That doesn't look like an email address. Check it and try again.": "To nie wygląda jak adres e-mail. Sprawdź i spróbuj ponownie.",
   "That's my name": "To jest moje imię",
+  "That time doesn't exist in your time zone. Choose another time.": "Ta godzina nie występuje w Twojej strefie czasowej. Wybierz inną godzinę.",
   "The agent drafts a workflow": "Agent przygotowuje procedurę",
   "The agent suggests": "Agent proponuje",
   "The agent suggests this range because:": "Agent sugeruje ten zakres, ponieważ:",

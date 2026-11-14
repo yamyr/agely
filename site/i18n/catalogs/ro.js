@@ -381,6 +381,7 @@ export default {
   "That code isn't right. Check the six digits and try again.": "Acest cod nu este corect.Verificaţi cele şase cifre şi încercaţi din nou.",
   "That doesn't look like an email address. Check it and try again.": "Aceasta nu pare a fi o adresă de e-mail. Verificați-o și încercați din nou.",
   "That's my name": "Acesta este numele meu",
+  "That time doesn't exist in your time zone. Choose another time.": "Această oră nu există în fusul dumneavoastră orar. Alegeți altă oră.",
   "The agent drafts a workflow": "Agentul pregătește un flux de lucru",
   "The agent suggests": "Agentul sugerează",
   "The agent suggests this range because:": "Agentul sugerează această gamă deoarece:",

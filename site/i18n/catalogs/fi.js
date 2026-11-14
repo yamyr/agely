@@ -381,6 +381,7 @@ export default {
   "That code isn't right. Check the six digits and try again.": "Koodi ei ole oikein, tarkista kuusi numeroa ja yritä uudelleen.",
   "That doesn't look like an email address. Check it and try again.": "Tarkista sähköpostiosoite ja yritä uudelleen.",
   "That's my name": "Se on nimeni",
+  "That time doesn't exist in your time zone. Choose another time.": "Tätä kellonaikaa ei ole aikavyöhykkeelläsi. Valitse toinen aika.",
   "The agent drafts a workflow": "Agentti luonnostelee työnkulun",
   "The agent suggests": "Agentti ehdottaa",
   "The agent suggests this range because:": "Välittäjä ehdottaa tätä valikoimaa, koska:",

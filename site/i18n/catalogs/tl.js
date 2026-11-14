@@ -624,6 +624,7 @@ export default {
   "That skill isn't on the profile any more.": "Wala na ang kasanayang iyon sa profile.",
   "That sounds right.": "Mukhang tama iyon.",
   "That's my name": "Na ang aking pangalan",
+  "That time doesn't exist in your time zone. Choose another time.": "Walang ganyang oras sa iyong time zone. Pumili ng ibang oras.",
   "The agent could not reply. Try again, or use the scripted conversation.": "Hindi makasagot ang ahente. Subukan muli o gamitin ang nakahandang usapan.",
   "The agent debriefs Margaret": "Nakikipagbalik-tanaw ang ahente kay Margaret",
   "The agent drafts a workflow": "Gumagawa ang agent ng burador na daloy ng trabaho",

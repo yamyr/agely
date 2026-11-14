@@ -624,6 +624,7 @@ export default {
   "That skill isn't on the profile any more.": "அந்தத் திறன் இப்போது சுயவிவரத்தில் இல்லை.",
   "That sounds right.": "அது சரியாகத் தோன்றுகிறது.",
   "That's my name": "அது என் பெயர்",
+  "That time doesn't exist in your time zone. Choose another time.": "உங்கள் நேர மண்டலத்தில் அந்த நேரம் இல்லை. வேறொரு நேரத்தைத் தேர்ந்தெடுக்கவும்.",
   "The agent could not reply. Try again, or use the scripted conversation.": "முகவரால் பதிலளிக்க முடியவில்லை. மீண்டும் முயலுங்கள் அல்லது முன்னெழுதிய உரையாடலைப் பயன்படுத்துங்கள்.",
   "The agent debriefs Margaret": "முகவர் Margaret உடன் அமர்வை மீளாய்வு செய்கிறார்",
   "The agent drafts a workflow": "முகவர் செயல்முறையை வரைகிறார்",

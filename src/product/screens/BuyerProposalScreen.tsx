@@ -4,7 +4,7 @@ import { formatRange, overlap, validateRange } from "../../demo/domain/price";
 import { useI18n } from "../../i18n";
 import { parseDollars } from "../../i18n/digits";
 import { formatCents, sessionTotalCents } from "../model/money";
-import { formatWhen, lengthText, suggestedTimes } from "../model/times";
+import { formatWhen, lengthText, localMinuteToInstant, suggestedTimes } from "../model/times";
 import type { Brief } from "../model/types";
 import { href } from "../routes";
 import { type ProposalView, myProposals, sendProposal, withdrawProposal } from "../usecases/booking";
@@ -25,7 +25,7 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
   const [timeChoice, setTimeChoice] = useState<TimeChoice | null>(null);
   const [error, setError] = useState<
     | { readonly code: "price-outside-range" | "invalid-price"; readonly price: number }
-    | { readonly code: Exclude<SendError, "price-outside-range"> | "missing-time" }
+    | { readonly code: Exclude<SendError, "price-outside-range"> | "missing-time" | "skipped-time" }
     | null
   >(null);
   const times = useMemo(() => suggestedTimes(ctx.now()), [ctx]);
@@ -112,8 +112,10 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
     if (brief === null) return;
     if (!validateRange({ min: price, max: price }).ok) return setError({ code: "invalid-price", price });
     if (timeChoice === null) return setError({ code: "missing-time" });
+    const startsAt = timeChoice.kind === "custom" ? localMinuteToInstant(timeChoice.value) : timeChoice.value;
+    if (startsAt === null) return setError({ code: "skipped-time" });
     const data = new FormData(event.currentTarget);
-    const sent = await sendProposal(ctx, brief.id, { units, pricePerUnit: price, startsAt: timeChoice.value, buyerName: String(data.get("name") ?? "") });
+    const sent = await sendProposal(ctx, brief.id, { units, pricePerUnit: price, startsAt, buyerName: String(data.get("name") ?? "") });
     if (sent.ok) {
       setTimeChoice(null);
       setError(null);
@@ -133,6 +135,7 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
       case "price-outside-range":
         return t("{0} is outside the range you and {1} share ({2}). Choose a price in that range.", formatUsd(failure.price, locale), expertName, formatRange(shared, locale));
       case "missing-time": return t("Choose when you'd like to meet.");
+      case "skipped-time": return t("That time doesn't exist in your time zone. Choose another time.");
       case "time-in-past": return t("Choose a time in the future.");
       case "empty-name": return t("Tell {0} what to call you.", expertName);
       case "stale-match": return t("This match is no longer available. Go back and match again.");

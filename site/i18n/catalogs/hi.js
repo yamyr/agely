@@ -624,6 +624,7 @@ export default {
   "That skill isn't on the profile any more.": "अब वह कौशल परिचय में नहीं है।",
   "That sounds right.": "यह ठीक लगता है।",
   "That's my name": "कि मेरा नाम है",
+  "That time doesn't exist in your time zone. Choose another time.": "आपके समय क्षेत्र में यह समय नहीं है। कोई दूसरा समय चुनें।",
   "The agent could not reply. Try again, or use the scripted conversation.": "सहायक उत्तर नहीं दे सका। फिर प्रयास करें या पहले से लिखी बातचीत इस्तेमाल करें।",
   "The agent debriefs Margaret": "सहायक Margaret के साथ सत्र की समीक्षा करता है",
   "The agent drafts a workflow": "सहायक कार्यप्रवाह का मसौदा बनाता है",

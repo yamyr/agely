@@ -624,6 +624,7 @@ export default {
   "That skill isn't on the profile any more.": "资料中已没有这项技能。",
   "That sounds right.": "听起来合适。",
   "That's my name": "那是我的名字",
+  "That time doesn't exist in your time zone. Choose another time.": "您所在的时区没有这个时间。请选择其他时间。",
   "The agent could not reply. Try again, or use the scripted conversation.": "助手无法回复。请重试或使用预设对话。",
   "The agent debriefs Margaret": "助手与 Margaret 回顾咨询",
   "The agent drafts a workflow": "助手起草工作流程",

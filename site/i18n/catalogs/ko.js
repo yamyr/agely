@@ -624,6 +624,7 @@ export default {
   "That skill isn't on the profile any more.": "그 기술은 더 이상 프로필에 없어요.",
   "That sounds right.": "적당한 것 같아요.",
   "That's my name": "그게 내 이름이야",
+  "That time doesn't exist in your time zone. Choose another time.": "현재 시간대에는 해당 시각이 없습니다. 다른 시각을 선택하세요.",
   "The agent could not reply. Try again, or use the scripted conversation.": "도우미가 답하지 못했어요. 다시 시도하거나 미리 작성된 대화를 사용하세요.",
   "The agent debriefs Margaret": "도우미가 Margaret 님과 상담을 돌아봐요",
   "The agent drafts a workflow": "에이전트가 작업 절차를 작성합니다",

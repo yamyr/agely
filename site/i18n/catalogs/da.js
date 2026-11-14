@@ -624,6 +624,7 @@ export default {
   "That skill isn't on the profile any more.": "Den kompetence står ikke længere på profilen.",
   "That sounds right.": "Det lyder rigtigt.",
   "That's my name": "Det er mit navn",
+  "That time doesn't exist in your time zone. Choose another time.": "Det klokkeslæt findes ikke i din tidszone. Vælg et andet tidspunkt.",
   "The agent could not reply. Try again, or use the scripted conversation.": "Agenten kunne ikke svare. Prøv igen, eller brug den forberedte samtale.",
   "The agent debriefs Margaret": "Agenten samler op med Margaret",
   "The agent drafts a workflow": "Agenten laver et udkast til en arbejdsgang",

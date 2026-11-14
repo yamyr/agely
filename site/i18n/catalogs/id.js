@@ -624,6 +624,7 @@ export default {
   "That skill isn't on the profile any more.": "Keahlian itu sudah tidak ada di profil.",
   "That sounds right.": "Kedengarannya tepat.",
   "That's my name": "Itu namaku",
+  "That time doesn't exist in your time zone. Choose another time.": "Waktu itu tidak ada di zona waktu Anda. Pilih waktu lain.",
   "The agent could not reply. Try again, or use the scripted conversation.": "Agen tidak dapat menjawab. Coba lagi atau gunakan percakapan yang disiapkan.",
   "The agent debriefs Margaret": "Agen meninjau sesi bersama Margaret",
   "The agent drafts a workflow": "Agen menyusun alur kerja",

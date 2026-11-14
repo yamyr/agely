@@ -58,6 +58,22 @@ test("a custom time replaces a suggestion and survives a price correction and la
   await expect(page.getByText(/You proposed .* at 1:25 PM EST/)).toBeVisible();
 });
 
+test("a buyer can correct a local time skipped when the clocks go forward", async ({ page }) => {
+  await page.clock.setFixedTime(new Date("2027-03-13T12:00:00Z"));
+  await page.getByRole("link", { name: "Propose a session" }).click();
+  await page.getByLabel(/^Your name/).fill("Sam Ortiz");
+  const custom = page.getByLabel("Or choose another date and time");
+  await custom.fill("2027-03-14T02:30");
+  await page.getByRole("button", { name: "Send my proposal" }).click();
+
+  await expect(page.getByRole("alert")).toContainText("That time doesn't exist in your time zone");
+  await expect(custom).toHaveValue("2027-03-14T02:30");
+  await custom.fill("2027-03-14T03:30");
+  await page.getByRole("button", { name: "Send my proposal" }).click();
+  await expect(page.getByRole("heading", { name: "Waiting for Ruth Adeyemi to answer" })).toBeVisible();
+  await expect(page.getByText(/You proposed .* at 3:30 AM EDT/)).toBeVisible();
+});
+
 test("a buyer proposes, the expert accepts, and both see a confirmed session with a held payment and a link", async ({ page }) => {
   test.slow();
   await page.getByRole("link", { name: "Propose a session" }).click();

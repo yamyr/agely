@@ -624,6 +624,7 @@ export default {
   "That skill isn't on the profile any more.": "そのスキルはすでにプロフィールにありません。",
   "That sounds right.": "よさそうです。",
   "That's my name": "それが私の名前",
+  "That time doesn't exist in your time zone. Choose another time.": "お使いのタイムゾーンには、その時刻がありません。別の時刻を選んでください。",
   "The agent could not reply. Try again, or use the scripted conversation.": "エージェントが返答できませんでした。再試行するか、台本の会話を使ってください。",
   "The agent debriefs Margaret": "エージェントが Margaret さんと振り返ります",
   "The agent drafts a workflow": "エージェントが手順を下書き",

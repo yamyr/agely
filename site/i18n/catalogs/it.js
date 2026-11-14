@@ -624,6 +624,7 @@ export default {
   "That skill isn't on the profile any more.": "Quella competenza non è più nel profilo.",
   "That sounds right.": "Mi sembra giusto.",
   "That's my name": "Questo è il mio nome",
+  "That time doesn't exist in your time zone. Choose another time.": "Questo orario non esiste nel tuo fuso orario. Scegli un altro orario.",
   "The agent could not reply. Try again, or use the scripted conversation.": "L’agente non ha potuto rispondere. Riprova oppure usa la conversazione predefinita.",
   "The agent debriefs Margaret": "L’agente raccoglie il resoconto di Margaret",
   "The agent drafts a workflow": "L’agente prepara una procedura",
