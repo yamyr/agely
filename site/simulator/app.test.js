@@ -55,6 +55,20 @@ it("keeps the selected expert when the scenario reloads in another language", as
   expect(german.document.getElementById("expert-readout").textContent).toContain("Walter 1");
 });
 
+it("gives the expert chart one Tab stop and supports choosing experts with arrow keys", async () => {
+  const window = await openSimulator("https://agely.dev/simulator/?lang=en#experts=15&seed=37&expert=4");
+  const cells = [...window.document.querySelectorAll("#expert-grid button")];
+  expect(cells.filter((cell) => cell.tabIndex === 0)).toEqual([cells[4]]);
+  cells[4].focus();
+  cells[4].dispatchEvent(new window.KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true }));
+  expect(window.document.activeElement).toBe(cells[5]);
+  expect(cells.filter((cell) => cell.tabIndex === 0)).toEqual([cells[5]]);
+  expect(cells[5].getAttribute("aria-pressed")).toBe("true");
+  expect(new URLSearchParams(window.location.hash.slice(1)).get("expert")).toBe("5");
+  cells[5].dispatchEvent(new window.KeyboardEvent("keydown", { key: "End", bubbles: true }));
+  expect(window.document.activeElement).toBe(cells.at(-1));
+});
+
 it("ignores missing and invalid expert selections in shared scenarios", async () => {
   for (const selection of ["", "&expert=", "&expert=-1", "&expert=15", "&expert=2.5", "&expert=unknown"]) {
     const window = await openSimulator(`https://agely.dev/simulator/?lang=en#experts=15&seed=37${selection}`);
