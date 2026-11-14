@@ -39,6 +39,16 @@ describe("product routes", () => {
     expect(resolve("#/app/home/extra", account(["expert"]))).toMatchObject({ name: "home" });
   });
 
+  it("sends a session address with broken percent encoding to home", () => {
+    const expert = account(["expert"]);
+    for (const id of ["%", "%E0%A4%A"]) {
+      expect(resolve(`#/app/session/${id}`, expert)).toEqual({ name: "home", params: {}, href: "#/app/home" });
+    }
+    const id = "session / 25%";
+    const path = href("session", { id });
+    expect(resolve(path, expert)).toEqual({ name: "session", params: { id }, href: path });
+  });
+
   it("ignores a trailing slash", () => {
     expect(resolve("#/app/account/", account(["expert"]))).toMatchObject({ name: "account" });
   });
