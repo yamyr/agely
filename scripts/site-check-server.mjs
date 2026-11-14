@@ -13,6 +13,15 @@ function byteRange(header, size) {
   return start <= end ? { start, end } : null;
 }
 
+function statEntry(path) {
+  try {
+    return statSync(path, { throwIfNoEntry: false });
+  } catch (error) {
+    // Bun reports a path beneath a regular file as ENOTDIR.
+    if (error.code !== "ENOTDIR") throw error;
+  }
+}
+
 export function createSiteCheckServer(root) {
   const directory = resolve(root);
   return createServer((req, res) => {
@@ -25,10 +34,10 @@ export function createSiteCheckServer(root) {
     if (!pathname.startsWith("/") || pathname.includes("\0")) return res.writeHead(400).end();
     let file = resolve(directory, `.${pathname}`);
     if (file !== directory && !file.startsWith(`${directory}${sep}`)) return res.writeHead(403).end();
-    let entry = statSync(file, { throwIfNoEntry: false });
+    let entry = statEntry(file);
     if (entry?.isDirectory()) {
       file = resolve(file, "index.html");
-      entry = statSync(file, { throwIfNoEntry: false });
+      entry = statEntry(file);
     }
     if (!entry?.isFile()) return res.writeHead(404).end();
 

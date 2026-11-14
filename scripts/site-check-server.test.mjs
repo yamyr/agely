@@ -47,5 +47,6 @@ test("reports unsatisfiable ranges and still serves the media and page normally"
   expect(page.headers.get("content-type")).toBe("text/html");
   expect(await page.text()).toBe("<h1>Agely</h1>");
   expect((await fetch(`${base}/missing`)).status).toBe(404);
+  expect((await fetch(`${base}/index.html/missing`)).status).toBe(404);
   expect((await fetch(`${base}/%00`)).status).toBe(400);
 });
