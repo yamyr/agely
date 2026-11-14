@@ -11,7 +11,7 @@ async function loadCatalogs(code) {
 }
 
 describe("production translation catalogs", () => {
-  it("preserves every draft and avoids shipping repeated keys", async () => {
+  it("loads as one module and preserves every draft without repeated keys", async () => {
     const compact = compactCatalogModule(catalogs);
     await expect(loadCatalogs(compact)).resolves.toEqual(catalogs);
 

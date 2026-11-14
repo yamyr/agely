@@ -1,5 +1,5 @@
 /// <reference types="vitest/config" />
-import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 import { defineConfig, normalizePath, type Plugin } from "vite";
@@ -19,7 +19,6 @@ const { version } = JSON.parse(
 const siteBuild = process.env.AGELY_SITE_BUILD === "1" || process.env.CF_PAGES === "1";
 
 const rootPath = (relative: string) => fileURLToPath(new URL(relative, import.meta.url));
-const sourceCatalogDir = rootPath("./site/i18n/catalogs");
 const catalogIndex = normalizePath(rootPath("./site/i18n/catalogs/index.js"));
 
 function productionCatalogs(code: string): Plugin {
@@ -42,9 +41,9 @@ function landingPage(catalogCode: string): Plugin {
       cpSync(rootPath("./site"), rootPath("./dist"), {
         recursive: true,
         // Unit tests live beside the simulator's model but are not part of the website.
-        filter: (source) => source !== sourceCatalogDir && !source.endsWith(".test.js"),
+        filter: (source) => !source.endsWith(".test.js"),
       });
-      mkdirSync(rootPath("./dist/i18n/catalogs"), { recursive: true });
+      // A cached copy of the previous index can still request the individual locale files.
       writeFileSync(rootPath("./dist/i18n/catalogs/index.js"), catalogCode);
     },
   };
