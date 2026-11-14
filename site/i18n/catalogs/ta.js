@@ -1,5 +1,6 @@
 // Model-generated Tamil translation draft; requires language review.
 export default {
+  "Use the left and right arrow keys to move between experts.": "நிபுணர்களுக்கிடையே நகர இடது, வலது அம்புக்குறி விசைகளைப் பயன்படுத்தவும்.",
   " to read the data directly.": " வழியாகத் தரவை நேரடியாகப் படிக்கலாம்.",
   " with {0}": " உடன் {0}",
   "$40 to $70": "40 முதல் 70 அமெரிக்க டாலர் வரை",

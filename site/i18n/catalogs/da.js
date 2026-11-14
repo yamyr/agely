@@ -1,5 +1,6 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Brug venstre og højre piletast til at skifte mellem eksperter.",
   " to read the data directly.": " for at læse dataene direkte.",
   " with {0}": " med {0}",
   "$40 to $70": "$40 til $70",

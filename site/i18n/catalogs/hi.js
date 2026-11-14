@@ -1,5 +1,6 @@
 // Model-generated Hindi draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "विशेषज्ञों के बीच जाने के लिए बाएँ और दाएँ तीर की कुंजियों का उपयोग करें।",
   " to read the data directly.": " में सीधे आँकड़े पढ़ें।",
   " with {0}": ", {0} के साथ",
   "$40 to $70": "$40 से $70",

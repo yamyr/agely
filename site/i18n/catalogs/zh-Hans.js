@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "使用向左和向右箭头键在专家之间切换。",
   " to read the data directly.": " 以直接读取数据。",
   " with {0}": "，使用 {0}",
   "$40 to $70": "40美元至70美元",

@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "左右の矢印キーで専門家を切り替えます。",
   " to read the data directly.": "を開くとデータを直接読めます。",
   " with {0}": "（{0} を使用）",
   "$40 to $70": "40から70ドル",

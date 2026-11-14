@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Folosiți tastele săgeată stânga și dreapta pentru a trece de la un expert la altul.",
   " to read the data directly.": " pentru a citi datele direct.",
   "$40 to $70": "$40 până la $70",
   "$50 to $100": "$50 până la $100",

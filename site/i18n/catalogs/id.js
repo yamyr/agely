@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Gunakan tombol panah kiri dan kanan untuk berpindah antar pakar.",
   " to read the data directly.": " untuk membaca data secara langsung.",
   " with {0}": " dengan {0}",
   "$40 to $70": "$40 sampai $70",

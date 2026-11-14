@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "왼쪽 및 오른쪽 화살표 키로 전문가를 이동할 수 있습니다.",
   " to read the data directly.": "에서 데이터를 직접 읽으세요.",
   " with {0}": " ({0} 사용)",
   "$40 to $70": "$40에서 $70 사이",

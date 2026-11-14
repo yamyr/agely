@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Siirry asiantuntijasta toiseen vasemmalla ja oikealla nuolinäppäimellä.",
   " to read the data directly.": " lukeaksesi tiedot suoraan.",
   "$40 to $70": "40–70 dollaria",
   "$50 to $100": "50 dollarista 100 dollariin",

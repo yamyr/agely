@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Gamitin ang kaliwa at kanang arrow key para lumipat sa ibang eksperto.",
   " to read the data directly.": " upang direktang basahin ang datos.",
   " with {0}": " gamit ang {0}",
   "$40 to $70": "$40 hanggang $70",

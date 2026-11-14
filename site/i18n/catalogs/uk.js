@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Переміщуйтеся між експертами клавішами зі стрілками вліво та вправо.",
   " to read the data directly.": " щоб прочитати дані безпосередньо.",
   "$40 to $70": "$40 до $70",
   "$50 to $100": "Від $50 до $100",

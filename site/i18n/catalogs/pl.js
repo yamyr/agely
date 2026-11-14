@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Użyj klawiszy strzałek w lewo i w prawo, aby przechodzić między ekspertami.",
   " to read the data directly.": " aby przeczytać dane bezpośrednio.",
   "$40 to $70": "$40 do $70",
   "$50 to $100": "$50 do $100",
