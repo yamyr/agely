@@ -126,7 +126,7 @@ button.primary {
   color: #ffffff;
 }
 
-button.primary:hover:not(:disabled) {
+button.primary:hover:not(:disabled, [aria-disabled="true"]) {
   background: color-mix(in srgb, var(--color-accent-strong) 85%, black);
   border-color: color-mix(in srgb, var(--color-accent-strong) 85%, black);
 }
@@ -137,7 +137,7 @@ button.secondary {
   color: var(--color-accent-strong);
 }
 
-button.secondary:hover:not(:disabled) {
+button.secondary:hover:not(:disabled, [aria-disabled="true"]) {
   background: var(--color-accent-soft);
 }
 
@@ -147,7 +147,7 @@ button.quiet {
   color: var(--text-muted);
 }
 
-button.quiet:hover:not(:disabled) {
+button.quiet:hover:not(:disabled, [aria-disabled="true"]) {
   color: var(--text);
   text-decoration: underline;
 }
@@ -158,11 +158,11 @@ button.danger {
   color: var(--band-limited-ink);
 }
 
-button.danger:hover:not(:disabled) {
+button.danger:hover:not(:disabled, [aria-disabled="true"]) {
   background: var(--band-limited-soft);
 }
 
-button:disabled {
+button:is(:disabled, [aria-disabled="true"]) {
   opacity: 0.5;
   cursor: not-allowed;
 }

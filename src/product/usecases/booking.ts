@@ -3,10 +3,37 @@ import type { PriceRange } from "../../demo/domain/types";
 import { feeCents, owedCents, sessionTotalCents } from "../model/money";
 import type { Account, Payment, Proposal, Session } from "../model/types";
 import { type Result, ok, refuse } from "../model/types";
+import type { StorePort } from "../ports";
 import { setName } from "./account";
 import { myBrief } from "./brief";
 import { type AccessError, type Context, actingAccount, owned } from "./context";
 import { isMatchable, myMatch } from "./match";
+
+// One marketplace runtime shares one StorePort. This queue protects booking reads and writes
+// within that runtime; real adapters must enforce these invariants across clients themselves.
+const bookingQueues = new WeakMap<StorePort, Promise<void>>();
+
+function bookingOperation<T, E extends string>(ctx: Context, work: (actorContext: Context) => Promise<Result<T, E>>): Promise<Result<T, E | "not-signed-in">> {
+  // Observe auth failures immediately, even while a preceding booking is awaiting a service.
+  const actor = ctx.ports.auth.current().then(
+    (accountId) => ({ ok: true as const, accountId }),
+    (error: unknown) => ({ ok: false as const, error }),
+  );
+  const previous = bookingQueues.get(ctx.ports.store) ?? Promise.resolve();
+  const result = previous.then(async () => {
+    const captured = await actor;
+    if (!captured.ok) throw captured.error;
+    const { accountId } = captured;
+    if (accountId === null || await ctx.ports.auth.current() !== accountId) return refuse("not-signed-in");
+    // Once started, an explicit decision completes for its validated actor, even if sign-in
+    // changes during a service call. In particular, setName must not rename the next buyer.
+    const actorContext: Context = { ...ctx, ports: { ...ctx.ports, auth: { ...ctx.ports.auth, current: async () => accountId } } };
+    return work(actorContext);
+  });
+  // A service rejection reaches its caller, but cannot poison later decisions or retries.
+  bookingQueues.set(ctx.ports.store, result.then(() => undefined, () => undefined));
+  return result;
+}
 
 export interface ProposalInput {
   readonly units: number;
@@ -51,7 +78,11 @@ async function sharedRange(ctx: Context, expertId: string, budget: PriceRange): 
 type SendError = AccessError | "empty-name" | "no-match" | "stale-match" | "already-proposed" | "invalid-length" | "price-outside-range" | "time-in-past";
 
 /** Explicit: the buyer proposes; nothing is booked, charged or held (FR-013, FR-014). */
-export async function sendProposal(ctx: Context, briefId: string, input: ProposalInput): Promise<Result<Proposal, SendError>> {
+export function sendProposal(ctx: Context, briefId: string, input: ProposalInput): Promise<Result<Proposal, SendError>> {
+  return bookingOperation(ctx, (actorContext) => send(actorContext, briefId, input));
+}
+
+async function send(ctx: Context, briefId: string, input: ProposalInput): Promise<Result<Proposal, SendError>> {
   const found = await myBrief(ctx, briefId);
   if (!found.ok) return found;
   const brief = found.value;
@@ -94,10 +125,10 @@ async function settle(ctx: Context, id: string, who: (p: Proposal) => readonly s
 }
 
 /** Explicit, by the buyer. */
-export const withdrawProposal = (ctx: Context, id: string): Promise<Result<Proposal, AccessError | "not-waiting">> => settle(ctx, id, (p) => [p.buyerId], "withdrawn");
+export const withdrawProposal = (ctx: Context, id: string): Promise<Result<Proposal, AccessError | "not-waiting">> => bookingOperation(ctx, (actorContext) => settle(actorContext, id, (p) => [p.buyerId], "withdrawn"));
 
 /** Explicit, by the expert the proposal was sent to. Nothing is held (FR-014). */
-export const declineProposal = (ctx: Context, id: string): Promise<Result<Proposal, AccessError | "not-waiting">> => settle(ctx, id, (p) => [p.expertId], "declined");
+export const declineProposal = (ctx: Context, id: string): Promise<Result<Proposal, AccessError | "not-waiting">> => bookingOperation(ctx, (actorContext) => settle(actorContext, id, (p) => [p.expertId], "declined"));
 
 type AcceptError = AccessError | "not-waiting" | "price-outside-range" | "time-in-past" | "time-taken" | "payment-failed";
 
@@ -107,7 +138,11 @@ type AcceptError = AccessError | "not-waiting" | "price-outside-range" | "time-i
  * hold succeeded (FR-015). Submitting it again, or after an interruption, returns the same
  * session.
  */
-export async function acceptProposal(ctx: Context, id: string): Promise<Result<{ session: Session; payment: Payment }, AcceptError>> {
+export function acceptProposal(ctx: Context, id: string): Promise<Result<{ session: Session; payment: Payment }, AcceptError>> {
+  return bookingOperation(ctx, (actorContext) => accept(actorContext, id));
+}
+
+async function accept(ctx: Context, id: string): Promise<Result<{ session: Session; payment: Payment }, AcceptError>> {
   const found = await proposalFor(ctx, id, (p) => [p.expertId]);
   if (!found.ok) return found;
   const { proposal } = found.value;
