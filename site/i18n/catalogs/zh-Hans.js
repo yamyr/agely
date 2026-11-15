@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "如果对提案的操作失败，键盘焦点会留在按钮上，方便你重试。",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "在网页版交易平台上重复点击，不再会生成重复的提案或预约。",
   "English (automatic captions)": "英语（自动生成字幕）",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "为搭载 Apple 芯片的 Mac 提供更新。当 Codex 无法检查登录状态时，将提供更清晰的指引。",
   "Smaller translation downloads and automatic English captions for the demo video.": "翻译下载体积更小，演示视频新增自动生成的英文字幕。",
@@ -698,6 +700,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "这个试用助手只能识别有限的技能用语。如果它没理解你的意思，可以试试建议的回答。",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "这个价格不再在你和买家共享的范围内,因为你的价格或他们的预算发生了变化。 拒绝它,他们可以再次提出。",
   "This proposal could not be accepted.": "这项建议不能接受。",
+  "This proposal could not be declined. Please try again.": "无法拒绝此提议。请重试。",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "这会删除你的账号、个人资料、需求说明及所有尚未收到答复的提议。此操作无法撤销。",
   "This session can no longer be cancelled because it has started.": "这个会话不能再取消了,因为它已经开始。",
   "This session could not be marked as held.": "无法确认该会谈已举行。",
@@ -830,6 +833,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "您的个人资料将被公布,买家可以与您匹配。",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "您的个人资料已发布,但在您确认价格之前,买家无法与您匹配。",
   "Your proposal could not be sent. Please try again.": "您的建议无法发送,请重试。",
+  "Your proposal could not be withdrawn. Please try again.": "无法撤回您的提议。请重试。",
   "Your session is confirmed.": "您的会话已确认。",
   "Your sessions": "您的会议",
   "a buyer": "买方",

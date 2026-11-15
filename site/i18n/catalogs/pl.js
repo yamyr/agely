@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Jeśli działanie dotyczące propozycji się nie powiedzie, fokus klawiatury pozostaje na przycisku, dzięki czemu możesz spróbować ponownie.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Wielokrotne kliknięcie nie tworzy już duplikatów propozycji ani rezerwacji na platformie w przeglądarce.",
   "English (automatic captions)": "Angielski (napisy automatyczne)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Aktualizacja dla Maców z układem Apple. Gdy Codex nie może sprawdzić stanu logowania, wyświetla jaśniejsze wskazówki.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Mniejsze pliki tłumaczeń do pobrania i automatyczne angielskie napisy do filmu demonstracyjnego.",
@@ -428,6 +430,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "Ten asystent w wersji próbnej rozpoznaje tylko niektóre zwroty o umiejętnościach. Jeśli nie zrozumie Twojej odpowiedzi, wypróbuj jedną z podpowiedzi.",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "Ta cena nie mieści się już w zakresie, który dzielisz z kupującym, ponieważ zmieniła się Twoja cena lub jego budżet.Odrzuć ją, a on może zaproponować ponownie.",
   "This proposal could not be accepted.": "Wniosek ten nie mógł zostać przyjęty.",
+  "This proposal could not be declined. Please try again.": "Nie udało się odrzucić tej propozycji. Spróbuj ponownie.",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "Usunięte zostaną Twoje konto, profil, opisy potrzeb i wszystkie propozycje oczekujące na odpowiedź. Tej czynności nie można cofnąć.",
   "This session can no longer be cancelled because it has started.": "Tej sesji nie można już anulować, ponieważ już się rozpoczęła.",
   "This session could not be marked as held.": "Nie można było oznaczyć tej sesji jako przeprowadzonej.",
@@ -527,6 +530,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "Twój profil zostanie opublikowany, a nabywcy będą mogli dopasować się do Ciebie.",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "Twój profil zostanie opublikowany, ale kupujący nie będą mogli do Ciebie dopasować oferty, dopóki nie potwierdzisz ceny.",
   "Your proposal could not be sent. Please try again.": "Twoja propozycja nie mogła zostać wysłana, spróbuj ponownie.",
+  "Your proposal could not be withdrawn. Please try again.": "Nie udało się wycofać Twojej propozycji. Spróbuj ponownie.",
   "Your session is confirmed.": "Twoja sesja jest potwierdzona.",
   "Your sessions": "Twoje sesje",
   "a buyer": "Kupujący",

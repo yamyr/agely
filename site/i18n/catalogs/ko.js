@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "제안 관련 작업에 실패해도 키보드 포커스가 버튼에 남아 있어 다시 시도할 수 있습니다.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "브라우저 마켓플레이스에서 버튼을 여러 번 눌러도 더 이상 제안이나 예약이 중복 생성되지 않습니다.",
   "English (automatic captions)": "영어 (자동 생성 자막)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Apple Silicon Mac용 업데이트입니다. Codex가 로그인 상태를 확인할 수 없을 때 더 명확한 안내를 제공합니다.",
   "Smaller translation downloads and automatic English captions for the demo video.": "번역 다운로드 용량을 줄이고 데모 영상에 자동 생성 영어 자막을 추가했습니다.",
@@ -698,6 +700,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "이 체험 도우미는 기술과 관련된 일부 표현만 인식합니다. 답변을 이해하지 못하면 추천 답변을 선택해 보세요.",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "이 가격은 더 이상 당신과 구매자가 공유하는 범위 내에 있지 않습니다. 당신의 가격이나 구매자의 예산이 변경되었기 때문입니다.",
   "This proposal could not be accepted.": "이 제안은 받아들여지지 않았다.",
+  "This proposal could not be declined. Please try again.": "이 제안을 거절할 수 없었습니다. 다시 시도해 주세요.",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "계정과 프로필, 요청서, 아직 답변을 기다리는 제안이 삭제됩니다. 삭제는 되돌릴 수 없습니다.",
   "This session can no longer be cancelled because it has started.": "이 세션은 시작되었기 때문에 더 이상 취소할 수 없습니다.",
   "This session could not be marked as held.": "세션이 진행되었음을 확인할 수 없습니다.",
@@ -830,6 +833,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "귀하의 프로필이 게시되고 구매자가 귀하와 일치 할 수 있습니다.",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "프로필이 게시되지만 가격을 확인하기 전까지는 구매자가 매칭되지 않습니다.",
   "Your proposal could not be sent. Please try again.": "제안서를 보낼 수 없습니다. 다시 시도해 주십시오.",
+  "Your proposal could not be withdrawn. Please try again.": "제안을 철회할 수 없었습니다. 다시 시도해 주세요.",
   "Your session is confirmed.": "세션이 확인되었습니다.",
   "Your sessions": "귀하의 세션",
   "a buyer": "구매자",

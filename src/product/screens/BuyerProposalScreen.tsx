@@ -25,9 +25,12 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
   const [timeChoice, setTimeChoice] = useState<TimeChoice | null>(null);
   const heading = useRef<HTMLHeadingElement>(null);
   const focusResult = useRef(false);
+  const submitting = useRef(false);
+  const [pending, setPending] = useState(false);
+  const [withdrawFailed, setWithdrawFailed] = useState(false);
   const [error, setError] = useState<
     | { readonly code: "price-outside-range" | "invalid-price"; readonly price: number }
-    | { readonly code: Exclude<SendError, "price-outside-range"> | "missing-time" | "skipped-time" }
+    | { readonly code: Exclude<SendError, "price-outside-range"> | "missing-time" | "skipped-time" | "send-failed" }
     | null
   >(null);
   const times = useMemo(() => suggestedTimes(ctx.now()), [ctx]);
@@ -62,6 +65,26 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
     const bounds = target.getBoundingClientRect();
     if (bounds.top < 0 || bounds.bottom > window.innerHeight) target.scrollIntoView({ block: "center", behavior: "instant" });
   }, [proposalState]);
+
+  async function onWithdraw(id: string) {
+    if (submitting.current) return;
+    submitting.current = true;
+    setPending(true);
+    setWithdrawFailed(false);
+    try {
+      const withdrawn = await withdrawProposal(ctx, id).catch(() => null);
+      if (withdrawn === null) {
+        setWithdrawFailed(true);
+        return;
+      }
+      if (withdrawn.ok) focusResult.current = true;
+      else setWithdrawFailed(true);
+      await load();
+    } finally {
+      submitting.current = false;
+      setPending(false);
+    }
+  }
 
   if (loaded === undefined) return <p className="lead">{t("Opening your proposal…")}</p>;
   const { brief, view, last } = loaded;
@@ -98,11 +121,9 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
             formatWhen(last.proposal.startsAt, locale))}
         </p>
         <p className="notice notice--info">{t("Nothing is booked or charged until {0} accepts. They will see your proposal the next time they open Agely; nothing is sent to them.", expertName)}</p>
+        {withdrawFailed && <p className="notice notice--error" role="alert">{t("Your proposal could not be withdrawn. Please try again.")}</p>}
         <div className="actions">
-          <button type="button" className="secondary" onClick={() => void withdrawProposal(ctx, last.proposal.id).then((withdrawn) => {
-            if (withdrawn.ok) focusResult.current = true;
-            return load();
-          })}>
+          <button type="button" className="secondary" aria-disabled={pending} aria-busy={pending} onClick={() => void onWithdraw(last.proposal.id)}>
             {t("Withdraw my proposal")}
           </button>
         </div>
@@ -126,22 +147,34 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
 
   async function onSend(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (brief === null) return;
+    if (submitting.current || brief === null) return;
     if (!validateRange({ min: price, max: price }).ok) return setError({ code: "invalid-price", price });
     if (timeChoice === null) return setError({ code: "missing-time" });
     const startsAt = timeChoice.kind === "custom" ? localMinuteToInstant(timeChoice.value) : timeChoice.value;
     if (startsAt === null) return setError({ code: "skipped-time" });
     const data = new FormData(event.currentTarget);
-    const sent = await sendProposal(ctx, brief.id, { units, pricePerUnit: price, startsAt, buyerName: String(data.get("name") ?? "") });
-    if (sent.ok) {
-      focusResult.current = true;
-      setTimeChoice(null);
-      setError(null);
-      await refresh();
-      await load();
-      return;
+    // The ref closes the gap before React renders; ARIA keeps the retry button focused.
+    submitting.current = true;
+    setPending(true);
+    setError(null);
+    try {
+      const sent = await sendProposal(ctx, brief.id, { units, pricePerUnit: price, startsAt, buyerName: String(data.get("name") ?? "") }).catch(() => null);
+      if (sent === null) {
+        setError({ code: "send-failed" });
+        return;
+      }
+      if (sent.ok) {
+        focusResult.current = true;
+        setTimeChoice(null);
+        await refresh();
+        await load();
+        return;
+      }
+      setError(sent.error === "price-outside-range" ? { code: sent.error, price } : { code: sent.error });
+    } finally {
+      submitting.current = false;
+      setPending(false);
     }
-    setError(sent.error === "price-outside-range" ? { code: sent.error, price } : { code: sent.error });
   }
 
   function sendErrorMessage(failure: NonNullable<typeof error>): string {
@@ -245,7 +278,7 @@ export function BuyerProposalScreen({ ctx, account, refresh }: ScreenProps) {
         </p>
       )}
       <div className="actions">
-        <button type="submit" className="primary">
+        <button type="submit" className="primary" aria-disabled={pending} aria-busy={pending}>
           {t("Send my proposal")}
         </button>
         <a className="button-link button-link--quiet" href={href("buyer-match")}>

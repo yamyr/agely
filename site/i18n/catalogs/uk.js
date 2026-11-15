@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Якщо дія з пропозицією не вдалася, фокус клавіатури залишається на кнопці, щоб ви могли спробувати ще раз.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Повторні натискання більше не створюють дублікатів пропозицій чи бронювань у маркетплейсі в браузері.",
   "English (automatic captions)": "Англійська (автоматичні субтитри)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Оновлення для Mac із чипом Apple. Якщо Codex не може перевірити стан входу, з’являються зрозуміліші вказівки.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Менший обсяг завантажень перекладів і автоматичні англійські субтитри для демонстраційного відео.",
@@ -428,6 +430,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "Цей пробний помічник розпізнає лише деякі вислови про навички. Якщо він не зрозумів вашу відповідь, спробуйте одну із запропонованих.",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "Ця ціна більше не знаходиться у діапазоні, який ви і покупець поділяєте, оскільки ваша ціна або його бюджет змінилися. Відмовтеся від пропозиції, і покупець зможе запропонувати її знову.",
   "This proposal could not be accepted.": "Цю пропозицію не можна було прийняти.",
+  "This proposal could not be declined. Please try again.": "Не вдалося відхилити цю пропозицію. Спробуйте ще раз.",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "Буде видалено ваш обліковий запис, профіль, описи потреб і всі пропозиції, які ще чекають на відповідь. Цю дію не можна скасувати.",
   "This session can no longer be cancelled because it has started.": "Цей сеанс більше не можна скасувати, оскільки його вже розпочато.",
   "This session could not be marked as held.": "Не вдалося позначити цей сеанс як затриманий.",
@@ -527,6 +530,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "Ваш профіль опубліковано, і покупці можуть знайти вас.",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "Ваш профіль опубліковано, але покупці не зможуть знайти вас, поки ви не підтвердите ціну.",
   "Your proposal could not be sent. Please try again.": "Не вдалося надіслати вашу пропозицію. Будь ласка, спробуйте ще раз.",
+  "Your proposal could not be withdrawn. Please try again.": "Не вдалося відкликати вашу пропозицію. Спробуйте ще раз.",
   "Your session is confirmed.": "Ваш сеанс підтверджено.",
   "Your sessions": "Ваші сесії",
   "a buyer": "Покупець",

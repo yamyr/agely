@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Jos tarjoukseen liittyvä toiminto epäonnistuu, näppäimistön kohdistus pysyy painikkeessa, jotta voit yrittää uudelleen.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Useat napsautukset eivät enää luo päällekkäisiä tarjouksia tai varauksia selaimen markkinapaikalla.",
   "English (automatic captions)": "Englanti (automaattinen tekstitys)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Päivitys Applen sirulla varustetuille Maceille. Ohjeet ovat selkeämmät, jos Codex ei voi tarkistaa kirjautumista.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Pienemmät käännöslataukset ja automaattinen englanninkielinen tekstitys esittelyvideoon.",
@@ -428,6 +430,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "Tämä kokeiluavustaja tunnistaa vain tiettyjä taitoja kuvaavia ilmauksia. Jos se ei ymmärrä vastaustasi, kokeile jotakin ehdotetuista vastauksista.",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "Tämä hinta ei ole enää sinun ja ostajan yhteisen hinta-alueen sisällä, koska hintasi tai ostajan budjetti on muuttunut.Hylkää tarjous, jolloin ostaja voi tehdä uuden tarjouksen.",
   "This proposal could not be accepted.": "Tätä ehdotusta ei voitu hyväksyä.",
+  "This proposal could not be declined. Please try again.": "Ehdotusta ei voitu hylätä. Yritä uudelleen.",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "Tämä poistaa tilisi, profiilisi, avuntarpeesi kuvaukset ja kaikki ehdotukset, joihin ei ole vielä vastattu. Tätä ei voi kumota.",
   "This session can no longer be cancelled because it has started.": "Tätä istuntoa ei voi enää peruuttaa, koska se on jo alkanut.",
   "This session could not be marked as held.": "Tätä istuntoa ei voitu merkitä pidetyksi.",
@@ -527,6 +530,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "Profiilisi julkaistaan ja ostajat voidaan yhdistää sinuun.",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "Profiilisi on julkaistu, mutta ostajia ei voida yhdistää sinuun, ennen kuin vahvistat hinnan.",
   "Your proposal could not be sent. Please try again.": "Ehdotustasi ei voitu lähettää, yritä uudelleen.",
+  "Your proposal could not be withdrawn. Please try again.": "Ehdotustasi ei voitu perua. Yritä uudelleen.",
   "Your session is confirmed.": "Istuntosi on vahvistettu.",
   "Your sessions": "Omat istuntosi",
   "a buyer": "Ostaja",

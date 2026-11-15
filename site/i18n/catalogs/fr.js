@@ -1,5 +1,7 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Si une action sur une proposition échoue, le bouton conserve le focus clavier pour vous permettre de réessayer.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Les clics répétés ne créent plus de propositions ni de réservations en double sur la place de marché dans le navigateur.",
   "English (automatic captions)": "Anglais (sous-titres automatiques)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Mise à jour pour les Mac avec une puce Apple, avec des instructions plus claires si Codex ne peut pas vérifier la connexion.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Des téléchargements de traductions plus légers et des sous-titres automatiques en anglais pour la vidéo de démonstration.",
@@ -698,6 +700,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "Cet assistant de démonstration reconnaît certaines expressions liées aux compétences. S’il ne comprend pas votre réponse, essayez l’une des réponses proposées.",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "Ce prix n'est plus dans la fourchette que vous et l'acheteur partagez, parce que votre prix ou leur budget a changé.Rejetez-le et ils peuvent proposer à nouveau.",
   "This proposal could not be accepted.": "Cette proposition n &apos; a pas pu être acceptée.",
+  "This proposal could not be declined. Please try again.": "Cette proposition n’a pas pu être refusée. Veuillez réessayer.",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "Cette action supprime votre compte, votre profil, vos descriptions de besoin et toutes les propositions en attente d’une réponse. Elle est irréversible.",
   "This session can no longer be cancelled because it has started.": "Cette session ne peut plus être annulée car elle a commencé.",
   "This session could not be marked as held.": "Il a été impossible de confirmer que la séance a eu lieu.",
@@ -830,6 +833,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "Votre profil est publié et les acheteurs peuvent vous trouver.",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "Votre profil est publié, mais les acheteurs ne peuvent pas vous correspondre tant que vous n'avez pas confirmé un prix.",
   "Your proposal could not be sent. Please try again.": "Votre proposition n'a pas pu être envoyée, veuillez réessayer.",
+  "Your proposal could not be withdrawn. Please try again.": "Votre proposition n’a pas pu être retirée. Veuillez réessayer.",
   "Your session is confirmed.": "Votre session est confirmée.",
   "Your sessions": "Vos sessions en cours",
   "a buyer": "Acheteur",

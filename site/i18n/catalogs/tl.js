@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Kung mabigo ang isang aksyon sa panukala, mananatili sa button ang focus ng keyboard para masubukan mo ulit.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Ang paulit-ulit na pag-click ay hindi na gumagawa ng dobleng panukala o booking sa marketplace sa browser.",
   "English (automatic captions)": "Ingles (awtomatikong caption)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Update para sa Mac na may Apple silicon, na may mas malinaw na gabay kapag hindi masuri ng Codex ang pag-sign in.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Mas maliliit na download ng mga salin at awtomatikong caption sa Ingles para sa demo video.",
@@ -698,6 +700,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "May limitadong mga parirala tungkol sa kasanayan na nakikilala ang assistant sa pagsubok na ito. Kung hindi nito naunawaan ang sagot mo, subukan ang isa sa mga mungkahing sagot.",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "Ang presyong ito ay hindi na sa loob ng hanay mo at ang mamimili ibahagi, dahil ang iyong presyo o ang kanilang badyet ay nagbago. Tanggihan ito at maaari silang magmungkahi muli.",
   "This proposal could not be accepted.": "Ang panukala na ito ay hindi maaaring tanggapin.",
+  "This proposal could not be declined. Please try again.": "Hindi natanggihan ang panukalang ito. Subukan ulit.",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "Mabubura ang iyong account, profile, mga paglalarawan ng kailangan mong tulong, at anumang mungkahing naghihintay pa ng sagot. Hindi na mababawi ang pagbura.",
   "This session can no longer be cancelled because it has started.": "Ang session na ito ay hindi na maaaring ikansela dahil ito ay nagsimula.",
   "This session could not be marked as held.": "Hindi nakumpirmang naganap ang sesyon.",
@@ -830,6 +833,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "Ang iyong profile ay nai-publish at ang mga mamimili ay maaaring magkatugma sa iyo.",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "I-publish na ang iyong profile, ngunit hindi ka makakapag-match sa mga mamimili hanggang sa kumpirmahin mo ang presyo.",
   "Your proposal could not be sent. Please try again.": "Ang iyong panukala ay hindi maaaring ipadala. Mangyaring subukan muli.",
+  "Your proposal could not be withdrawn. Please try again.": "Hindi nabawi ang iyong panukala. Subukan ulit.",
   "Your session is confirmed.": "Ang iyong session ay nakumpirma.",
   "Your sessions": "Ang iyong mga sesyon",
   "a buyer": "Mamimili",

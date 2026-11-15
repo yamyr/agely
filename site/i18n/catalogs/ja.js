@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "提案の操作に失敗しても、キーボードのフォーカスはボタンに残るため、再試行できます。",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "ブラウザーのマーケットプレイスで繰り返しクリックしても、提案や予約が重複して作成されなくなりました。",
   "English (automatic captions)": "英語（自動生成字幕）",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Appleシリコン搭載Mac向けの更新です。Codexがサインインの状態を確認できない場合の案内を改善しました。",
   "Smaller translation downloads and automatic English captions for the demo video.": "翻訳データのダウンロード容量を削減し、デモ動画に自動生成の英語字幕を追加しました。",
@@ -698,6 +700,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "この試用アシスタントが認識できるスキルの表現には限りがあります。回答が伝わらないときは、表示された回答例を選んでください。",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "この価格は、あなたと買い手が共有する範囲に入っていません。あなたの価格または彼らの予算が変わったからです。拒否すると、彼らはもう一度提案できます。",
   "This proposal could not be accepted.": "この提案は受け入れられなかった。",
+  "This proposal could not be declined. Please try again.": "この提案を辞退できませんでした。もう一度お試しください。",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "アカウント、プロフィール、依頼内容、および返答待ちの提案が削除されます。削除は取り消せません。",
   "This session can no longer be cancelled because it has started.": "このセッションは既に開始されているので、キャンセルできません。",
   "This session could not be marked as held.": "セッションを実施済みとして確認できませんでした。",
@@ -830,6 +833,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "あなたのプロフィールが公開され 買い手はあなたとマッチすることができます。",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "あなたのプロフィールは公開されますが 価格を確認するまで 買い手はあなたとマッチできません",
   "Your proposal could not be sent. Please try again.": "提案を送信できませんでした。もう一度試してください。",
+  "Your proposal could not be withdrawn. Please try again.": "提案を取り下げられませんでした。もう一度お試しください。",
   "Your session is confirmed.": "あなたのセッションが確認されました。",
   "Your sessions": "あなたのセッション",
   "a buyer": "買い手",

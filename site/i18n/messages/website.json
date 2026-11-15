@@ -1,4 +1,6 @@
 [
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.",
   "English (automatic captions)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.",
   "Smaller translation downloads and automatic English captions for the demo video.",

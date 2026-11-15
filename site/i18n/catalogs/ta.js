@@ -1,5 +1,7 @@
 // Model-generated Tamil translation draft; requires language review.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "முன்மொழிவு தொடர்பான செயல் தோல்வியடைந்தால், விசைப்பலகையின் கவனம் பொத்தானிலேயே இருக்கும். இதனால் மீண்டும் முயற்சி செய்யலாம்.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "உலாவியில் உள்ள சந்தையில் மீண்டும் மீண்டும் கிளிக் செய்தாலும், ஒரே முன்மொழிவோ முன்பதிவோ இருமுறை உருவாகாது.",
   "English (automatic captions)": "ஆங்கிலம் (தானியங்கி வசனங்கள்)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Apple silicon கொண்ட Mac கணினிகளுக்கான புதுப்பிப்பு. உள்நுழைவை Codex சரிபார்க்க முடியாதபோது தெளிவான வழிமுறைகள் காட்டப்படும்.",
   "Smaller translation downloads and automatic English captions for the demo video.": "மொழிபெயர்ப்புகளுக்கான சிறிய பதிவிறக்கங்கள் மற்றும் விளக்கக் காணொளிக்குத் தானாக உருவாக்கப்பட்ட ஆங்கில வசனங்கள்.",
@@ -698,6 +700,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "இந்தச் சோதனை உதவியாளர் திறன்களைப் பற்றிய சில சொற்றொடர்களை மட்டுமே புரிந்துகொள்ளும். உங்கள் பதில் புரியவில்லை என்றால், பரிந்துரைக்கப்பட்ட பதில்களில் ஒன்றை முயன்று பாருங்கள்.",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "இந்த விலை நீங்கள் மற்றும் வாங்குபவர் பகிர்ந்து கொள்ளும் விகிதத்திற்குள் இல்லை, ஏனெனில் உங்கள் விலை அல்லது அவர்களது நிதி மாற்றப்பட்டது. அதை நிராகரித்து அவர்கள் மீண்டும் முன்மொழியலாம்.",
   "This proposal could not be accepted.": "இத்திட்டத்தை ஏற்க முடியவில்லை.",
+  "This proposal could not be declined. Please try again.": "இந்த முன்மொழிவை மறுக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "இதனால் உங்கள் கணக்கு, சுயவிவரம், தேவைக் குறிப்புகள், இன்னும் பதில் வராத முன்மொழிவுகள் அனைத்தும் நீக்கப்படும். இதை மாற்ற முடியாது.",
   "This session can no longer be cancelled because it has started.": "இந்த அமர்வை ரத்து செய்ய இயலாது ஏனெனில் அது தொடங்கிவிட்டது.",
   "This session could not be marked as held.": "இந்த அமர்வு நடந்ததை உறுதிப்படுத்த முடியவில்லை.",
@@ -830,6 +833,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "உங்கள் விவரக்குறிப்பு வெளியிடப்படுகிறது மற்றும் வாங்குபவர்கள் உங்களுடன் பொருந்த முடியும்.",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "உங்கள் விவரக்குறிப்பு வெளியிடப்பட்டுள்ளது, ஆனால் நீங்கள் ஒரு விலையை உறுதி செய்யும் வரை வாங்குபவர்கள் உங்களுடன் பொருந்த முடியாது.",
   "Your proposal could not be sent. Please try again.": "உங்கள் பரிந்துரையை அனுப்ப முடியவில்லை. தயவு செய்து மீண்டும் முயற்சிக்கவும்.",
+  "Your proposal could not be withdrawn. Please try again.": "உங்கள் முன்மொழிவைத் திரும்பப் பெற முடியவில்லை. மீண்டும் முயற்சிக்கவும்.",
   "Your session is confirmed.": "உங்கள் அமர்வு உறுதி செய்யப்பட்டது.",
   "Your sessions": "உங்கள் அமர்வுகள்",
   "a buyer": "வாங்குபவர்",

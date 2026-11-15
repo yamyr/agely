@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Dacă o acțiune asupra unei propuneri eșuează, butonul păstrează focalizarea de la tastatură, ca să poți încerca din nou.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Clicurile repetate nu mai creează propuneri sau rezervări duplicate în platforma din browser.",
   "English (automatic captions)": "Engleză (subtitrări automate)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Actualizare pentru Mac cu cip Apple silicon, cu instrucțiuni mai clare când Codex nu poate verifica autentificarea.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Fișiere de traducere mai mici și subtitrări automate în engleză pentru videoclipul demonstrativ.",
@@ -428,6 +430,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "Acest asistent de probă recunoaște doar anumite expresii despre competențe. Dacă nu înțelege răspunsul tău, încearcă unul dintre răspunsurile sugerate.",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "Acest preț nu se mai află în intervalul pe care îl împărtășiți cu cumpărătorul, deoarece prețul dvs. sau bugetul său s-au schimbat. Refuzați-l și acesta poate propune din nou.",
   "This proposal could not be accepted.": "Această propunere nu a putut fi acceptată.",
+  "This proposal could not be declined. Please try again.": "Această propunere nu a putut fi refuzată. Încercați din nou.",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "Vor fi șterse contul, profilul, descrierile nevoilor tale și toate propunerile la care nu ai primit încă răspuns. Acțiunea nu poate fi anulată.",
   "This session can no longer be cancelled because it has started.": "Această sesiune nu mai poate fi anulată deoarece a început.",
   "This session could not be marked as held.": "Această sesiune nu a putut fi marcată ca deținută.",
@@ -527,6 +530,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "Profilul dvs. este publicat și cumpărătorii pot fi potriviți cu dvs.",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "Profilul tău este publicat, dar cumpărătorii nu pot fi potriviți cu tine până când nu confirmi un preț.",
   "Your proposal could not be sent. Please try again.": "Propunerea dvs. nu a putut fi trimisă. Vă rugăm să încercați din nou.",
+  "Your proposal could not be withdrawn. Please try again.": "Propunerea dumneavoastră nu a putut fi retrasă. Încercați din nou.",
   "Your session is confirmed.": "Sesiunea dvs. este confirmată.",
   "Your sessions": "Sesiunile dvs. de lucru",
   "a buyer": "Cumpărător",

@@ -1,5 +1,7 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Si falla una acción sobre una propuesta, el botón conserva el foco del teclado para que puedas intentarlo de nuevo.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Hacer clic varias veces ya no genera propuestas ni reservas duplicadas en el mercado del navegador.",
   "English (automatic captions)": "Inglés (subtítulos automáticos)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Actualización para Mac con chip de Apple, con instrucciones más claras cuando Codex no puede verificar el inicio de sesión.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Descargas de traducciones más pequeñas y subtítulos automáticos en inglés para el video de demostración.",
@@ -698,6 +700,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "Este asistente de prueba reconoce algunas expresiones sobre habilidades. Si no entiende tu respuesta, prueba una de las respuestas sugeridas.",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "Este precio ya no está dentro del rango que tú y el comprador comparten, porque tu precio o su presupuesto ha cambiado, rechaza la propuesta y ellos pueden volver a proponer.",
   "This proposal could not be accepted.": "Esta propuesta no pudo ser aceptada.",
+  "This proposal could not be declined. Please try again.": "No se pudo rechazar esta propuesta. Inténtelo de nuevo.",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "Se eliminarán tu cuenta, tu perfil, tus descripciones de lo que necesitas y todas las propuestas pendientes de respuesta. Esta acción no se puede deshacer.",
   "This session can no longer be cancelled because it has started.": "Esta sesión ya no se puede cancelar porque ha comenzado.",
   "This session could not be marked as held.": "Esta sesión no se pudo marcar como celebrada.",
@@ -830,6 +833,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "Su perfil se publica y los compradores pueden coincidir con usted.",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "Tu perfil se publica, pero los compradores no pueden coincidir contigo hasta que confirmes un precio.",
   "Your proposal could not be sent. Please try again.": "Su propuesta no pudo ser enviada, por favor inténtelo de nuevo.",
+  "Your proposal could not be withdrawn. Please try again.": "No se pudo retirar su propuesta. Inténtelo de nuevo.",
   "Your session is confirmed.": "Su sesión está confirmada.",
   "Your sessions": "Sus sesiones de trabajo",
   "a buyer": "Comprador",

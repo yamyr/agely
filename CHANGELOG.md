@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.2 — 2026-11-15
+
+### Website
+
+- Prevented repeated clicks from creating duplicate proposals or sessions in a marketplace tab. Only one proposal can be accepted for the same expert when the proposed times overlap.
+- Kept keyboard focus on the action button after a failed send, withdrawal, acceptance, or decline so people can retry. Added draft translations for the withdrawal and decline errors in all 17 supported languages.
+
+### Desktop app
+
+- Published an updated Apple silicon macOS installer for the walkthrough. The developer preview uses an ad hoc signature and has no Apple notarization.
+
 ## 0.1.1 — 2026-11-15
 
 ### Website

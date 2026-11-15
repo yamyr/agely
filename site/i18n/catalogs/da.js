@@ -1,5 +1,7 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Hvis en handling på et forslag mislykkes, beholder knappen tastaturfokus, så du kan prøve igen.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Gentagne klik opretter ikke længere dubletter af forslag eller bookinger på markedspladsen i browseren.",
   "English (automatic captions)": "Engelsk (automatiske undertekster)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Opdatering til Mac med Apple-chip med tydeligere vejledning, når Codex ikke kan kontrollere login.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Mindre downloads af oversættelser og automatisk genererede engelske undertekster til demovideoen.",
@@ -698,6 +700,7 @@ export default {
   "This practice agent recognizes a limited set of skill phrases. Try a suggested reply if it misses what you mean.": "Assistenten i prøveversionen genkender kun nogle udtryk for kompetencer. Hvis den ikke forstår dit svar, kan du prøve et af de foreslåede svar.",
   "This price is no longer inside the range you and the buyer share, because your price or their budget changed. Decline it and they can propose again.": "Denne pris er ikke længere inden for det interval, du og køberen deler, fordi din pris eller deres budget er ændret.Afvis det, og de kan foreslå igen.",
   "This proposal could not be accepted.": "Dette forslag kunne ikke accepteres.",
+  "This proposal could not be declined. Please try again.": "Forslaget kunne ikke afvises. Prøv igen.",
   "This removes your account, your profile, your briefs and any proposals still waiting for an answer. It cannot be undone.": "Dette sletter din konto, din profil, dine beskrivelser af, hvad du har brug for hjælp til, og alle forslag, der endnu ikke er besvaret. Handlingen kan ikke fortrydes.",
   "This session can no longer be cancelled because it has started.": "Denne session kan ikke længere annulleres, fordi den er startet.",
   "This session could not be marked as held.": "Denne session kunne ikke markeres som afholdt.",
@@ -830,6 +833,7 @@ export default {
   "Your profile is published and buyers can be matched with you.": "Din profil er offentliggjort, og købere kan matches med dig.",
   "Your profile is published, but buyers can't be matched with you until you confirm a price.": "Din profil er offentliggjort, men købere kan ikke matches med dig, før du bekræfter en pris.",
   "Your proposal could not be sent. Please try again.": "Dit forslag kunne ikke sendes, prøv venligst igen.",
+  "Your proposal could not be withdrawn. Please try again.": "Dit forslag kunne ikke trækkes tilbage. Prøv igen.",
   "Your session is confirmed.": "Din session er bekræftet.",
   "Your sessions": "Se dine sessioner",
   "a buyer": "Køber",

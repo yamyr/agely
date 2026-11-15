@@ -22,6 +22,114 @@ test.beforeEach(async ({ page }) => {
   await buyerMatchedWithRuth(page, "sam@example.com");
 });
 
+// Keep the real booking/store path, but hold its first proposal write at the adapter boundary.
+// This makes fast-click and retry regressions deterministic without shipping a test hook.
+async function holdProposalWrite(page: Page): Promise<() => void> {
+  let release = () => {};
+  const held = new Promise<void>((resolve) => { release = resolve; });
+  let first = true;
+  await page.exposeFunction("holdFirstProposalWrite", async () => {
+    if (!first) return;
+    first = false;
+    await held;
+    throw new Error("The test interrupted the first proposal write");
+  });
+  await page.route("**/src/product/standins/store.ts", async (route) => {
+    const response = await route.fetch();
+    const source = await response.text();
+    const put = "async put(kind, entity) {";
+    expect(source).toContain(put);
+    await route.fulfill({ response, body: source.replace(put, `${put}\nif (kind === "proposal") await window.holdFirstProposalWrite();`) });
+  });
+  await page.reload();
+  return release;
+}
+
+async function savedCount(page: Page, kind: "proposal" | "session"): Promise<number> {
+  return page.evaluate((kind) => {
+    const saved: unknown = JSON.parse(localStorage.getItem("agely.product.v1") ?? "{}");
+    if (typeof saved !== "object" || saved === null) throw new Error("Missing saved product data");
+    const entries: unknown = kind === "proposal"
+      ? "proposal" in saved ? saved.proposal : null
+      : "session" in saved ? saved.session : null;
+    if (typeof entries !== "object" || entries === null) return 0;
+    return Object.keys(entries).length;
+  }, kind);
+}
+
+for (const action of ["send", "withdraw"] as const) {
+  test(`buyer ${action} ignores rapid activation while pending and allows keyboard retry after a failed write`, async ({ page }) => {
+    if (action === "withdraw") await propose(page);
+    const release = await holdProposalWrite(page);
+    if (action === "send") {
+      await page.getByRole("link", { name: "Propose a session" }).click();
+      await page.getByLabel(/^Your name/).fill("Sam Ortiz");
+      await page.getByRole("radio").first().check();
+    }
+    const button = page.getByRole("button", { name: action === "send" ? "Send my proposal" : "Withdraw my proposal" });
+    const errors: string[] = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    await button.focus();
+    await button.evaluate((element) => {
+      if (!(element instanceof HTMLButtonElement)) throw new Error("Expected a booking button");
+      element.click();
+      element.click();
+    });
+    await expect(button).toHaveAttribute("aria-disabled", "true");
+    await expect(button).toHaveAttribute("aria-busy", "true");
+    await expect(button).toBeFocused();
+    release();
+    await expect(page.getByRole("alert")).toContainText("Please try again");
+    await expect(button).toHaveAttribute("aria-disabled", "false");
+    await expect(button).toBeFocused();
+    await button.press("Enter");
+    await expect(page.getByRole("heading", { name: action === "send" ? "Waiting for Ruth Adeyemi to answer" : "Propose a session to Ruth Adeyemi" })).toBeFocused();
+    expect(await savedCount(page, "proposal")).toBe(1);
+    expect(await savedCount(page, "session")).toBe(0);
+    expect(await paymentCount(page)).toBe(0);
+    expect(errors).toEqual([]);
+  });
+}
+
+for (const action of ["Accept", "Decline"] as const) {
+  test(`expert ${action.toLowerCase()} prevents competing actions while pending and permits retry after a failed write`, async ({ page }) => {
+    await propose(page);
+    await productSignOut(page);
+    await productSignIn(page, "seed-ruth@example.com");
+    await page.getByRole("link", { name: "Open my inbox" }).click();
+    const release = await holdProposalWrite(page);
+    const button = page.getByRole("button", { name: action, exact: true });
+    const other = page.getByRole("button", { name: action === "Accept" ? "Decline" : "Accept", exact: true });
+    const errors: string[] = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    await button.focus();
+    await button.evaluate((element) => {
+      if (!(element instanceof HTMLButtonElement)) throw new Error("Expected a booking button");
+      element.click();
+      element.click();
+      const other = element.parentElement?.querySelector<HTMLButtonElement>("button:not(:focus)");
+      if (other === null || other === undefined) throw new Error("Expected the competing booking action");
+      other.click();
+    });
+    await expect(button).toHaveAttribute("aria-disabled", "true");
+    await expect(button).toHaveAttribute("aria-busy", "true");
+    await expect(other).toHaveAttribute("aria-disabled", "true");
+    await expect(button).toBeFocused();
+    release();
+    await expect(page.getByRole("alert")).toContainText(action === "Accept" ? "could not be accepted" : "could not be declined");
+    await expect(button).toHaveAttribute("aria-disabled", "false");
+    await expect(other).toHaveAttribute("aria-disabled", "false");
+    await expect(button).toBeFocused();
+    await button.press("Enter");
+    if (action === "Accept") await expect(page).toHaveURL(/#\/app\/session\//);
+    else await expect(page.getByText("You have no proposals waiting.")).toBeVisible();
+    expect(await savedCount(page, "proposal")).toBe(1);
+    expect(await savedCount(page, "session")).toBe(action === "Accept" ? 1 : 0);
+    expect(await paymentCount(page)).toBe(action === "Accept" ? 1 : 0);
+    expect(errors).toEqual([]);
+  });
+}
+
 test("a buyer can replace a custom time with a suggested time", async ({ page }) => {
   await page.getByRole("link", { name: "Propose a session" }).click();
   await page.getByLabel(/^Your name/).fill("Sam Ortiz");

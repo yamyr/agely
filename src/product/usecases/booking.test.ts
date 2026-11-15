@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { PAYMENTS_KEY } from "../standins/payments";
 import { chooseRole, signOut } from "./account";
 import { acceptProposal, declineProposal, myProposals, mySession, mySessions, sendProposal, withdrawProposal } from "./booking";
@@ -257,5 +257,158 @@ describe("seeing proposals and sessions", () => {
     expect(await mySession(world.ctx, id)).toEqual({ ok: false, error: "not-yours" });
     expect(await mySession(world.ctx, "no-such-session")).toEqual({ ok: false, error: "not-yours" });
     expect(await mySessions(world.ctx)).toEqual({ ok: true, value: [] });
+  });
+});
+
+function gate() {
+  let release!: () => void;
+  const promise = new Promise<void>((resolve) => { release = resolve; });
+  return { promise, release };
+}
+
+// These overlap actual async boundaries: sequential retries cannot expose double bookings.
+describe("concurrent booking decisions", () => {
+  it("sends only one proposal for a brief", async () => {
+    const world = testWorld();
+    await ruth(world);
+    const briefId = await samMatched(world);
+    const input = { units: 2, pricePerUnit: 75, startsAt: at(world, 24 * HOUR), buyerName: "Sam Ortiz" };
+    const results = await Promise.all([sendProposal(world.ctx, briefId, input), sendProposal(world.ctx, briefId, input)]);
+    expect(results.map((r) => r.ok ? "sent" : r.error)).toEqual(["sent", "already-proposed"]);
+    expect(await world.ctx.ports.store.list("proposal", { briefId })).toHaveLength(1);
+  });
+
+  it("keeps a submitted buyer name attached to the validated buyer after sign-in changes", async () => {
+    const world = testWorld();
+    const expertId = await ruth(world);
+    const briefId = await samMatched(world);
+    const buyerId = await world.ctx.ports.auth.current();
+    if (buyerId === null) throw new Error("buyer missing");
+    const list = world.ctx.ports.store.list;
+    vi.spyOn(world.ctx.ports.store, "list").mockImplementation(async (kind, where) => {
+      const found = await list(kind, where);
+      if (kind === "proposal") await asRuth(world);
+      return found;
+    });
+    expect(await sendProposal(world.ctx, briefId, { units: 2, pricePerUnit: 75, startsAt: at(world, 24 * HOUR), buyerName: "Sam Ortiz" })).toMatchObject({ ok: true });
+    expect(await world.ctx.ports.store.get("account", buyerId)).toMatchObject({ name: "Sam Ortiz" });
+    expect(await world.ctx.ports.store.get("account", expertId)).toMatchObject({ name: "Ruth Adeyemi" });
+  });
+
+  it("returns one session for concurrent accepts", async () => {
+    const world = testWorld();
+    const { proposalId } = await proposed(world);
+    await asRuth(world);
+    const results = await Promise.all([acceptProposal(world.ctx, proposalId), acceptProposal(world.ctx, proposalId)]);
+    expect(results.every((r) => r.ok)).toBe(true);
+    expect(new Set(results.map((r) => r.ok && r.value.session.id)).size).toBe(1);
+    expect(await world.ctx.ports.store.list("session", { proposalId })).toHaveLength(1);
+    expect(heldPayments(world)).toBe(1);
+  });
+
+  it("reserves availability before another overlapping acceptance", async () => {
+    const world = testWorld();
+    const { proposalId } = await proposed(world);
+    const briefId = await samMatched(world, "another@example.com");
+    const second = await sendProposal(world.ctx, briefId, { units: 2, pricePerUnit: 75, startsAt: at(world, 24 * HOUR), buyerName: "Another buyer" });
+    if (!second.ok) throw new Error(second.error);
+    await asRuth(world);
+    const results = await Promise.all([acceptProposal(world.ctx, proposalId), acceptProposal(world.ctx, second.value.id)]);
+    expect(results.map((r) => r.ok ? "accepted" : r.error)).toEqual(["accepted", "not-waiting"]);
+    expect(await world.ctx.ports.store.list("session")).toHaveLength(1);
+    expect(heldPayments(world)).toBe(1);
+    expect(await world.ctx.ports.store.get("proposal", second.value.id)).toMatchObject({ state: "unavailable" });
+  });
+
+  it.each(["accept-first", "decline-first"])("keeps proposal and session consistent: %s", async (order) => {
+    const world = testWorld();
+    const { proposalId } = await proposed(world);
+    await asRuth(world);
+    const accept = () => acceptProposal(world.ctx, proposalId);
+    const decline = () => declineProposal(world.ctx, proposalId);
+    const results = await Promise.all(order === "accept-first" ? [accept(), decline()] : [decline(), accept()]);
+    expect(results.map((r) => r.ok ? "ok" : r.error)).toEqual(["ok", "not-waiting"]);
+    expect(await world.ctx.ports.store.get("proposal", proposalId)).toMatchObject({ state: order === "accept-first" ? "accepted" : "declined" });
+    expect(await world.ctx.ports.store.list("session")).toHaveLength(order === "accept-first" ? 1 : 0);
+  });
+
+  it("does not let a buyer withdraw an acceptance already in progress", async () => {
+    const world = testWorld();
+    const { proposalId } = await proposed(world);
+    await asRuth(world);
+    const entered = gate();
+    const finish = gate();
+    const create = world.ctx.ports.meetings.createLink;
+    vi.spyOn(world.ctx.ports.meetings, "createLink").mockImplementation(async (...args) => {
+      entered.release();
+      await finish.promise;
+      return create(...args);
+    });
+    const accepting = acceptProposal(world.ctx, proposalId);
+    await entered.promise;
+    await asSam(world);
+    const withdrawing = withdrawProposal(world.ctx, proposalId);
+    finish.release();
+    expect(await accepting).toMatchObject({ ok: true });
+    expect(await withdrawing).toEqual({ ok: false, error: "not-waiting" });
+    expect(await world.ctx.ports.store.get("proposal", proposalId)).toMatchObject({ state: "accepted" });
+  });
+
+  it("refuses a queued operation after its signed-in actor changes", async () => {
+    const world = testWorld();
+    const { proposalId } = await proposed(world);
+    await asRuth(world);
+    const entered = gate();
+    const finish = gate();
+    const create = world.ctx.ports.meetings.createLink;
+    vi.spyOn(world.ctx.ports.meetings, "createLink").mockImplementation(async (...args) => {
+      entered.release();
+      await finish.promise;
+      return create(...args);
+    });
+    const accepting = acceptProposal(world.ctx, proposalId);
+    await entered.promise;
+    const declining = declineProposal(world.ctx, proposalId);
+    await asSam(world);
+    finish.release();
+    expect(await accepting).toMatchObject({ ok: true });
+    expect(await declining).toEqual({ ok: false, error: "not-signed-in" });
+  });
+
+  it("preserves a queued auth failure and permits a later retry", async () => {
+    const world = testWorld();
+    const { proposalId } = await proposed(world);
+    await asRuth(world);
+    const entered = gate();
+    const finish = gate();
+    const create = world.ctx.ports.meetings.createLink;
+    vi.spyOn(world.ctx.ports.meetings, "createLink").mockImplementationOnce(async (...args) => {
+      entered.release();
+      await finish.promise;
+      return create(...args);
+    });
+    const accepting = acceptProposal(world.ctx, proposalId);
+    await entered.promise;
+    const failure = new Error("auth unavailable while queued");
+    vi.spyOn(world.ctx.ports.auth, "current").mockRejectedValueOnce(failure);
+    const queued = acceptProposal(world.ctx, proposalId);
+    const rejected = expect(queued).rejects.toBe(failure);
+    finish.release();
+    expect(await accepting).toMatchObject({ ok: true });
+    await rejected;
+    expect(await acceptProposal(world.ctx, proposalId)).toMatchObject({ ok: true });
+    expect(await world.ctx.ports.store.list("session")).toHaveLength(1);
+    expect(heldPayments(world)).toBe(1);
+  });
+
+  it("can retry after an unexpected service rejection without holding twice", async () => {
+    const world = testWorld();
+    const { proposalId } = await proposed(world);
+    await asRuth(world);
+    vi.spyOn(world.ctx.ports.meetings, "createLink").mockRejectedValueOnce(new Error("meeting unavailable"));
+    await expect(acceptProposal(world.ctx, proposalId)).rejects.toThrow("meeting unavailable");
+    expect(await acceptProposal(world.ctx, proposalId)).toMatchObject({ ok: true });
+    expect(await world.ctx.ports.store.list("session")).toHaveLength(1);
+    expect(heldPayments(world)).toBe(1);
   });
 });
