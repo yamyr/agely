@@ -9,6 +9,10 @@ pub fn is_signed_in(exit_ok: bool, output: &str) -> bool {
     exit_ok && output.contains("Logged in")
 }
 
+pub fn reports_signed_out(output: &str) -> bool {
+    output.lines().any(|line| line.trim() == "Not logged in")
+}
+
 pub fn is_model_rejected(output: &str) -> bool {
     output.contains("not supported when using Codex with a ChatGPT account")
         || output.contains("model_not_found")
@@ -86,6 +90,16 @@ pub fn not_signed_in() -> AgentStatus {
             "In a terminal run: codex login — sign in with ChatGPT, then select Check again."
                 .into(),
         ),
+    }
+}
+
+pub fn login_status_failed() -> AgentStatus {
+    // Configuration errors can quote local settings. Do not forward the CLI's output.
+    AgentStatus {
+        state: StatusState::Error,
+        model: None,
+        detail: "Codex could not check whether you are signed in. Update Codex or set AGELY_CODEX_BIN to a working Codex executable, then select Check again.".into(),
+        fix: None,
     }
 }
 

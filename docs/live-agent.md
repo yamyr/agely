@@ -76,6 +76,7 @@ AGELY_CODEX_BIN=/path/to/codex bun run tauri dev
 |-------------------|-----------|
 | *Codex is not installed* | Step 1, then **Check again**. |
 | *Codex is installed but not signed in* | `codex login`, then **Check again**. |
+| *Codex could not check whether you are signed in* | Try `codex login status` in a terminal. If an older Codex rejects your settings, update it or restart Agely with `AGELY_CODEX_BIN` set to a working executable. Then select **Check again**. |
 | *Your ChatGPT plan doesn't allow these models* | Set `AGELY_CODEX_MODEL` to a model your plan allows, restart the app, then **Check again**. |
 | *The live agent check failed* | Check your internet connection, then **Check again**. |
 | *Off in the browser preview* | The live agent only runs in the desktop app (`bun run tauri dev`), not `bun run dev`. |
