@@ -1,5 +1,9 @@
 // Model-generated draft translations.
 export default {
+  "English (automatic captions)": "영어 (자동 생성 자막)",
+  "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Apple Silicon Mac용 업데이트입니다. Codex가 로그인 상태를 확인할 수 없을 때 더 명확한 안내를 제공합니다.",
+  "Smaller translation downloads and automatic English captions for the demo video.": "번역 다운로드 용량을 줄이고 데모 영상에 자동 생성 영어 자막을 추가했습니다.",
+  "Clearer booking steps, easier sign-in recovery, and better keyboard navigation.": "예약 절차가 더 명확해지고, 로그인 문제를 해결하기 쉬워졌으며, 키보드 탐색 기능이 개선되었습니다.",
   "Use the left and right arrow keys to move between experts.": "왼쪽 및 오른쪽 화살표 키로 전문가를 이동할 수 있습니다.",
   " to read the data directly.": "에서 데이터를 직접 읽으세요.",
   " with {0}": " ({0} 사용)",

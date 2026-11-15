@@ -1,5 +1,9 @@
 // Model-generated draft translations.
 export default {
+  "English (automatic captions)": "Англійська (автоматичні субтитри)",
+  "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Оновлення для Mac із чипом Apple. Якщо Codex не може перевірити стан входу, з’являються зрозуміліші вказівки.",
+  "Smaller translation downloads and automatic English captions for the demo video.": "Менший обсяг завантажень перекладів і автоматичні англійські субтитри для демонстраційного відео.",
+  "Clearer booking steps, easier sign-in recovery, and better keyboard navigation.": "Зрозуміліші кроки бронювання, простіше відновлення доступу й зручніша навігація з клавіатури.",
   "Use the left and right arrow keys to move between experts.": "Переміщуйтеся між експертами клавішами зі стрілками вліво та вправо.",
   " to read the data directly.": " щоб прочитати дані безпосередньо.",
   "$40 to $70": "$40 до $70",

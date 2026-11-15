@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.1 — 2026-11-15
+
+### Website
+
+- Kept the buyer’s latest time choice, rejected times skipped by a clock change, and brought the booking result into view after sending or withdrawing a proposal.
+- Improved keyboard focus in the marketplace and simulator. People can request a replacement for an expired sign-in code without re-entering their email address.
+- Added a localized link to the marketplace and automatic English captions to the demo video.
+- Reduced the translation download to one request, kept the previous catalog URLs available, and sped up website checks while preserving coverage.
+
+### Desktop app
+
+- Clarified who received shipments and who owned tooling in the optional live Codex interview. Added specific guidance when Codex cannot check sign-in.
+- Updated the Apple silicon macOS installer. This developer preview uses an ad hoc signature and has no Apple notarization.
+
 ## 0.1.0 — 2026-11-14
 
 ### Website

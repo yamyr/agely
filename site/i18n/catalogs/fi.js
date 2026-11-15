@@ -1,5 +1,9 @@
 // Model-generated draft translations.
 export default {
+  "English (automatic captions)": "Englanti (automaattinen tekstitys)",
+  "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Päivitys Applen sirulla varustetuille Maceille. Ohjeet ovat selkeämmät, jos Codex ei voi tarkistaa kirjautumista.",
+  "Smaller translation downloads and automatic English captions for the demo video.": "Pienemmät käännöslataukset ja automaattinen englanninkielinen tekstitys esittelyvideoon.",
+  "Clearer booking steps, easier sign-in recovery, and better keyboard navigation.": "Selkeämmät varausvaiheet, helpompi kirjautumisen palautus ja parempi näppäimistökäyttö.",
   "Use the left and right arrow keys to move between experts.": "Siirry asiantuntijasta toiseen vasemmalla ja oikealla nuolinäppäimellä.",
   " to read the data directly.": " lukeaksesi tiedot suoraan.",
   "$40 to $70": "40–70 dollaria",
