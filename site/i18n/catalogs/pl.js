@@ -1,5 +1,9 @@
 // Model-generated draft translations.
 export default {
+  "English (automatic captions)": "Angielski (napisy automatyczne)",
+  "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Aktualizacja dla Maców z układem Apple. Gdy Codex nie może sprawdzić stanu logowania, wyświetla jaśniejsze wskazówki.",
+  "Smaller translation downloads and automatic English captions for the demo video.": "Mniejsze pliki tłumaczeń do pobrania i automatyczne angielskie napisy do filmu demonstracyjnego.",
+  "Clearer booking steps, easier sign-in recovery, and better keyboard navigation.": "Czytelniejsze etapy rezerwacji, łatwiejsze odzyskiwanie dostępu i lepsza obsługa klawiaturą.",
   "Use the left and right arrow keys to move between experts.": "Użyj klawiszy strzałek w lewo i w prawo, aby przechodzić między ekspertami.",
   " to read the data directly.": " aby przeczytać dane bezpośrednio.",
   "$40 to $70": "$40 do $70",

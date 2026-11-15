@@ -1,5 +1,9 @@
 // Model-generated Tamil translation draft; requires language review.
 export default {
+  "English (automatic captions)": "ஆங்கிலம் (தானியங்கி வசனங்கள்)",
+  "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Apple silicon கொண்ட Mac கணினிகளுக்கான புதுப்பிப்பு. உள்நுழைவை Codex சரிபார்க்க முடியாதபோது தெளிவான வழிமுறைகள் காட்டப்படும்.",
+  "Smaller translation downloads and automatic English captions for the demo video.": "மொழிபெயர்ப்புகளுக்கான சிறிய பதிவிறக்கங்கள் மற்றும் விளக்கக் காணொளிக்குத் தானாக உருவாக்கப்பட்ட ஆங்கில வசனங்கள்.",
+  "Clearer booking steps, easier sign-in recovery, and better keyboard navigation.": "முன்பதிவுக்கான தெளிவான படிகள், உள்நுழைவுச் சிக்கல்களுக்கு எளிய தீர்வு, மேம்பட்ட விசைப்பலகை வழிசெலுத்தல்.",
   "Use the left and right arrow keys to move between experts.": "நிபுணர்களுக்கிடையே நகர இடது, வலது அம்புக்குறி விசைகளைப் பயன்படுத்தவும்.",
   " to read the data directly.": " வழியாகத் தரவை நேரடியாகப் படிக்கலாம்.",
   " with {0}": " உடன் {0}",

@@ -1,5 +1,9 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "English (automatic captions)": "Inglese (sottotitoli automatici)",
+  "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Aggiornamento per Mac con chip Apple, con indicazioni più chiare quando Codex non riesce a verificare l’accesso.",
+  "Smaller translation downloads and automatic English captions for the demo video.": "Download delle traduzioni più leggeri e sottotitoli automatici in inglese per il video dimostrativo.",
+  "Clearer booking steps, easier sign-in recovery, and better keyboard navigation.": "Passaggi di prenotazione più chiari, recupero dell’accesso più semplice e migliore navigazione da tastiera.",
   "Use the left and right arrow keys to move between experts.": "Usa i tasti freccia sinistra e destra per passare da un esperto all’altro.",
   " to read the data directly.": " per leggere direttamente i dati.",
   " with {0}": " con {0}",

@@ -1,5 +1,9 @@
 // Model-generated draft translations.
 export default {
+  "English (automatic captions)": "Inggris (takarir otomatis)",
+  "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Pembaruan untuk Mac dengan cip Apple silicon, dengan panduan yang lebih jelas saat Codex tidak dapat memeriksa status masuk.",
+  "Smaller translation downloads and automatic English captions for the demo video.": "Unduhan terjemahan lebih kecil dan takarir bahasa Inggris otomatis untuk video demo.",
+  "Clearer booking steps, easier sign-in recovery, and better keyboard navigation.": "Langkah pemesanan lebih jelas, pemulihan akses lebih mudah, dan navigasi dengan papan ketik lebih baik.",
   "Use the left and right arrow keys to move between experts.": "Gunakan tombol panah kiri dan kanan untuk berpindah antar pakar.",
   " to read the data directly.": " untuk membaca data secara langsung.",
   " with {0}": " dengan {0}",

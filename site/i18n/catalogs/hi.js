@@ -1,5 +1,9 @@
 // Model-generated Hindi draft translations.
 export default {
+  "English (automatic captions)": "अंग्रेज़ी (स्वचालित कैप्शन)",
+  "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Apple silicon वाले Mac के लिए अपडेट। Codex साइन-इन की जाँच न कर पाए, तो अब अधिक स्पष्ट निर्देश मिलते हैं।",
+  "Smaller translation downloads and automatic English captions for the demo video.": "अनुवादों के छोटे डाउनलोड और डेमो वीडियो के लिए अपने आप बने अंग्रेज़ी कैप्शन।",
+  "Clearer booking steps, easier sign-in recovery, and better keyboard navigation.": "बुकिंग के अधिक स्पष्ट चरण, साइन-इन में समस्या होने पर आसान समाधान और कीबोर्ड से बेहतर नेविगेशन।",
   "Use the left and right arrow keys to move between experts.": "विशेषज्ञों के बीच जाने के लिए बाएँ और दाएँ तीर की कुंजियों का उपयोग करें।",
   " to read the data directly.": " में सीधे आँकड़े पढ़ें।",
   " with {0}": ", {0} के साथ",

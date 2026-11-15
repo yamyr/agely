@@ -1,5 +1,9 @@
 // Model-generated draft translations.
 export default {
+  "English (automatic captions)": "Ingles (awtomatikong caption)",
+  "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Update para sa Mac na may Apple silicon, na may mas malinaw na gabay kapag hindi masuri ng Codex ang pag-sign in.",
+  "Smaller translation downloads and automatic English captions for the demo video.": "Mas maliliit na download ng mga salin at awtomatikong caption sa Ingles para sa demo video.",
+  "Clearer booking steps, easier sign-in recovery, and better keyboard navigation.": "Mas malinaw na mga hakbang sa pag-book, mas madaling pagbawi ng access, at mas mahusay na paggamit ng keyboard.",
   "Use the left and right arrow keys to move between experts.": "Gamitin ang kaliwa at kanang arrow key para lumipat sa ibang eksperto.",
   " to read the data directly.": " upang direktang basahin ang datos.",
   " with {0}": " gamit ang {0}",
