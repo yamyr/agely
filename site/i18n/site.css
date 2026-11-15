@@ -1,5 +1,27 @@
-.language-settings { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin: 16px auto; padding: 0 var(--gutter); max-width: var(--content-max); }
-.language-settings label, .language-settings select, .translation-notice { font: inherit; font-size: 1rem; }
-.language-settings select { min-height: var(--control-h); max-width: 100%; padding: 8px 16px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); color: var(--text); }
-.language-settings select:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
-.translation-notice { flex-basis: 100%; color: var(--text-muted); margin: 0; }
+.language-settings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter) 8px;
+}
+
+.language-settings select {
+  min-block-size: var(--control-h);
+  max-inline-size: 100%;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.translation-notice {
+  flex: 1 1 30ch;
+  max-inline-size: var(--prose-max);
+  color: var(--text-muted);
+  margin: 0;
+}

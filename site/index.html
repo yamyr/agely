@@ -1,49 +1,54 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" /></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1" /></meta>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title data-i18n>Agely: Experience shouldn't retire</title>
     <meta
       name="description"
       content="Agely is an expert network where older adults turn decades of experience into paid, 15-minute sessions."
-    / data-i18n-attrs="content"></meta>
-    <meta property="og:type" content="website" /></meta>
-    <meta property="og:url" content="https://agely.dev/" /></meta>
-    <meta property="og:title" content="Agely: Experience shouldn't retire" / data-i18n-attrs="content"></meta>
+      data-i18n-attrs="content"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://agely.dev/" />
+    <meta property="og:title" content="Agely: Experience shouldn't retire" data-i18n-attrs="content" />
     <meta
       property="og:description"
       content="An expert network where older adults turn decades of experience into paid, 15-minute sessions."
-    / data-i18n-attrs="content"></meta>
-    <meta property="og:image" content="https://agely.dev/assets/agely-demo-poster.jpg" /></meta>
-    <meta name="twitter:card" content="summary_large_image" /></meta>
-    <link rel="canonical" href="https://agely.dev/" /></link>
-    <link rel="icon" type="image/png" href="assets/icon.png" /></link>
-    <link rel="stylesheet" href="styles.css" /></link>
-  <link rel="stylesheet" href="i18n/site.css" />
-</head>
+      data-i18n-attrs="content"
+    />
+    <meta property="og:image" content="https://agely.dev/assets/agely-demo-poster.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://agely.dev/" />
+    <link rel="icon" type="image/png" href="assets/icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="i18n/site.css" />
+  </head>
   <body>
+    <a class="button skip-link" href="#top" data-i18n>Skip to content</a>
     <header class="topbar">
       <a class="brand" href="#top" aria-label="Agely home" data-i18n-attrs="aria-label">
-        <img src="assets/icon.png" alt="" width="36" height="36" /></img>
-        <span><span data-i18n-ignore>Agely</span></span>
+        <img src="assets/icon.png" alt="" width="36" height="36" />
+        <span data-i18n-ignore>Agely</span>
       </a>
       <nav class="topbar-nav">
+        <a class="topbar-link" href="#story-title" data-i18n>How it works</a>
         <a class="topbar-link" href="releases/"><span data-i18n>Releases</span></a>
-        <a class="topbar-link" href="https://github.com/yamyr/agely"><span data-i18n>View on GitHub</span></a>
       </nav>
     </header>
 
-    <main id="top">
+    <main id="top" tabindex="-1">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow"><span data-i18n>15-minute sessions with people who have done it before</span></p>
-          <h1 id="hero-title"><span data-i18n>Experience shouldn't retire.</span></h1>
-          <p class="lede"><span data-i18n>
-            Agely is an expert network where older adults turn decades of experience into paid,
-            15-minute sessions, and grow an AI engine of their own approved workflows.
-          </span></p>
-          <a class="button" href="demo/"><span data-i18n>Try the interactive demo</span></a>
+          <h1 id="hero-title" data-i18n>Experience shouldn't retire.</h1>
+          <p class="lede" data-i18n>Agely is an expert network where older adults turn decades of experience into paid, 15-minute sessions.</p>
+          <div class="hero-actions">
+            <a class="button" href="demo/" data-i18n>Try the interactive demo</a>
+            <div class="actions">
+              <a href="demo/#/app" data-i18n>Try the marketplace prototype</a>
+              <a href="releases/" data-i18n>Desktop downloads</a>
+            </div>
+          </div>
         </div>
 
         <figure class="hero-video">
@@ -53,13 +58,12 @@
             preload="metadata"
             poster="assets/agely-demo-poster.jpg"
             aria-label="Agely demo: Margaret meets Dev"
-           data-i18n-attrs="aria-label">
+            data-i18n-attrs="aria-label"
+          >
             <source src="assets/agely-demo.mp4" type="video/mp4" />
             <track kind="captions" src="assets/agely-demo-en.vtt" srclang="en" label="English (automatic captions)" data-i18n-attrs="label" />
-            <span data-i18n>
-            Your browser can't play this video.
-            </span><a href="assets/agely-demo.mp4"><span data-i18n>Download the demo</span></a><span data-i18n> instead.
-          </span></video>
+            <span data-i18n>Your browser can't play this video. </span><a href="assets/agely-demo.mp4" data-i18n>Download the demo</a><span data-i18n> instead.</span>
+          </video>
           <figcaption><span data-i18n>
             English-language video. Demo: Margaret, a retired procurement director, helps Dev, a hardware founder, with his
             first manufacturing contract. Both are fictional, and the video was made with an AI
@@ -99,7 +103,7 @@
       </section>
 
       <section class="wrap story" aria-labelledby="story-title">
-        <h2 id="story-title"><span data-i18n>How one session happens</span></h2>
+        <h2 id="story-title" tabindex="-1"><span data-i18n>How one session happens</span></h2>
         <p class="story-intro"><span data-i18n>
           Follow Margaret and Dev from a first conversation to a paid session. Read down the page:
           each step sits under the person or agent who takes it. The pattern never changes. A person
@@ -392,7 +396,7 @@
               The demo runs in your browser with fictional people and scripted conversations. No
               accounts or API keys are needed. Payments and earnings are simulated.
             </span></p>
-            <div class="actions prototype-actions">
+            <div class="actions">
               <a class="button" href="demo/"><span data-i18n>Open the demo</span></a>
               <a href="demo/#/app"><span data-i18n>Try the marketplace prototype</span></a>
               <a href="releases/"><span data-i18n>Desktop downloads</span></a>
@@ -407,8 +411,11 @@
         Agely is a hackathon prototype. The outcome we want to measure is dollars earned by people
         over 65.
       </span></p>
-      <p><a href="costs/"><span data-i18n>What Agely costs to build</span></a></p>
+      <div class="actions footer-links">
+        <a href="costs/" data-i18n>What Agely costs to build</a>
+        <a href="https://github.com/yamyr/agely" data-i18n>View on GitHub</a>
+      </div>
     </footer>
-  <script type="module" src="i18n/site.js"></script>
-</body>
+    <script type="module" src="i18n/site.js"></script>
+  </body>
 </html>

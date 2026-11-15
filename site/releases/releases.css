@@ -26,12 +26,6 @@
   margin-block-start: 1.25rem;
 }
 
-.release-actions a {
-  display: inline-flex;
-  align-items: center;
-  min-block-size: var(--control-h);
-}
-
 .release .install-note {
   margin-block-start: 1rem;
 }
