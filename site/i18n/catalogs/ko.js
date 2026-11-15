@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "왼쪽 및 오른쪽 화살표 키로 전문가를 이동할 수 있습니다.",
   " to read the data directly.": "에서 데이터를 직접 읽으세요.",
   " with {0}": " ({0} 사용)",
   "$40 to $70": "$40에서 $70 사이",
@@ -237,7 +238,7 @@ export default {
   "Experts charge more than buyers can pay.": "전문가의 가격이 구매자의 지불 능력을 넘습니다.",
   "Experts declined": "전문가 거절",
   "Experts on Agely": "Agely의 전문가",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "전문가는 음성이나 제안된 답변 선택으로 에이전트와 대화하며, 입력은 선택 사항입니다. 글자는 16px 이상이고 버튼은 크며 키보드 초점은 항상 보입니다.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "데모에서는 제안된 답변을 선택하거나 프로필의 수정 내용을 직접 입력할 수 있습니다. 글자는 16px 이상이고, 버튼은 크며 키보드 초점이 눈에 보입니다.",
   "Experts who earned": "수입이 생긴 전문가",
   "Experts with “{0}” charge outside your budget of {1} per 15 minutes. Widening the budget would let Agely match you.": "‘{0}’ 전문가의 가격이 15분당 예산 {1}을 벗어나요. 예산을 넓히면 연결할 수 있어요.",
   "Finding, interviewing and choosing people.": "사람들을 찾고, 인터뷰하고, 선택합니다.",
@@ -624,6 +625,7 @@ export default {
   "That skill isn't on the profile any more.": "그 기술은 더 이상 프로필에 없어요.",
   "That sounds right.": "적당한 것 같아요.",
   "That's my name": "그게 내 이름이야",
+  "That time doesn't exist in your time zone. Choose another time.": "현재 시간대에는 해당 시각이 없습니다. 다른 시각을 선택하세요.",
   "The agent could not reply. Try again, or use the scripted conversation.": "도우미가 답하지 못했어요. 다시 시도하거나 미리 작성된 대화를 사용하세요.",
   "The agent debriefs Margaret": "도우미가 Margaret 님과 상담을 돌아봐요",
   "The agent drafts a workflow": "에이전트가 작업 절차를 작성합니다",
@@ -670,7 +672,7 @@ export default {
   "The walkthrough uses the scripted conversations.": "안내에는 미리 작성된 대화를 사용해요.",
   "Their problem: {0}": "그들의 문제: {0}",
   "Then": "그다음",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "양식을 채우거나 소개를 쓸 필요가 없습니다. Margaret이 말하거나 답변을 선택하면 에이전트가 소개로 정리합니다.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "데모에서는 Margaret의 인터뷰와 에이전트가 답변을 바탕으로 프로필 초안을 작성하는 과정을 볼 수 있습니다.",
   "There is no match to continue with.": "계속할 연결 결과가 없어요.",
   "There is no match to send a proposal to.": "제안을 보낼 연결 대상이 없어요.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "어떤 일을 했고 얼마나 일했나요?",

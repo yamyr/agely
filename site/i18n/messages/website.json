@@ -1,4 +1,5 @@
 [
+  "Use the left and right arrow keys to move between experts.",
   " to read the data directly.",
   "$50–$100 per 15 minutes",
   "({0}: {1})",
@@ -109,7 +110,7 @@
   "Experts charge more than buyers can pay.",
   "Experts declined",
   "Experts on Agely",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.",
   "Experts who earned",
   "First desktop installer, available only for Macs with Apple silicon.",
   "First read of a contract-manufacturing agreement",
@@ -235,7 +236,7 @@
   "The session is confirmed and Dev's $150 is held. It is released to Margaret once the session has taken place. In this prototype the payment is simulated.",
   "The two of them settle the details between themselves. The price has to sit inside the overlap, and nothing is booked or charged until Margaret accepts.",
   "The typical expert earns $150 or more a week",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.",
   "They agree on a session",
   "They draft and suggest. They never decide.",
   "This developer preview has no Apple notarization.",

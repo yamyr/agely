@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Gamitin ang kaliwa at kanang arrow key para lumipat sa ibang eksperto.",
   " to read the data directly.": " upang direktang basahin ang datos.",
   " with {0}": " gamit ang {0}",
   "$40 to $70": "$40 hanggang $70",
@@ -237,7 +238,7 @@ export default {
   "Experts charge more than buyers can pay.": "Mas mataas ang singil ng eksperto kaysa kayang bayaran ng mamimili.",
   "Experts declined": "Tumanggi ang mga eksperto",
   "Experts on Agely": "Mga eksperto sa Agely",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "Nakikipag-usap ang eksperto sa agent gamit ang boses o pagpili ng mungkahing sagot; opsyonal ang pag-type. Hindi bababa sa 16px ang teksto, malalaki ang pindutan, at laging nakikita ang pokus ng keyboard.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "Sa demo, puwede kang pumili ng mungkahing sagot o mag-type ng pagbabago sa profile. Hindi bababa sa 16 px ang teksto, malalaki ang mga pindutan, at nakikita ang pokus ng keyboard.",
   "Experts who earned": "Mga ekspertong kumita",
   "Experts with “{0}” charge outside your budget of {1} per 15 minutes. Widening the budget would let Agely match you.": "Lampas sa badyet ninyong {1} bawat 15 minuto ang singil ng mga ekspertong may “{0}”. Makakatulong ang mas malawak na badyet para makahanap ng katugma.",
   "Finding, interviewing and choosing people.": "Paghanap, pakikipanayam at pagpili ng mga tao.",
@@ -624,6 +625,7 @@ export default {
   "That skill isn't on the profile any more.": "Wala na ang kasanayang iyon sa profile.",
   "That sounds right.": "Mukhang tama iyon.",
   "That's my name": "Na ang aking pangalan",
+  "That time doesn't exist in your time zone. Choose another time.": "Walang ganyang oras sa iyong time zone. Pumili ng ibang oras.",
   "The agent could not reply. Try again, or use the scripted conversation.": "Hindi makasagot ang ahente. Subukan muli o gamitin ang nakahandang usapan.",
   "The agent debriefs Margaret": "Nakikipagbalik-tanaw ang ahente kay Margaret",
   "The agent drafts a workflow": "Gumagawa ang agent ng burador na daloy ng trabaho",
@@ -670,7 +672,7 @@ export default {
   "The walkthrough uses the scripted conversations.": "Nakahandang usapan ang gamit sa demo.",
   "Their problem: {0}": "Ang kanilang problema: {0}",
   "Then": "Pagkatapos",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "Walang form na pupunan o profile na isusulat. Nagsasalita si Margaret o pumipili ng sagot, at ginagawang profile ng agent ang kanyang sinabi.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "Ipinapakita ng demo ang panayam kay Margaret at kung paano gumagawa ang agent ng draft ng kanyang profile mula sa mga sagot niya.",
   "There is no match to continue with.": "Walang katugma para magpatuloy.",
   "There is no match to send a proposal to.": "Walang katugmang mapapadalhan ng mungkahi.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "Walang kailangang punan. Makipag-usap lang tayo. Anong trabaho ang ginawa mo, at gaano katagal?",

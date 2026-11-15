@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Переміщуйтеся між експертами клавішами зі стрілками вліво та вправо.",
   " to read the data directly.": " щоб прочитати дані безпосередньо.",
   "$40 to $70": "$40 до $70",
   "$50 to $100": "Від $50 до $100",
@@ -153,7 +154,7 @@ export default {
   "Experts charge more than buyers can pay.": "Експерти просять більше, ніж можуть заплатити покупці.",
   "Experts declined": "Експерти відмовили",
   "Experts on Agely": "Експерти в Agely",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "Експерти спілкуються з агентом голосом або вибирають запропоновану відповідь; друкувати необов’язково. Текст не менший за 16px, кнопки великі, а фокус клавіатури завжди помітний.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "У демонстрації можна вибирати запропоновані відповіді або вводити зміни до профілю. Розмір тексту становить щонайменше 16 пікселів, кнопки великі, а фокус клавіатури помітний.",
   "Experts who earned": "Експерти, які заробили",
   "Finding, interviewing and choosing people.": "Знайти, взяти інтерв'ю і вибрати людей.",
   "First read of a contract-manufacturing agreement": "Перше ознайомлення з угодою про контрактне виробництво",
@@ -381,6 +382,7 @@ export default {
   "That code isn't right. Check the six digits and try again.": "Цей код неправильний. Перевірте шість цифр і спробуйте ще раз.",
   "That doesn't look like an email address. Check it and try again.": "Це не схоже на адресу електронної пошти. Перевірте її і спробуйте ще раз.",
   "That's my name": "Це моє ім'я.",
+  "That time doesn't exist in your time zone. Choose another time.": "У вашому часовому поясі такого часу немає. Виберіть інший час.",
   "The agent drafts a workflow": "Агент готує робочий процес",
   "The agent suggests": "Агент пропонує",
   "The agent suggests this range because:": "Агент пропонує цей діапазон, оскільки:",
@@ -408,7 +410,7 @@ export default {
   "The two of them settle the details between themselves. The price has to sit inside the overlap, and nothing is booked or charged until Margaret accepts.": "Вони самі погоджують деталі. Ціна має бути в межах перетину; бронювання й списання не відбудуться, доки Margaret не прийме.",
   "The typical expert earns $150 or more a week": "Типовий експерт заробляє $150 або більше на тиждень",
   "Their problem: {0}": "Їх проблема: {0}",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "Не потрібно заповнювати форму чи писати профіль. Margaret говорить голосом або вибирає відповідь, а агент перетворює сказане на профіль.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "Демонстрація показує інтерв’ю з Margaret і те, як агент складає чернетку її профілю на основі відповідей.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "Не треба нічого заповнювати, ми просто поговоримо, якою роботою ви займалися і як довго?",
   "They agree on a session": "Вони погоджують сеанс",
   "They draft and suggest. They never decide.": "Вони готують чернетки й пропонують. Ніколи не вирішують.",

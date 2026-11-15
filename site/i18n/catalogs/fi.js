@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Siirry asiantuntijasta toiseen vasemmalla ja oikealla nuolinäppäimellä.",
   " to read the data directly.": " lukeaksesi tiedot suoraan.",
   "$40 to $70": "40–70 dollaria",
   "$50 to $100": "50 dollarista 100 dollariin",
@@ -153,7 +154,7 @@ export default {
   "Experts charge more than buyers can pay.": "Asiantuntijat pyytävät enemmän kuin ostajat voivat maksaa.",
   "Experts declined": "Asiantuntijat kieltäytyivät",
   "Experts on Agely": "Asiantuntijat Agelyssä",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "Asiantuntijat puhuvat agentille tai valitsevat ehdotetun vastauksen; kirjoittaminen on vapaaehtoista. Tekstin koko on vähintään 16px, painikkeet ovat suuria ja näppäimistökohdistus näkyy aina.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "Esittelyssä voit valita ehdotettuja vastauksia tai kirjoittaa muutoksia profiiliin. Tekstin koko on vähintään 16 px, painikkeet ovat suuria ja näppäimistön kohdistus näkyy.",
   "Experts who earned": "Ansainneet asiantuntijat",
   "Finding, interviewing and choosing people.": "Henkilöiden löytäminen, haastattelu ja valinta.",
   "First read of a contract-manufacturing agreement": "Sopimusvalmistussopimuksen ensimmäinen tarkastelu",
@@ -381,6 +382,7 @@ export default {
   "That code isn't right. Check the six digits and try again.": "Koodi ei ole oikein, tarkista kuusi numeroa ja yritä uudelleen.",
   "That doesn't look like an email address. Check it and try again.": "Tarkista sähköpostiosoite ja yritä uudelleen.",
   "That's my name": "Se on nimeni",
+  "That time doesn't exist in your time zone. Choose another time.": "Tätä kellonaikaa ei ole aikavyöhykkeelläsi. Valitse toinen aika.",
   "The agent drafts a workflow": "Agentti luonnostelee työnkulun",
   "The agent suggests": "Agentti ehdottaa",
   "The agent suggests this range because:": "Välittäjä ehdottaa tätä valikoimaa, koska:",
@@ -408,7 +410,7 @@ export default {
   "The two of them settle the details between themselves. The price has to sit inside the overlap, and nothing is booked or charged until Margaret accepts.": "He sopivat yksityiskohdat keskenään. Hinnan on oltava yhteisellä alueella, eikä mitään varata tai veloiteta ennen Margaretin hyväksyntää.",
   "The typical expert earns $150 or more a week": "Tyypillinen asiantuntija ansaitsee vähintään $150 viikossa",
   "Their problem: {0}": "Heidän ongelmansa: {0}",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "Ei täytettävää lomaketta eikä kirjoitettavaa profiilia. Margaret puhuu tai valitsee vastauksen, ja agentti tekee hänen sanoistaan profiilin.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "Esittely näyttää Margaretin haastattelun ja sen, miten agentti luonnostelee hänen profiilinsa vastausten pohjalta.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "Mitä työtä teit ja kuinka kauan?",
   "They agree on a session": "He sopivat keskustelusta",
   "They draft and suggest. They never decide.": "He luonnostelevat ja ehdottavat. He eivät koskaan päätä.",

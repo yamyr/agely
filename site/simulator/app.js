@@ -315,31 +315,54 @@ function renderFit() {
 
 function renderExperts(s) {
   const top = Math.max(...s.byExpert, 1);
-  $("expert-grid").replaceChildren(
+  const grid = $("expert-grid");
+  const focused = document.activeElement;
+  const focusedIndex = grid.contains(focused) ? Array.from(grid.children).indexOf(focused) : -1;
+  grid.replaceChildren(
     ...result.experts.map((e) => {
       const earned = s.byExpert[e.id];
+      const selected = selectedExpert === e.id;
       const cell = el("button", {
         type: "button",
-        class: `expert${earned === 0 ? " expert--none" : ""}${selectedExpert === e.id ? " expert--selected" : ""}`,
+        class: `expert${earned === 0 ? " expert--none" : ""}${selected ? " expert--selected" : ""}`,
         style: earned === 0 ? "" : `--level:${Math.round(15 + 85 * (earned / top))}%`,
         "aria-label": t("{0}: {1} earned", e.name, dollars(earned)),
+        "aria-pressed": String(selected),
+        tabindex: selected || (selectedExpert === null && e === result.experts[0]) ? "0" : "-1",
       });
       const show = () => {
         selectedExpert = e.id;
         writeHash();
         describeExpert(e, earned);
-        for (const other of $("expert-grid").children) other.classList.remove("expert--selected");
-        cell.classList.add("expert--selected");
+        for (const other of grid.children) {
+          const chosen = other === cell;
+          other.classList.toggle("expert--selected", chosen);
+          other.setAttribute("aria-pressed", String(chosen));
+          other.tabIndex = chosen ? 0 : -1;
+        }
       };
       cell.addEventListener("click", show);
       cell.addEventListener("pointerenter", show);
       cell.addEventListener("focus", show);
+      cell.addEventListener("keydown", (event) => {
+        let target;
+        switch (event.key) {
+          case "ArrowLeft": target = cell.previousElementSibling; break;
+          case "ArrowRight": target = cell.nextElementSibling; break;
+          case "Home": target = grid.firstElementChild; break;
+          case "End": target = grid.lastElementChild; break;
+          default: return;
+        }
+        event.preventDefault();
+        target?.focus();
+      });
       return cell;
     }),
   );
   const chosen = result.experts[selectedExpert ?? -1];
   if (chosen) describeExpert(chosen, s.byExpert[chosen.id]);
   else $("expert-readout").textContent = t("Select a square to see that expert.");
+  if (focusedIndex !== -1) grid.children[focusedIndex]?.focus({ preventScroll: true });
 }
 
 function describeExpert(e, earned) {

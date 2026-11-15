@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Gunakan tombol panah kiri dan kanan untuk berpindah antar pakar.",
   " to read the data directly.": " untuk membaca data secara langsung.",
   " with {0}": " dengan {0}",
   "$40 to $70": "$40 sampai $70",
@@ -237,7 +238,7 @@ export default {
   "Experts charge more than buyers can pay.": "Harga pakar melebihi kemampuan pembeli.",
   "Experts declined": "Pakar menolak",
   "Experts on Agely": "Pakar di Agely",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "Pakar berbicara dengan agen melalui suara atau pilihan jawaban; mengetik bersifat opsional. Teks minimal 16px, tombol besar, dan fokus papan ketik selalu terlihat.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "Dalam demo ini, Anda dapat memilih jawaban yang disarankan atau mengetik perubahan pada profil. Ukuran teks minimal 16 piksel, tombolnya besar, dan fokus papan ketik terlihat.",
   "Experts who earned": "Pakar yang memperoleh penghasilan",
   "Experts with “{0}” charge outside your budget of {1} per 15 minutes. Widening the budget would let Agely match you.": "Ahli dengan “{0}” menetapkan tarif di luar anggaran {1} per 15 menit. Memperluas anggaran memungkinkan Agely mencocokkan Anda.",
   "Finding, interviewing and choosing people.": "Menemukan, mewawancarai dan memilih orang.",
@@ -624,6 +625,7 @@ export default {
   "That skill isn't on the profile any more.": "Keahlian itu sudah tidak ada di profil.",
   "That sounds right.": "Kedengarannya tepat.",
   "That's my name": "Itu namaku",
+  "That time doesn't exist in your time zone. Choose another time.": "Waktu itu tidak ada di zona waktu Anda. Pilih waktu lain.",
   "The agent could not reply. Try again, or use the scripted conversation.": "Agen tidak dapat menjawab. Coba lagi atau gunakan percakapan yang disiapkan.",
   "The agent debriefs Margaret": "Agen meninjau sesi bersama Margaret",
   "The agent drafts a workflow": "Agen menyusun alur kerja",
@@ -670,7 +672,7 @@ export default {
   "The walkthrough uses the scripted conversations.": "Panduan memakai percakapan yang disiapkan.",
   "Their problem: {0}": "Masalah mereka: {0}",
   "Then": "Kemudian",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "Tidak ada formulir atau profil yang perlu ditulis. Margaret berbicara atau memilih jawaban, lalu agen mengubah ucapannya menjadi profil.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "Demo ini menampilkan wawancara Margaret dan cara agen menyusun draf profil berdasarkan jawabannya.",
   "There is no match to continue with.": "Tidak ada kecocokan untuk dilanjutkan.",
   "There is no match to send a proposal to.": "Tidak ada kecocokan untuk dikirimi usulan.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "Tidak ada yang harus diisi, kita bicara saja, apa pekerjaanmu, dan berapa lama?",

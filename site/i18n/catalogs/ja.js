@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "左右の矢印キーで専門家を切り替えます。",
   " to read the data directly.": "を開くとデータを直接読めます。",
   " with {0}": "（{0} を使用）",
   "$40 to $70": "40から70ドル",
@@ -237,7 +238,7 @@ export default {
   "Experts charge more than buyers can pay.": "専門家の価格が依頼者の支払える額を超えています。",
   "Experts declined": "専門家が辞退",
   "Experts on Agely": "Agelyの専門家",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "専門家は音声や提案された回答の選択で話せます。入力は任意です。文字は16px以上、ボタンは大きく、キーボードのフォーカスは常に見えます。",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "デモでは、提案された回答を選んだり、プロフィールの修正を入力したりできます。文字は16px以上、ボタンは大きく、キーボードのフォーカスが見えます。",
   "Experts who earned": "収入を得た専門家",
   "Experts with “{0}” charge outside your budget of {1} per 15 minutes. Widening the budget would let Agely match you.": "「{0}」の専門家の料金は、15分あたりの予算 {1} の範囲外です。予算を広げると紹介できる可能性があります。",
   "Finding, interviewing and choosing people.": "人を見つけて 面接して 選ぶ",
@@ -624,6 +625,7 @@ export default {
   "That skill isn't on the profile any more.": "そのスキルはすでにプロフィールにありません。",
   "That sounds right.": "よさそうです。",
   "That's my name": "それが私の名前",
+  "That time doesn't exist in your time zone. Choose another time.": "お使いのタイムゾーンには、その時刻がありません。別の時刻を選んでください。",
   "The agent could not reply. Try again, or use the scripted conversation.": "エージェントが返答できませんでした。再試行するか、台本の会話を使ってください。",
   "The agent debriefs Margaret": "エージェントが Margaret さんと振り返ります",
   "The agent drafts a workflow": "エージェントが手順を下書き",
@@ -670,7 +672,7 @@ export default {
   "The walkthrough uses the scripted conversations.": "デモでは台本の会話を使います。",
   "Their problem: {0}": "彼らの問題: {0}",
   "Then": "その次",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "フォーム入力や紹介文の作成は不要です。Margaretが音声で話すか回答を選ぶと、エージェントが紹介文にまとめます。",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "デモでは、Margaretの面談と、エージェントが回答をもとにプロフィールの下書きを作る流れを確認できます。",
   "There is no match to continue with.": "続けられる紹介先がありません。",
   "There is no match to send a proposal to.": "提案を送れる紹介先がありません。",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "何も書かないで 話し合いましょう どんな仕事をしてた？",

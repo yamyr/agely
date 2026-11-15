@@ -120,6 +120,35 @@ test("an interview that names no skill asks for more instead of inventing one", 
   await expect(page.getByText("What work did you do, and for how long?", { exact: false })).toBeVisible();
 });
 
+test("the expert interview keeps keyboard focus on each new question", async ({ page }) => {
+  await page.goto("/#/app");
+  await productSignIn(page, "interview-keyboard@example.com");
+  await page.getByRole("button", { name: "Continue as an expert" }).click();
+  await page.getByRole("link", { name: "Start the interview" }).click();
+  await page.getByLabel("Your name").fill("Ruth Adeyemi");
+  await page.getByLabel("Your name").press("Enter");
+
+  const firstQuestion = page.getByRole("heading", { name: /What work did you do/ });
+  await expect(firstQuestion).toBeFocused();
+  await expect(firstQuestion).toHaveCSS("outline-style", "solid");
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("button", { name: "I ran procurement for a manufacturer for 34 years." })).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("heading", { name: "What were you responsible for, day to day?" })).toBeFocused();
+
+  await page.getByText("Or type your answer", { exact: true }).click();
+  const typedAnswer = "Choosing suppliers and negotiating the contracts.";
+  await page.getByRole("textbox", { name: "Your answer" }).fill(typedAnswer);
+  const language = page.locator("#language");
+  await language.focus();
+  await language.selectOption("fr");
+  await expect(language).toBeFocused();
+  await expect(page.locator("details[open] input[name=answer]")).toHaveValue(typedAnswer);
+  await language.selectOption("en");
+  await page.getByRole("textbox", { name: "Your answer" }).press("Enter");
+  await expect(page.getByRole("heading", { name: "Tell me about a problem you're proud of solving." })).toBeFocused();
+});
+
 test("an expert can confirm a price entered with Devanagari and Tamil decimal digits", async ({ page }) => {
   await page.goto("/?lang=en#/app");
   await productSignIn(page, "ruth@example.com");

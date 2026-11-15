@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Bruk venstre og høyre piltast for å gå fra én ekspert til en annen.",
   " to read the data directly.": " for å lese dataene direkte.",
   "$40 to $70": "$40 til $70",
   "$50 to $100": "$50 til $100",
@@ -153,7 +154,7 @@ export default {
   "Experts charge more than buyers can pay.": "Ekspertene tar mer enn kjøperne kan betale.",
   "Experts declined": "Ekspertene avslo",
   "Experts on Agely": "Eksperter på Agely",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "Eksperter snakker med en agent med stemmen eller velger et foreslått svar; det er valgfritt å skrive. Teksten er aldri mindre enn 16px, knappene er store, og tastaturfokus er alltid synlig.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "I gjennomgangen kan du velge foreslåtte svar eller skrive inn endringer i profilen. Teksten er minst 16 px, knappene er store, og tastaturfokus er synlig.",
   "Experts who earned": "Eksperter som tjente noe",
   "Finding, interviewing and choosing people.": "Finne, intervjue og velge folk.",
   "First read of a contract-manufacturing agreement": "Første gjennomgang av en kontraktsproduksjonsavtale",
@@ -381,6 +382,7 @@ export default {
   "That code isn't right. Check the six digits and try again.": "Koden er ikke riktig. Kontroller de seks sifrene og prøv igjen.",
   "That doesn't look like an email address. Check it and try again.": "Det ser ikke ut som en e-postadresse. Sjekk det og prøv igjen.",
   "That's my name": "Det er navnet mitt",
+  "That time doesn't exist in your time zone. Choose another time.": "Det klokkeslettet finnes ikke i tidssonen din. Velg et annet tidspunkt.",
   "The agent drafts a workflow": "Agenten lager utkast til arbeidsflyt",
   "The agent suggests": "Agenten foreslår",
   "The agent suggests this range because:": "Agenten foreslår dette området fordi:",
@@ -408,7 +410,7 @@ export default {
   "The two of them settle the details between themselves. The price has to sit inside the overlap, and nothing is booked or charged until Margaret accepts.": "De avtaler detaljene selv. Prisen må ligge i overlappen, og ingenting bestilles eller belastes før Margaret godtar.",
   "The typical expert earns $150 or more a week": "Den typiske eksperten tjener minst $150 i uken",
   "Their problem: {0}": "Problemet deres: {0}",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "Ingen skjemaer må fylles ut, og ingen profil må skrives. Margaret snakker med stemmen eller velger et svar, og agenten gjør ordene til en profil.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "Gjennomgangen viser intervjuet med Margaret og hvordan agenten lager et utkast til profilen hennes ut fra svarene.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "Det er ikke noe å fylle ut, vi snakker om hva du jobbet med og hvor lenge.",
   "They agree on a session": "De blir enige om en samtale",
   "They draft and suggest. They never decide.": "De lager utkast og foreslår. De bestemmer aldri.",

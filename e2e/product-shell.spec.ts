@@ -83,6 +83,28 @@ test("the same address gets the same account and role back, whatever its case", 
   await expect(page.getByText("Signed in as sam@example.com, acting as a buyer.")).toBeVisible();
 });
 
+test("an expired sign-in code can be replaced without entering the email again", async ({ page }) => {
+  await page.clock.setFixedTime(new Date("2026-11-14T00:00:00Z"));
+  await page.goto("/?lang=en#/app");
+  await page.getByLabel("Your email address").fill("ruth@example.com");
+  await page.getByRole("button", { name: "Send me a code" }).press("Enter");
+  await expect(page.getByRole("heading", { name: "Enter your code" })).toBeFocused();
+  const codeField = page.getByLabel("Six-digit code");
+  await codeField.fill(await page.locator(".stand-in__code strong").innerText());
+  await page.clock.setFixedTime(new Date("2026-11-14T00:11:00Z"));
+  await page.getByRole("button", { name: "Sign in", exact: true }).press("Enter");
+  await expect(page.getByRole("alert")).toContainText("That code has expired");
+
+  await page.getByRole("button", { name: "Send me a code" }).press("Enter");
+  await expect(page.getByText("We made a six-digit code for ruth@example.com.")).toBeVisible();
+  await expect(codeField).toBeEmpty();
+  await expect(page.getByRole("alert")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Enter your code" })).toBeFocused();
+  await codeField.fill(await page.locator(".stand-in__code strong").innerText());
+  await page.getByRole("button", { name: "Sign in", exact: true }).press("Enter");
+  await expect(page.getByRole("heading", { name: "How do you want to use Agely?" })).toBeFocused();
+});
+
 test("every service says it is a stand-in, on every state of the shell", async ({ page }) => {
   await page.goto("/#/app");
   const services = page.getByRole("region", { name: "What is connected" });

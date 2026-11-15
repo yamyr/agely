@@ -1,5 +1,6 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Wechseln Sie mit der linken und rechten Pfeiltaste zwischen den Fachleuten.",
   " to read the data directly.": ", um die Daten direkt zu lesen.",
   " with {0}": " mit {0}",
   "$40 to $70": "$40 bis $70",
@@ -237,7 +238,7 @@ export default {
   "Experts charge more than buyers can pay.": "Fachleute verlangen mehr, als Kunden bezahlen können.",
   "Experts declined": "Fachleute haben abgelehnt",
   "Experts on Agely": "Fachleute auf Agely",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "Fachleute sprechen mit einem Agenten oder wählen eine vorgeschlagene Antwort; Tippen ist optional. Text ist mindestens 16 px groß, Schaltflächen sind groß und der Tastaturfokus bleibt sichtbar.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "In der Demo können Sie vorgeschlagene Antworten auswählen oder Änderungen am Profil eintippen. Der Text ist mindestens 16 px groß, die Schaltflächen sind groß, und der Tastaturfokus ist sichtbar.",
   "Experts who earned": "Fachleute mit Verdienst",
   "Experts with “{0}” charge outside your budget of {1} per 15 minutes. Widening the budget would let Agely match you.": "Fachleute mit „{0}“ verlangen mehr als Ihr Budget von {1} je 15 Minuten. Ein höheres Budget würde eine Zuordnung ermöglichen.",
   "Finding, interviewing and choosing people.": "Suchen, Befragen und Auswählen von Personen.",
@@ -624,6 +625,7 @@ export default {
   "That skill isn't on the profile any more.": "Diese Fähigkeit steht nicht mehr im Profil.",
   "That sounds right.": "Das klingt richtig.",
   "That's my name": "Das ist mein Name",
+  "That time doesn't exist in your time zone. Choose another time.": "Diese Uhrzeit gibt es in Ihrer Zeitzone nicht. Wählen Sie eine andere Uhrzeit.",
   "The agent could not reply. Try again, or use the scripted conversation.": "Der Agent konnte nicht antworten. Versuchen Sie es erneut oder verwenden Sie das vorgegebene Gespräch.",
   "The agent debriefs Margaret": "Der Agent führt Margarets Nachbesprechung",
   "The agent drafts a workflow": "Der Agent entwirft einen Ablauf",
@@ -670,7 +672,7 @@ export default {
   "The walkthrough uses the scripted conversations.": "Der Rundgang verwendet die vorgegebenen Gespräche.",
   "Their problem: {0}": "Ihr Problem: {0}",
   "Then": "Danach",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "Es gibt kein Formular und kein Profil zu schreiben. Margaret spricht oder wählt eine vorgeschlagene Antwort, und ein Agent macht daraus ein Profil.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "Die Demo zeigt Margarets Interview und wie der Agent aus ihren Antworten einen Profilentwurf erstellt.",
   "There is no match to continue with.": "Es gibt keine Zuordnung zum Fortsetzen.",
   "There is no match to send a proposal to.": "Es gibt keine Zuordnung für einen Gesprächsvorschlag.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "Es gibt nichts auszufüllen, wir reden einfach. Welche Arbeit haben Sie gemacht und wie lange?",

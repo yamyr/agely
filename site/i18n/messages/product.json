@@ -175,6 +175,7 @@
   "That code isn't right. Check the six digits and try again.",
   "That doesn't look like an email address. Check it and try again.",
   "That's my name",
+  "That time doesn't exist in your time zone. Choose another time.",
   "The agent suggests this range because:",
   "The booking did not go through: the buyer's payment could not be held. Nothing is booked. You can try again once they have fixed it.",
   "The clock is {0} ahead of the real time.",

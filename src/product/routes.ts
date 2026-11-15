@@ -56,7 +56,12 @@ function match(path: string): { name: RouteName; params: RouteParams } | null {
     const fits = pattern.every((part, i) => {
       const value = asked[i] ?? "";
       if (part.startsWith(":")) {
-        params[part.slice(1)] = decodeURIComponent(value);
+        try {
+          params[part.slice(1)] = decodeURIComponent(value);
+        } catch (error) {
+          if (error instanceof URIError) return false;
+          throw error;
+        }
         return true;
       }
       return part === value;

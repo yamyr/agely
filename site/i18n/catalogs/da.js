@@ -1,5 +1,6 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "Use the left and right arrow keys to move between experts.": "Brug venstre og højre piletast til at skifte mellem eksperter.",
   " to read the data directly.": " for at læse dataene direkte.",
   " with {0}": " med {0}",
   "$40 to $70": "$40 til $70",
@@ -237,7 +238,7 @@ export default {
   "Experts charge more than buyers can pay.": "Eksperterne kræver mere, end køberne kan betale.",
   "Experts declined": "Eksperter afslog",
   "Experts on Agely": "Eksperter på Agely",
-  "Experts talk with an agent, by voice or by picking a suggested reply; typing is optional. Text is never smaller than 16px, buttons are large, and keyboard focus is always visible.": "Eksperter taler med en agent eller vælger et foreslået svar; indtastning er valgfri. Tekst er mindst 16 px, knapperne er store, og tastaturfokus er altid synligt.",
+  "In the walkthrough, you can choose suggested replies or type profile edits. Text is at least 16px, buttons are large, and keyboard focus is visible.": "I gennemgangen kan du vælge foreslåede svar eller skrive dine egne ændringer til profilen. Teksten er mindst 16 px, knapperne er store, og tastaturfokus er synligt.",
   "Experts who earned": "Eksperter med indtjening",
   "Experts with “{0}” charge outside your budget of {1} per 15 minutes. Widening the budget would let Agely match you.": "Eksperter med »{0}« tager mere end dit budget på {1} pr. 15 minutter. Et større budget ville gøre et match muligt.",
   "Finding, interviewing and choosing people.": "At finde, interviewe og udvælge folk.",
@@ -624,6 +625,7 @@ export default {
   "That skill isn't on the profile any more.": "Den kompetence står ikke længere på profilen.",
   "That sounds right.": "Det lyder rigtigt.",
   "That's my name": "Det er mit navn",
+  "That time doesn't exist in your time zone. Choose another time.": "Det klokkeslæt findes ikke i din tidszone. Vælg et andet tidspunkt.",
   "The agent could not reply. Try again, or use the scripted conversation.": "Agenten kunne ikke svare. Prøv igen, eller brug den forberedte samtale.",
   "The agent debriefs Margaret": "Agenten samler op med Margaret",
   "The agent drafts a workflow": "Agenten laver et udkast til en arbejdsgang",
@@ -670,7 +672,7 @@ export default {
   "The walkthrough uses the scripted conversations.": "Gennemgangen bruger de forberedte samtaler.",
   "Their problem: {0}": "Deres problem: {0}",
   "Then": "Derefter",
-  "There is no form to fill in and no profile to write. Margaret talks, by voice or by picking a suggested reply, and an agent turns what she says into a profile.": "Der er ingen formular eller profil at udfylde. Margaret taler eller vælger et foreslået svar, og en agent omsætter hendes ord til en profil.",
+  "The walkthrough shows Margaret's interview and how the agent drafts her profile from her answers.": "Gennemgangen viser interviewet med Margaret, og hvordan agenten bruger hendes svar til at skrive et udkast til hendes profil.",
   "There is no match to continue with.": "Der er intet match at fortsætte med.",
   "There is no match to send a proposal to.": "Der er intet match at sende et forslag til.",
   "There's nothing to fill in. We'll just talk. What work did you do, and for how long?": "Der er ikke noget at udfylde, vi snakker bare om, hvilket arbejde gjorde du, og hvor længe?",
