@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "如果对提案的操作失败，键盘焦点会留在按钮上，方便你重试。",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "在网页版交易平台上重复点击，不再会生成重复的提案或预约。",
   "English (automatic captions)": "英语（自动生成字幕）",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "为搭载 Apple 芯片的 Mac 提供更新。当 Codex 无法检查登录状态时，将提供更清晰的指引。",
   "Smaller translation downloads and automatic English captions for the demo video.": "翻译下载体积更小，演示视频新增自动生成的英文字幕。",

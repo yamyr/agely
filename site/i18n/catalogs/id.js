@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Jika tindakan pada usulan gagal, fokus papan ketik tetap pada tombol agar Anda dapat mencoba lagi.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Klik berulang tidak lagi membuat usulan atau pemesanan ganda di lokapasar dalam peramban.",
   "English (automatic captions)": "Inggris (takarir otomatis)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Pembaruan untuk Mac dengan cip Apple silicon, dengan panduan yang lebih jelas saat Codex tidak dapat memeriksa status masuk.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Unduhan terjemahan lebih kecil dan takarir bahasa Inggris otomatis untuk video demo.",

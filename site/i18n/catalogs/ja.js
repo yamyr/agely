@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "提案の操作に失敗しても、キーボードのフォーカスはボタンに残るため、再試行できます。",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "ブラウザーのマーケットプレイスで繰り返しクリックしても、提案や予約が重複して作成されなくなりました。",
   "English (automatic captions)": "英語（自動生成字幕）",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Appleシリコン搭載Mac向けの更新です。Codexがサインインの状態を確認できない場合の案内を改善しました。",
   "Smaller translation downloads and automatic English captions for the demo video.": "翻訳データのダウンロード容量を削減し、デモ動画に自動生成の英語字幕を追加しました。",

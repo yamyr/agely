@@ -1,5 +1,7 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Se un’azione su una proposta non riesce, il pulsante mantiene il focus della tastiera per consentirti di riprovare.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Fare clic più volte non crea più proposte o prenotazioni duplicate nel marketplace del browser.",
   "English (automatic captions)": "Inglese (sottotitoli automatici)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Aggiornamento per Mac con chip Apple, con indicazioni più chiare quando Codex non riesce a verificare l’accesso.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Download delle traduzioni più leggeri e sottotitoli automatici in inglese per il video dimostrativo.",

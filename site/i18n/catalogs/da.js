@@ -1,5 +1,7 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Hvis en handling på et forslag mislykkes, beholder knappen tastaturfokus, så du kan prøve igen.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Gentagne klik opretter ikke længere dubletter af forslag eller bookinger på markedspladsen i browseren.",
   "English (automatic captions)": "Engelsk (automatiske undertekster)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Opdatering til Mac med Apple-chip med tydeligere vejledning, når Codex ikke kan kontrollere login.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Mindre downloads af oversættelser og automatisk genererede engelske undertekster til demovideoen.",

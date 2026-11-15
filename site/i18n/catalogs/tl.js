@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Kung mabigo ang isang aksyon sa panukala, mananatili sa button ang focus ng keyboard para masubukan mo ulit.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Ang paulit-ulit na pag-click ay hindi na gumagawa ng dobleng panukala o booking sa marketplace sa browser.",
   "English (automatic captions)": "Ingles (awtomatikong caption)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Update para sa Mac na may Apple silicon, na may mas malinaw na gabay kapag hindi masuri ng Codex ang pag-sign in.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Mas maliliit na download ng mga salin at awtomatikong caption sa Ingles para sa demo video.",

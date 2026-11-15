@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Jos tarjoukseen liittyvä toiminto epäonnistuu, näppäimistön kohdistus pysyy painikkeessa, jotta voit yrittää uudelleen.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Useat napsautukset eivät enää luo päällekkäisiä tarjouksia tai varauksia selaimen markkinapaikalla.",
   "English (automatic captions)": "Englanti (automaattinen tekstitys)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Päivitys Applen sirulla varustetuille Maceille. Ohjeet ovat selkeämmät, jos Codex ei voi tarkistaa kirjautumista.",
   "Smaller translation downloads and automatic English captions for the demo video.": "Pienemmät käännöslataukset ja automaattinen englanninkielinen tekstitys esittelyvideoon.",

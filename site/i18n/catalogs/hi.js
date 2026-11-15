@@ -1,5 +1,7 @@
 // Model-generated Hindi draft translations.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "अगर प्रस्ताव से जुड़ी कोई कार्रवाई विफल हो जाए, तो कीबोर्ड फ़ोकस बटन पर बना रहता है ताकि आप फिर से कोशिश कर सकें।",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "ब्राउज़र के मार्केटप्लेस में बार-बार क्लिक करने से अब एक ही प्रस्ताव या बुकिंग दोबारा नहीं बनती।",
   "English (automatic captions)": "अंग्रेज़ी (स्वचालित कैप्शन)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Apple silicon वाले Mac के लिए अपडेट। Codex साइन-इन की जाँच न कर पाए, तो अब अधिक स्पष्ट निर्देश मिलते हैं।",
   "Smaller translation downloads and automatic English captions for the demo video.": "अनुवादों के छोटे डाउनलोड और डेमो वीडियो के लिए अपने आप बने अंग्रेज़ी कैप्शन।",

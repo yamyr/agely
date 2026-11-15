@@ -1,5 +1,7 @@
 // Model-generated Tamil translation draft; requires language review.
 export default {
+  "After a failed proposal action, the button keeps keyboard focus so you can retry.": "முன்மொழிவு தொடர்பான செயல் தோல்வியடைந்தால், விசைப்பலகையின் கவனம் பொத்தானிலேயே இருக்கும். இதனால் மீண்டும் முயற்சி செய்யலாம்.",
+  "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "உலாவியில் உள்ள சந்தையில் மீண்டும் மீண்டும் கிளிக் செய்தாலும், ஒரே முன்மொழிவோ முன்பதிவோ இருமுறை உருவாகாது.",
   "English (automatic captions)": "ஆங்கிலம் (தானியங்கி வசனங்கள்)",
   "Apple silicon desktop update with clearer guidance when Codex cannot check sign-in.": "Apple silicon கொண்ட Mac கணினிகளுக்கான புதுப்பிப்பு. உள்நுழைவை Codex சரிபார்க்க முடியாதபோது தெளிவான வழிமுறைகள் காட்டப்படும்.",
   "Smaller translation downloads and automatic English captions for the demo video.": "மொழிபெயர்ப்புகளுக்கான சிறிய பதிவிறக்கங்கள் மற்றும் விளக்கக் காணொளிக்குத் தானாக உருவாக்கப்பட்ட ஆங்கில வசனங்கள்.",
