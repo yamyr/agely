@@ -85,7 +85,8 @@ fn check(bin: Option<PathBuf>) -> (AgentStatus, Option<Ready>) {
         run::LOGIN_TIMEOUT,
     ) {
         Ok(out) if status::is_signed_in(out.exit_ok, &out.log) => {}
-        Ok(_) => return (status::not_signed_in(), None),
+        Ok(out) if status::reports_signed_out(&out.log) => return (status::not_signed_in(), None),
+        Ok(_) => return (status::login_status_failed(), None),
         Err(run::RunError::Timeout) => return (status::error("Codex did not answer"), None),
         Err(run::RunError::Spawn(e)) => return (status::error(&e), None),
     }
