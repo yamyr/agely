@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Демонстрацію, платформу послуг і завантаження для комп’ютера легше знайти.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Зручніше читання на телефонах, видимі дати витрат і простіша навігація клавіатурою.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Якщо дія з пропозицією не вдалася, фокус клавіатури залишається на кнопці, щоб ви могли спробувати ще раз.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Повторні натискання більше не створюють дублікатів пропозицій чи бронювань у маркетплейсі в браузері.",
   "English (automatic captions)": "Англійська (автоматичні субтитри)",

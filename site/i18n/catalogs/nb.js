@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Demoen, markedsplassen og nedlastinger til datamaskinen er lettere å finne.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Lettere å lese på telefon, synlige utgiftsdatoer og enklere tastaturnavigasjon.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Hvis en handling for et forslag mislykkes, beholder knappen tastaturfokuset, slik at du kan prøve igjen.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Gjentatte klikk oppretter ikke lenger duplikater av forslag eller bookinger på markedsplassen i nettleseren.",
   "English (automatic captions)": "Engelsk (automatiske undertekster)",

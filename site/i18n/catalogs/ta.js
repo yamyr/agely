@@ -1,5 +1,7 @@
 // Model-generated Tamil translation draft; requires language review.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "விளக்கம், சந்தை மற்றும் கணினிக்கான பதிவிறக்கங்களை எளிதாகக் கண்டுபிடிக்கலாம்.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "தொலைபேசியில் படிப்பது எளிதாகியுள்ளது. செலவுகளின் தேதிகள் தெரிகின்றன. விசைப்பலகை வழிசெலுத்தலும் எளிதாகியுள்ளது.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "முன்மொழிவு தொடர்பான செயல் தோல்வியடைந்தால், விசைப்பலகையின் கவனம் பொத்தானிலேயே இருக்கும். இதனால் மீண்டும் முயற்சி செய்யலாம்.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "உலாவியில் உள்ள சந்தையில் மீண்டும் மீண்டும் கிளிக் செய்தாலும், ஒரே முன்மொழிவோ முன்பதிவோ இருமுறை உருவாகாது.",
   "English (automatic captions)": "ஆங்கிலம் (தானியங்கி வசனங்கள்)",

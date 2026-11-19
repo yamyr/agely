@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.3 — 2026-11-19
+
+### Website
+
+- Put the interactive demo, marketplace, and desktop downloads beside a shorter introduction. Added links to skip the header and jump to the story.
+- Gave story text more room on phones, restored expense dates in the mobile cost ledger, and made both cost tables accessible by keyboard. In-page links move focus without reloading and links between pages keep the selected language.
+- Consolidated navigation and action link sizing, improved long-heading wrapping, and added draft translations for the new navigation and release notes in all 17 supported languages.
+
+### Desktop app
+
+- Published an updated Apple silicon macOS walkthrough installer. This developer preview uses an ad hoc signature and has no Apple notarization.
+
 ## 0.1.2 — 2026-11-15
 
 ### Website

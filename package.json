@@ -2,7 +2,7 @@
   "name": "agely",
   "private": true,
   "license": "MIT",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "packageManager": "bun@1.3.10",
   "type": "module",
   "scripts": {

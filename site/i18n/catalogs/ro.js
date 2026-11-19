@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Demonstrația, platforma de servicii și descărcările pentru calculator sunt mai ușor de găsit.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Lectură mai clară pe telefon, date vizibile pentru cheltuieli și navigare mai ușoară cu tastatura.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Dacă o acțiune asupra unei propuneri eșuează, butonul păstrează focalizarea de la tastatură, ca să poți încerca din nou.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Clicurile repetate nu mai creează propuneri sau rezervări duplicate în platforma din browser.",
   "English (automatic captions)": "Engleză (subtitrări automate)",

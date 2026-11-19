@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Demo, lokapasar, dan unduhan untuk komputer lebih mudah ditemukan.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Lebih mudah dibaca di ponsel, tanggal pengeluaran terlihat, dan navigasi dengan papan ketik lebih mudah.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Jika tindakan pada usulan gagal, fokus papan ketik tetap pada tombol agar Anda dapat mencoba lagi.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Klik berulang tidak lagi membuat usulan atau pemesanan ganda di lokapasar dalam peramban.",
   "English (automatic captions)": "Inggris (takarir otomatis)",

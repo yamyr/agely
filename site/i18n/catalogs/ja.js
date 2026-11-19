@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "デモ、マーケットプレイス、パソコン向けのダウンロードを見つけやすくしました。",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "スマートフォンで読みやすくし、支出の日付を表示し、キーボードで操作しやすくしました。",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "提案の操作に失敗しても、キーボードのフォーカスはボタンに残るため、再試行できます。",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "ブラウザーのマーケットプレイスで繰り返しクリックしても、提案や予約が重複して作成されなくなりました。",
   "English (automatic captions)": "英語（自動生成字幕）",

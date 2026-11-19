@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Mas madaling makita ang demo, pamilihan, at mga download para sa computer.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Mas malinaw basahin sa telepono, nakikita ang mga petsa ng gastos, at mas madaling mag-navigate gamit ang keyboard.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Kung mabigo ang isang aksyon sa panukala, mananatili sa button ang focus ng keyboard para masubukan mo ulit.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Ang paulit-ulit na pag-click ay hindi na gumagawa ng dobleng panukala o booking sa marketplace sa browser.",
   "English (automatic captions)": "Ingles (awtomatikong caption)",

@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Demo, markkinapaikka ja tietokoneelle ladattavat versiot löytyvät helpommin.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Selkeämpi luettavuus puhelimella, näkyvät kulujen päivämäärät ja helpompi näppäimistöllä liikkuminen.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Jos tarjoukseen liittyvä toiminto epäonnistuu, näppäimistön kohdistus pysyy painikkeessa, jotta voit yrittää uudelleen.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Useat napsautukset eivät enää luo päällekkäisiä tarjouksia tai varauksia selaimen markkinapaikalla.",
   "English (automatic captions)": "Englanti (automaattinen tekstitys)",
