@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Demo, markkinapaikka ja tietokoneelle ladattavat versiot löytyvät helpommin.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Selkeämpi luettavuus puhelimella, näkyvät kulujen päivämäärät ja helpompi näppäimistöllä liikkuminen.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Jos tarjoukseen liittyvä toiminto epäonnistuu, näppäimistön kohdistus pysyy painikkeessa, jotta voit yrittää uudelleen.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Useat napsautukset eivät enää luo päällekkäisiä tarjouksia tai varauksia selaimen markkinapaikalla.",
   "English (automatic captions)": "Englanti (automaattinen tekstitys)",
@@ -188,6 +190,7 @@ export default {
   "Hosting for agely.dev. The plan is $20 a month; a year was paid up front for $200.": "agely.dev-sivuston ylläpito. Paketti maksaa $20 kuukaudessa; vuosi maksettiin ennakkoon hintaan $200.",
   "How do you want to use Agely?": "Miten haluat käyttää Agelyä?",
   "How much time do you need?": "Kuinka paljon aikaa tarvitset?",
+  "How it works": "Näin se toimii",
   "How one session happens": "Näin yksi keskustelu toteutuu",
   "How this page stays honest": "Näin sivu pysyy rehellisenä",
   "How to read the figures": "Näin luet lukuja",
@@ -358,6 +361,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "Kirjautunut sisään käyttäjänä {0}, toimien asiantuntijana.",
   "Signed in as {0}.": "Kirjautunut sisään nimellä {0}.",
   "Six-digit code": "Kuusinumeroinen koodi",
+  "Skip to content": "Siirry sisältöön",
   "Skill needed: {0}": "Tarvittava taito: {0}",
   "Someone speaks": "Joku puhuu",
   "Something went wrong saving your answers. Please try again.": "Jokin meni pieleen vastauksia tallentaessasi. Yritä uudelleen.",

@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Demo, lokapasar, dan unduhan untuk komputer lebih mudah ditemukan.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Lebih mudah dibaca di ponsel, tanggal pengeluaran terlihat, dan navigasi dengan papan ketik lebih mudah.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Jika tindakan pada usulan gagal, fokus papan ketik tetap pada tombol agar Anda dapat mencoba lagi.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Klik berulang tidak lagi membuat usulan atau pemesanan ganda di lokapasar dalam peramban.",
   "English (automatic captions)": "Inggris (takarir otomatis)",
@@ -293,6 +295,7 @@ export default {
   "How do you want to use Agely?": "Bagaimana kau ingin menggunakan Agely?",
   "How much time do you need, and what's your budget?": "Berapa lama waktu yang Anda butuhkan, dan berapa anggarannya?",
   "How much time do you need?": "Berapa banyak waktu yang kau butuhkan?",
+  "How it works": "Cara kerjanya",
   "How one session happens": "Bagaimana satu sesi berlangsung",
   "How this page stays honest": "Cara halaman ini tetap jujur",
   "How to read the figures": "Cara membaca angka",
@@ -584,6 +587,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "Terdaftar sebagai {0}, bertindak sebagai ahli.",
   "Signed in as {0}.": "Terdaftar sebagai {0}.",
   "Six-digit code": "Kode enam digit",
+  "Skip to content": "Langsung ke konten",
   "Skill needed: {0}": "Keterampilan yang diperlukan: {0}",
   "Skills": "Keahlian",
   "Someone speaks": "Seseorang berbicara",

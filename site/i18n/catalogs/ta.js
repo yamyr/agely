@@ -1,5 +1,7 @@
 // Model-generated Tamil translation draft; requires language review.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "விளக்கம், சந்தை மற்றும் கணினிக்கான பதிவிறக்கங்களை எளிதாகக் கண்டுபிடிக்கலாம்.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "தொலைபேசியில் படிப்பது எளிதாகியுள்ளது. செலவுகளின் தேதிகள் தெரிகின்றன. விசைப்பலகை வழிசெலுத்தலும் எளிதாகியுள்ளது.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "முன்மொழிவு தொடர்பான செயல் தோல்வியடைந்தால், விசைப்பலகையின் கவனம் பொத்தானிலேயே இருக்கும். இதனால் மீண்டும் முயற்சி செய்யலாம்.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "உலாவியில் உள்ள சந்தையில் மீண்டும் மீண்டும் கிளிக் செய்தாலும், ஒரே முன்மொழிவோ முன்பதிவோ இருமுறை உருவாகாது.",
   "English (automatic captions)": "ஆங்கிலம் (தானியங்கி வசனங்கள்)",
@@ -293,6 +295,7 @@ export default {
   "How do you want to use Agely?": "எவ்வாறு Agely பயன்படுத்த விரும்புகிறீர்கள்?",
   "How much time do you need, and what's your budget?": "எவ்வளவு நேரம் தேவை? உங்கள் செலவு வரம்பு என்ன?",
   "How much time do you need?": "உங்களுக்கு எவ்வளவு நேரம் தேவை?",
+  "How it works": "செயல்படும் விதம்",
   "How one session happens": "ஓர் அமர்வு எப்படி நடக்கிறது",
   "How this page stays honest": "இந்தப் பக்கம் எப்படித் துல்லியமாக இருக்கிறது",
   "How to read the figures": "எண்களைப் படிப்பது எப்படி",
@@ -584,6 +587,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "{0} என நுழைந்துள்ளேன், ஒரு நிபுணராக செயல்படுகிறேன்.",
   "Signed in as {0}.": "{0} என நுழைந்துள்ளீர்கள்.",
   "Six-digit code": "ஆறு இலக்கக் குறியீடு",
+  "Skip to content": "உள்ளடக்கத்திற்குச் செல்லவும்",
   "Skill needed: {0}": "தேவையான திறன்: {0}",
   "Skills": "திறன்கள்",
   "Someone speaks": "ஒருவர் பேசுகிறார்",

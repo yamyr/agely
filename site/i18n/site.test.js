@@ -23,6 +23,33 @@ describe("static website localization", () => {
     expect(window.document.documentElement.lang).toBe('fr');
     expect(window.localStorage.getItem('agely.locale')).toBe('fr');
   });
+  it("preserves in-page jumps and carries the selected language to other pages", async () => {
+    const window = new Window({ url: 'https://agely.dev/' });
+    window.document.body.innerHTML = `
+      <header></header>
+      <main id="top">
+        <a id="skip" href="#top">Skip to content</a>
+        <a id="story" href="#story-title">How it works</a>
+        <a id="market" href="demo/?mode=sample#/app">Marketplace</a>
+        <a id="external" href="https://example.com/releases">Releases</a>
+        <a id="download" href="assets/agely-demo.mp4">Download</a>
+      </main>
+    `;
+    window.localStorage.setItem('agely.locale', 'ta');
+    vi.stubGlobal('window', window);
+    vi.stubGlobal('document', window.document);
+    vi.stubGlobal('navigator', window.navigator);
+    vi.stubGlobal('location', window.location);
+    vi.resetModules();
+    await import('./site.js');
+
+    const href = (id) => window.document.getElementById(id).getAttribute('href');
+    expect(href('skip')).toBe('#top');
+    expect(href('story')).toBe('#story-title');
+    expect(href('market')).toBe('https://agely.dev/demo/?mode=sample&lang=ta#/app');
+    expect(href('external')).toBe('https://example.com/releases');
+    expect(href('download')).toBe('assets/agely-demo.mp4');
+  });
   it("marks each native language name with its own language in the rendered picker", async () => {
     const window = new Window({ url: 'https://agely.dev/?lang=ta' });
     window.document.body.innerHTML = '<header></header><main></main>';

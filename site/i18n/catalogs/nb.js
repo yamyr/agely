@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Demoen, markedsplassen og nedlastinger til datamaskinen er lettere å finne.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Lettere å lese på telefon, synlige utgiftsdatoer og enklere tastaturnavigasjon.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Hvis en handling for et forslag mislykkes, beholder knappen tastaturfokuset, slik at du kan prøve igjen.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Gjentatte klikk oppretter ikke lenger duplikater av forslag eller bookinger på markedsplassen i nettleseren.",
   "English (automatic captions)": "Engelsk (automatiske undertekster)",
@@ -188,6 +190,7 @@ export default {
   "Hosting for agely.dev. The plan is $20 a month; a year was paid up front for $200.": "Drift av agely.dev. Abonnementet koster $20 i måneden; ett år ble betalt på forskudd for $200.",
   "How do you want to use Agely?": "Hvordan vil du bruke Agely?",
   "How much time do you need?": "Hvor mye tid trenger du?",
+  "How it works": "Slik fungerer det",
   "How one session happens": "Slik skjer én samtale",
   "How this page stays honest": "Slik holder vi siden ærlig",
   "How to read the figures": "Slik leser du tallene",
@@ -358,6 +361,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "Logget på som {0}, og opptrer som ekspert.",
   "Signed in as {0}.": "Logget inn som {0}.",
   "Six-digit code": "Sekssifret kode",
+  "Skip to content": "Hopp til innhold",
   "Skill needed: {0}": "Ferdighet som kreves: {0}",
   "Someone speaks": "Noen snakker",
   "Something went wrong saving your answers. Please try again.": "Noe gikk galt under lagring av svarene dine. Vennligst prøv igjen.",

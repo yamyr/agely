@@ -1,32 +1,34 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" /></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1" /></meta>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title data-i18n>What Agely costs to build</title>
     <meta
       name="description"
       content="An open ledger of what it costs to build Agely, including the AI used to write it."
-    / data-i18n-attrs="content"></meta>
-    <meta property="og:type" content="website" /></meta>
-    <meta property="og:url" content="https://agely.dev/costs/" /></meta>
-    <meta property="og:title" content="What Agely costs to build" / data-i18n-attrs="content"></meta>
+      data-i18n-attrs="content"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://agely.dev/costs/" />
+    <meta property="og:title" content="What Agely costs to build" data-i18n-attrs="content" />
     <meta
       property="og:description"
       content="An open ledger of what it costs to build Agely, including the AI used to write it."
-    / data-i18n-attrs="content"></meta>
-    <meta property="og:image" content="https://agely.dev/assets/agely-demo-poster.jpg" /></meta>
-    <meta name="twitter:card" content="summary_large_image" /></meta>
-    <link rel="canonical" href="https://agely.dev/costs/" /></link>
-    <link rel="icon" type="image/png" href="../assets/icon.png" /></link>
-    <link rel="stylesheet" href="../styles.css" /></link>
-    <link rel="stylesheet" href="costs.css" /></link>
-  <link rel="stylesheet" href="../i18n/site.css" />
-</head>
+      data-i18n-attrs="content"
+    />
+    <meta property="og:image" content="https://agely.dev/assets/agely-demo-poster.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://agely.dev/costs/" />
+    <link rel="icon" type="image/png" href="../assets/icon.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="costs.css" />
+    <link rel="stylesheet" href="../i18n/site.css" />
+  </head>
   <body>
     <header class="topbar">
       <a class="brand" href="../" aria-label="Agely home" data-i18n-attrs="aria-label">
-        <img src="../assets/icon.png" alt="" width="36" height="36" /></img>
+        <img src="../assets/icon.png" alt="" width="36" height="36" />
         <span><span data-i18n-ignore>Agely</span></span>
       </a>
       <a class="topbar-link" href="https://github.com/yamyr/agely/blob/main/site/costs/costs.json"><span data-i18n>View the ledger file</span></a>
@@ -53,14 +55,14 @@
         <dl class="kinds" id="kinds"></dl>
       </section>
 
-      <section class="block" aria-labelledby="ledger-title">
+      <section class="block">
         <h2 id="ledger-title"><span data-i18n>The ledger</span></h2>
-        <div class="table-scroll">
+        <div class="table-scroll" tabindex="0" role="region" aria-labelledby="ledger-title">
           <table class="ledger" id="ledger"></table>
         </div>
       </section>
 
-      <section class="block" aria-labelledby="ai-title">
+      <section class="block">
         <h2 id="ai-title"><span data-i18n>AI used to write Agely</span></h2>
         <p class="lead-in" id="ai-note"></p>
         <!-- Focusable so keyboard users can scroll the table sideways on a narrow screen. -->
@@ -125,6 +127,6 @@
 
     <noscript><p class="wrap"><span data-i18n>This page needs JavaScript to draw the ledger. The data is in </span><a href="costs.json"><span data-i18n-ignore>costs.json</span></a><span data-i18n-ignore>.</span></p></noscript>
     <script type="module" src="costs.js"></script>
-  <script type="module" src="../i18n/site.js"></script>
-</body>
+    <script type="module" src="../i18n/site.js"></script>
+  </body>
 </html>

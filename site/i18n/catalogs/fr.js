@@ -1,5 +1,7 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "La démo, la place de marché et les téléchargements pour ordinateur sont plus faciles à trouver.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Une lecture plus claire sur téléphone, des dates de dépenses visibles et une navigation au clavier plus simple.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Si une action sur une proposition échoue, le bouton conserve le focus clavier pour vous permettre de réessayer.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Les clics répétés ne créent plus de propositions ni de réservations en double sur la place de marché dans le navigateur.",
   "English (automatic captions)": "Anglais (sous-titres automatiques)",
@@ -293,6 +295,7 @@ export default {
   "How do you want to use Agely?": "Comment souhaitez-vous utiliser Agely ?",
   "How much time do you need, and what's your budget?": "De combien de temps avez-vous besoin et quel est votre budget ?",
   "How much time do you need?": "De combien de temps avez-vous besoin?",
+  "How it works": "Comment ça marche",
   "How one session happens": "Comment se déroule une séance",
   "How this page stays honest": "Comment cette page reste honnête",
   "How to read the figures": "Comment lire les chiffres",
@@ -584,6 +587,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "Connecté en tant que {0}, agissant en tant qu'expert.",
   "Signed in as {0}.": "Vous êtes connecté comme {0}.",
   "Six-digit code": "Code à six chiffres",
+  "Skip to content": "Aller au contenu",
   "Skill needed: {0}": "Compétences requises: {0}",
   "Skills": "Compétences",
   "Someone speaks": "Quelqu’un parle",

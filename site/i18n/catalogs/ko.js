@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "데모, 마켓플레이스, 데스크톱 다운로드를 더 쉽게 찾을 수 있습니다.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "휴대전화에서 더 읽기 쉬워졌고, 지출 날짜가 표시되며 키보드 탐색이 쉬워졌습니다.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "제안 관련 작업에 실패해도 키보드 포커스가 버튼에 남아 있어 다시 시도할 수 있습니다.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "브라우저 마켓플레이스에서 버튼을 여러 번 눌러도 더 이상 제안이나 예약이 중복 생성되지 않습니다.",
   "English (automatic captions)": "영어 (자동 생성 자막)",
@@ -293,6 +295,7 @@ export default {
   "How do you want to use Agely?": "Agely를 어떻게 사용하시겠습니까?",
   "How much time do you need, and what's your budget?": "얼마나 시간이 필요하고 예산은 얼마인가요?",
   "How much time do you need?": "시간이 얼마나 필요하세요?",
+  "How it works": "이용 방법",
   "How one session happens": "한 번의 상담이 이루어지는 과정",
   "How this page stays honest": "이 페이지의 투명성을 지키는 방법",
   "How to read the figures": "숫자를 읽는 방법",
@@ -584,6 +587,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "전문가로서 {0}으로 로그인했습니다.",
   "Signed in as {0}.": "{0}으로 로그인했습니다.",
   "Six-digit code": "여섯 자리 코드",
+  "Skip to content": "본문으로 건너뛰기",
   "Skill needed: {0}": "필요한 기술: {0}",
   "Skills": "기술",
   "Someone speaks": "사람이 말합니다",

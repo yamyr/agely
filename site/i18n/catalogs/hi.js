@@ -1,5 +1,7 @@
 // Model-generated Hindi draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "डेमो, बाज़ार और कंप्यूटर के लिए डाउनलोड अब आसानी से मिलते हैं।",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "फ़ोन पर पढ़ना आसान है, खर्चों की तारीखें दिखाई देती हैं और कीबोर्ड से आगे बढ़ना सरल है।",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "अगर प्रस्ताव से जुड़ी कोई कार्रवाई विफल हो जाए, तो कीबोर्ड फ़ोकस बटन पर बना रहता है ताकि आप फिर से कोशिश कर सकें।",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "ब्राउज़र के मार्केटप्लेस में बार-बार क्लिक करने से अब एक ही प्रस्ताव या बुकिंग दोबारा नहीं बनती।",
   "English (automatic captions)": "अंग्रेज़ी (स्वचालित कैप्शन)",
@@ -293,6 +295,7 @@ export default {
   "How do you want to use Agely?": "आप Agely का उपयोग कैसे करना चाहते हैं?",
   "How much time do you need, and what's your budget?": "आपको कितना समय चाहिए और आपका बजट क्या है?",
   "How much time do you need?": "तुम्हें कितना समय चाहिए?",
+  "How it works": "यह कैसे काम करता है",
   "How one session happens": "एक सत्र कैसे होता है",
   "How this page stays honest": "यह पृष्ठ जानकारी को ईमानदार कैसे रखता है",
   "How to read the figures": "आँकड़े कैसे पढ़ें",
@@ -584,6 +587,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "{0} के रूप में लॉगइन, एक विशेषज्ञ के रूप में कार्य कर रहा है.",
   "Signed in as {0}.": "{0} के रूप में साइन इन.",
   "Six-digit code": "छह अंकों का कोड",
+  "Skip to content": "सीधे सामग्री पर जाएँ",
   "Skill needed: {0}": "आवश्यक कौशल: {0}",
   "Skills": "कौशल",
   "Someone speaks": "कोई व्यक्ति बोलता है",

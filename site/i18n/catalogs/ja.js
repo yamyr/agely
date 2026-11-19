@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "デモ、マーケットプレイス、パソコン向けのダウンロードを見つけやすくしました。",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "スマートフォンで読みやすくし、支出の日付を表示し、キーボードで操作しやすくしました。",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "提案の操作に失敗しても、キーボードのフォーカスはボタンに残るため、再試行できます。",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "ブラウザーのマーケットプレイスで繰り返しクリックしても、提案や予約が重複して作成されなくなりました。",
   "English (automatic captions)": "英語（自動生成字幕）",
@@ -293,6 +295,7 @@ export default {
   "How do you want to use Agely?": "Agelyをどう使いたい？",
   "How much time do you need, and what's your budget?": "必要な時間とご予算を教えてください。",
   "How much time do you need?": "どれくらいかかる？",
+  "How it works": "ご利用の流れ",
   "How one session happens": "1回の相談が実現するまで",
   "How this page stays honest": "このページの正確さを守る方法",
   "How to read the figures": "数字の読み方",
@@ -584,6 +587,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "専門家として {0} としてサインインしました。",
   "Signed in as {0}.": "{0} としてログインしました。",
   "Six-digit code": "6桁のコード",
+  "Skip to content": "本文へ移動",
   "Skill needed: {0}": "必要なスキル: {0}",
   "Skills": "スキル",
   "Someone speaks": "人が話します",

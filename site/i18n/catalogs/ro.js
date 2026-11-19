@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Demonstrația, platforma de servicii și descărcările pentru calculator sunt mai ușor de găsit.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Lectură mai clară pe telefon, date vizibile pentru cheltuieli și navigare mai ușoară cu tastatura.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Dacă o acțiune asupra unei propuneri eșuează, butonul păstrează focalizarea de la tastatură, ca să poți încerca din nou.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Clicurile repetate nu mai creează propuneri sau rezervări duplicate în platforma din browser.",
   "English (automatic captions)": "Engleză (subtitrări automate)",
@@ -188,6 +190,7 @@ export default {
   "Hosting for agely.dev. The plan is $20 a month; a year was paid up front for $200.": "Găzduire pentru agely.dev. Planul costă $20 pe lună; un an a fost plătit în avans cu $200.",
   "How do you want to use Agely?": "Cum doriți să utilizați Agely?",
   "How much time do you need?": "De cât timp ai nevoie?",
+  "How it works": "Cum funcționează",
   "How one session happens": "Cum se desfășoară o sesiune",
   "How this page stays honest": "Cum păstrăm această pagină sinceră",
   "How to read the figures": "Cum se citesc cifrele",
@@ -358,6 +361,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "Autentificat ca {0}, acționând ca expert.",
   "Signed in as {0}.": "Autentificat ca {0}.",
   "Six-digit code": "Cod de șase cifre",
+  "Skip to content": "Sari la conținut",
   "Skill needed: {0}": "Aptitudini necesare: {0}",
   "Someone speaks": "Cineva vorbește",
   "Something went wrong saving your answers. Please try again.": "Ceva nu a mers bine la salvarea răspunsurilor. Te rugăm să încerci din nou.",

@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Demo, platformę i pliki do pobrania na komputer łatwiej znaleźć.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Czytelniejszy tekst na telefonach, widoczne daty wydatków i łatwiejsza nawigacja klawiaturą.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Jeśli działanie dotyczące propozycji się nie powiedzie, fokus klawiatury pozostaje na przycisku, dzięki czemu możesz spróbować ponownie.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Wielokrotne kliknięcie nie tworzy już duplikatów propozycji ani rezerwacji na platformie w przeglądarce.",
   "English (automatic captions)": "Angielski (napisy automatyczne)",
@@ -188,6 +190,7 @@ export default {
   "Hosting for agely.dev. The plan is $20 a month; a year was paid up front for $200.": "Hosting agely.dev. Plan kosztuje $20 miesięcznie; rok opłacono z góry za $200.",
   "How do you want to use Agely?": "Jak chcesz korzystać z Agely?",
   "How much time do you need?": "Ile czasu potrzebujesz?",
+  "How it works": "Jak to działa",
   "How one session happens": "Jak przebiega jedna sesja",
   "How this page stays honest": "Jak dbamy o rzetelność strony",
   "How to read the figures": "Jak czytać liczby",
@@ -358,6 +361,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "Zaloguj się jako {0}, działając jako ekspert.",
   "Signed in as {0}.": "Zaloguj się jako {0}.",
   "Six-digit code": "Sześciocyfrowy kod",
+  "Skip to content": "Przejdź do treści",
   "Skill needed: {0}": "Potrzebne umiejętności: {0}",
   "Someone speaks": "Ktoś mówi",
   "Something went wrong saving your answers. Please try again.": "Coś poszło nie tak podczas zapisywania odpowiedzi. Proszę spróbować ponownie.",

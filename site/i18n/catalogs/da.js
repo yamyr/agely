@@ -1,5 +1,7 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "Demoen, markedspladsen og downloads til computeren er lettere at finde.",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Lettere læsning på telefoner, synlige udgiftsdatoer og nemmere tastaturnavigation.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Hvis en handling på et forslag mislykkes, beholder knappen tastaturfokus, så du kan prøve igen.",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "Gentagne klik opretter ikke længere dubletter af forslag eller bookinger på markedspladsen i browseren.",
   "English (automatic captions)": "Engelsk (automatiske undertekster)",
@@ -293,6 +295,7 @@ export default {
   "How do you want to use Agely?": "Hvordan vil du bruge Agely?",
   "How much time do you need, and what's your budget?": "Hvor meget tid har du brug for, og hvad er dit budget?",
   "How much time do you need?": "Hvor meget tid har du brug for?",
+  "How it works": "Sådan fungerer det",
   "How one session happens": "Sådan bliver en samtale til",
   "How this page stays honest": "Sådan forbliver siden ærlig",
   "How to read the figures": "Sådan læses tallene",
@@ -584,6 +587,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "Loggede ind som {0} og optrådte som ekspert.",
   "Signed in as {0}.": "Du er logget ind som {0}.",
   "Six-digit code": "Kode med seks cifre",
+  "Skip to content": "Gå til indhold",
   "Skill needed: {0}": "Nødvendig færdighed: {0}",
   "Skills": "Kompetencer",
   "Someone speaks": "Nogen taler",

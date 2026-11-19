@@ -1,5 +1,7 @@
 // Model-generated draft translations.
 export default {
+  "Demo, marketplace, and desktop downloads are easier to find.": "演示、交易平台和桌面版下载更容易找到了。",
+  "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "手机上的文字更易阅读，支出日期清晰可见，键盘操作更方便。",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "如果对提案的操作失败，键盘焦点会留在按钮上，方便你重试。",
   "Repeated clicks no longer create duplicate proposals or bookings in the browser marketplace.": "在网页版交易平台上重复点击，不再会生成重复的提案或预约。",
   "English (automatic captions)": "英语（自动生成字幕）",
@@ -293,6 +295,7 @@ export default {
   "How do you want to use Agely?": "您想如何使用Agely?",
   "How much time do you need, and what's your budget?": "您需要多长时间？预算是多少？",
   "How much time do you need?": "您需要多少时间?",
+  "How it works": "运作方式",
   "How one session happens": "一次咨询如何发生",
   "How this page stays honest": "本页如何保持透明",
   "How to read the figures": "如何阅读数字",
@@ -584,6 +587,7 @@ export default {
   "Signed in as {0}, acting as an expert.": "作为 {0} 登录,以专家身份行事。",
   "Signed in as {0}.": "以 {0} 身份登录。",
   "Six-digit code": "六位验证码",
+  "Skip to content": "跳至正文",
   "Skill needed: {0}": "所需技能: {0}",
   "Skills": "技能",
   "Someone speaks": "有人表达需求",

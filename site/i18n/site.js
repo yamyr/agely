@@ -70,8 +70,9 @@ if (typeof document !== 'undefined') {
   notice.textContent = t('Translations are model-generated drafts. Missing translations appear in English.');
   area.append(label, select, notice);
   document.querySelector('header').after(area);
-  // Query propagation also works when browser storage is disabled.
+  // Carry language between pages even when browser storage is disabled. In-page jumps stay local.
   for (const link of document.querySelectorAll('a[href]')) {
+    if (link.getAttribute('href').trimStart().startsWith('#')) continue;
     const url = new URL(link.href, location.href);
     if (url.origin === location.origin && !url.pathname.match(/\.[a-z0-9]+$/i)) {
       url.searchParams.set('lang', locale);
