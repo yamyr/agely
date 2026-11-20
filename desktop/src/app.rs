@@ -1,3 +1,4 @@
+use std::cell::RefCell;
 use std::collections::BTreeMap;
 use std::sync::Arc;
 
@@ -13,7 +14,7 @@ use crate::input::TextInput;
 use crate::live::Conversation;
 use crate::model::{Action, CHAPTER_NAMES, CHAPTER_STEPS, DemoState, Notice, NoticeArg, Seed};
 use crate::theme::theme;
-use crate::widgets::{column, copy, heading, muted, notice, row};
+use crate::widgets::{ControlFocus, column, copy, heading, muted, notice, row};
 
 actions!(agely, [Quit, Tab, PreviousTab, DismissLanguages]);
 
@@ -56,6 +57,9 @@ pub struct Agely {
     language_menu_focus: FocusHandle,
     language_cancel_focus: FocusHandle,
     scroll: ScrollHandle,
+    sidebar_scroll: ScrollHandle,
+    language_scroll: ScrollHandle,
+    controls: RefCell<BTreeMap<SharedString, ControlFocus>>,
     languages_open: bool,
     language_confirmation: Option<String>,
 }
@@ -87,6 +91,9 @@ impl Agely {
             language_menu_focus: cx.focus_handle().tab_stop(true),
             language_cancel_focus: cx.focus_handle().tab_stop(true),
             scroll: ScrollHandle::default(),
+            sidebar_scroll: ScrollHandle::default(),
+            language_scroll: ScrollHandle::default(),
+            controls: RefCell::default(),
             languages_open: false,
             language_confirmation: None,
         }
@@ -130,12 +137,52 @@ impl Agely {
         primary: bool,
         cx: &Context<Self>,
     ) -> AnyElement {
+        let (button, focus) = self.button_control(id, label, action, enabled, primary, cx);
+        focus.reveal(button, &self.scroll)
+    }
+
+    fn chrome_button(
+        &self,
+        id: impl Into<SharedString>,
+        label: String,
+        action: UiAction,
+        enabled: bool,
+        primary: bool,
+        cx: &Context<Self>,
+    ) -> AnyElement {
+        self.button_control(id, label, action, enabled, primary, cx)
+            .0
+    }
+
+    fn button_control(
+        &self,
+        id: impl Into<SharedString>,
+        label: String,
+        action: UiAction,
+        enabled: bool,
+        primary: bool,
+        cx: &Context<Self>,
+    ) -> (AnyElement, ControlFocus) {
         let id: SharedString = id.into();
+        let focus = self
+            .controls
+            .borrow_mut()
+            .entry(id.clone())
+            .or_insert_with(|| {
+                ControlFocus::new(match id.as_ref() {
+                    "language-menu" => self.language_menu_focus.clone(),
+                    "keep-language" => self.language_cancel_focus.clone(),
+                    _ => cx.focus_handle().tab_stop(true),
+                })
+            })
+            .clone();
         let clicked = action.clone();
         let accessible = cx.entity().downgrade();
+        let debug_id = id.clone();
         let mut button = div()
             .id(id.clone())
             .accessibility_id(id.clone())
+            .debug_selector(move || debug_id.to_string())
             .role(if enabled { Role::Button } else { Role::Label })
             .aria_label(SharedString::from(label.clone()))
             .min_h(px(theme().control))
@@ -166,12 +213,8 @@ impl Agely {
             .items_center()
             .child(div().min_w_0().whitespace_normal().child(label));
         if enabled {
-            button = match id.as_ref() {
-                "language-menu" => button.track_focus(&self.language_menu_focus),
-                "keep-language" => button.track_focus(&self.language_cancel_focus),
-                _ => button.focusable(),
-            };
             button = button
+                .track_focus(&focus.handle)
                 .tab_stop(true)
                 .cursor_pointer()
                 .focus_visible(|style| {
@@ -191,7 +234,7 @@ impl Agely {
         } else {
             button = button.opacity(0.55);
         }
-        button.into_any_element()
+        (button.into_any_element(), focus)
     }
 
     pub(crate) fn decision(
@@ -253,9 +296,21 @@ impl Agely {
             self.fields.insert(id.to_owned(), field.clone());
             field
         };
+        let handle = field.read(cx).focus_handle.clone();
+        let focus = self
+            .controls
+            .borrow_mut()
+            .entry(SharedString::from(format!("field-{id}")))
+            .and_modify(|focus| {
+                if focus.handle != handle {
+                    *focus = ControlFocus::new(handle.clone());
+                }
+            })
+            .or_insert_with(|| ControlFocus::new(handle))
+            .clone();
         column(vec![
             copy(SharedString::from(format!("{id}-label")), label),
-            field.into_any_element(),
+            focus.reveal(field.into_any_element(), &self.scroll),
         ])
     }
 
@@ -568,8 +623,8 @@ impl Agely {
                     copy("language-target", label),
                     copy("language-restart-notice", self.t("Changing language restarts the walkthrough. Your edits and conversations will be cleared.")),
                     row(vec![
-                        self.button("confirm-language", self.t("Restart in this language"), UiAction::ConfirmLanguage, true, true, cx),
-                        self.button("keep-language", self.t("Keep current language"), UiAction::KeepLanguage, true, false, cx),
+                        self.chrome_button("confirm-language", self.t("Restart in this language"), UiAction::ConfirmLanguage, true, true, cx),
+                        self.chrome_button("keep-language", self.t("Keep current language"), UiAction::KeepLanguage, true, false, cx),
                     ]),
                 ])).into_any_element();
         }
@@ -579,20 +634,22 @@ impl Agely {
                 .locales()
                 .iter()
                 .map(|locale| {
-                    self.button(
+                    let (button, focus) = self.button_control(
                         SharedString::from(format!("locale-{}", locale.id)),
                         locale.label.clone(),
                         UiAction::ChooseLanguage(locale.id.clone()),
                         true,
                         false,
                         cx,
-                    )
+                    );
+                    focus.reveal(button, &self.language_scroll)
                 })
                 .collect();
             return div()
                 .id("language-options")
                 .max_h(px(theme().control * 3.0 + theme().space * 2.0))
                 .overflow_y_scroll()
+                .track_scroll(&self.language_scroll)
                 .py(px(theme().space_small))
                 .child(row(buttons))
                 .into_any_element();
@@ -608,14 +665,15 @@ impl Agely {
             .iter()
             .enumerate()
             .map(|(index, name)| {
-                self.button(
+                let (button, focus) = self.button_control(
                     SharedString::from(format!("chapter-{index}")),
                     self.t(name),
                     UiAction::Domain(Action::JumpTo { chapter: index }),
                     true,
                     current == Some(index),
                     cx,
-                )
+                );
+                focus.reveal(button, &self.sidebar_scroll)
             })
             .collect::<Vec<_>>();
         div()
@@ -626,6 +684,7 @@ impl Agely {
             .min_h_0()
             .flex_shrink_0()
             .overflow_y_scroll()
+            .track_scroll(&self.sidebar_scroll)
             .p(px(theme().space))
             .bg(theme().muted_surface)
             .child(column(chapters))
@@ -637,7 +696,11 @@ impl Agely {
 mod tests;
 
 impl Render for Agely {
-    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+    fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+        // Conditional controls can be absent when they lose focus.
+        for control in self.controls.borrow().values() {
+            control.reset_unfocused(window);
+        }
         if self.language_confirmation.is_some() {
             return div()
                 .id("agely")
@@ -697,7 +760,7 @@ impl Render for Agely {
             ));
         }
         let navigation = row(vec![
-            self.button(
+            self.chrome_button(
                 "back",
                 self.t("Back"),
                 UiAction::Domain(Action::Back),
@@ -705,7 +768,7 @@ impl Render for Agely {
                 false,
                 cx,
             ),
-            self.button(
+            self.chrome_button(
                 "restart",
                 self.t("Restart"),
                 UiAction::Domain(Action::Restart),
@@ -713,7 +776,7 @@ impl Render for Agely {
                 false,
                 cx,
             ),
-            self.button(
+            self.chrome_button(
                 "next",
                 self.t("Next"),
                 UiAction::Domain(Action::Next),
@@ -752,7 +815,7 @@ impl Render for Agely {
                 .px(px(theme().space_large)).py(px(theme().space))
                 .border_b_1().border_color(theme().border)
                 .child(heading("brand", "Agely", 2))
-                .child(self.button("language-menu", format!("{} · {language_label}", self.t("Language")),
+                .child(self.chrome_button("language-menu", format!("{} · {language_label}", self.t("Language")),
                     UiAction::ToggleLanguages, true, false, cx)))
             .child(div().px(px(theme().space_large)).child(self.language_controls(cx)))
             .when(self.i18n.locale() != "en", |root| root.child(

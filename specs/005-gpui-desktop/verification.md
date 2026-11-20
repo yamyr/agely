@@ -14,17 +14,22 @@ the published 0.1.3 downloads and release history have not been replaced.
 | `bun run check:i18n` | 913 messages, 17 complete draft catalogs, matching interpolation slots. |
 | `bun scripts/export-desktop.ts --check` | Embedded story, catalogs, formatting and live briefs are current. Native message arguments are also audited. |
 | `cargo fmt --manifest-path desktop/Cargo.toml --check` | Passed. |
-| Stable Rust full tests | 57 passed, one real authenticated Codex test intentionally ignored. |
+| Stable Rust full tests | 64 passed, one real authenticated Codex test intentionally ignored. |
 | Stable Rust all-target Clippy, warnings as errors | Passed. |
 | `cargo deny check` in `desktop/` | Advisories, bans, licenses and sources passed. |
 | `bun run desktop:build` | Apple silicon application and DMG built; plist, architecture, ad hoc signature and disk-image verification passed. |
 
-Eight app regressions exercise actual GPUI input notifications, handlers and keyboard events.
+Fifteen app checks exercise actual GPUI input notifications, handlers and keyboard events.
 The four original state/observer tests and two keyboard tests were each observed failing
 against isolated copies with their fixes removed, then passing on current sources. Two draft
 persistence tests also failed before their observer fix and passed afterwards. Two
 additional tests exercise native IME composition, UTF-16 selection and CJK/emoji commits.
 The pure state suite completes the story in all 18 supported languages.
+
+Seven focus checks cover offscreen controls, viewport ownership, manual scrolling,
+conditional controls and layout changes. Rendered-bounds assertions at 960×640 caught a
+frame-invalidation error that stored offsets alone missed. The final helper defers refresh
+until drawing is complete and verifies the focused reply is actually inside the viewport.
 
 The first CI frontend run exposed host ICU drift in generated locale formats. Reviewed
 canonical format definitions now drive export, with unchanged native output values and
@@ -49,6 +54,7 @@ inside the packaged application. No microphone, speaker playback or real service
 | Editing and validation | A skill named `Supplier strategy — 日本語 café 👩🏽‍💻` saved and appeared in the match explanation. A $1 proposal was blocked outside the shared $60–$90 range; $75 sent a $150 proposal. |
 | Drafts and Back navigation | In the final packaged binary, changing the budget to $70–$95 immediately updated its summary and survived Back/Next. An unsent price of $80 also survived Back/Next, keeping the $160 total and explicit Send gate. |
 | Packaged-binary keyboard | Tab then Enter opened the language choices once; another Enter closed them once; Space opened them once. Confirmation displayed only its two choices, with a visible focus border. |
+| Visible focus in long forms | Tab immediately revealed the full profile suggestion and focus border. After Return inserted two transcript cards, that same focused button remained visible. Further Tabs revealed the skill input; manual scrolling stayed put, and the next Tab revealed Save name. |
 | Japanese and reduced window | Welcome, Engine, all 18 language choices and confirmation cancellation were checked at 1120×720 content size. Text and controls wrapped without observed horizontal overflow. |
 | Saved language | Japanese was selected, the process was closed, the locale environment override was removed, and relaunch still opened in Japanese. The preference state from before QA was restored afterwards. |
 | Background turn and restart | A delayed fixture turn displayed the thinking state. Restart responded immediately; returning to the interview after the old result arrived still displayed a fresh Start button. |
@@ -64,7 +70,9 @@ Remove these overrides to use the actual local Codex installation.
 ## Artifacts and limits
 
 Local review logs are in `.omo/evidence/gpui/`; the code review is in
-`.omo/evidence/gpui-parity-code-review.md`. These machine-local files are not committed.
+`.omo/evidence/gpui-parity-code-review.md`. Final focus review and actual window observations
+are in `.omo/evidence/gpui-focus-gate-review.md` and `.omo/evidence/gpui-native-focus-qa.md`.
+These machine-local files are not committed.
 
 The application is `desktop/target/aarch64-apple-darwin/release/bundle/macos/Agely.app`.
 The installer and SHA-256 file are in the adjacent `bundle/dmg/` directory.

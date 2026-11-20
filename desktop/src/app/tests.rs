@@ -45,6 +45,20 @@ fn press_key(cx: &mut VisualTestContext, key: &'static str) {
     cx.simulate_event(KeyUpEvent { keystroke });
 }
 
+fn assert_profile_reply_is_rendered_in_viewport(app: &Entity<Agely>, cx: &mut VisualTestContext) {
+    let control = cx
+        .debug_bounds("profile-rename")
+        .expect("the first profile reply must be rendered");
+    let viewport = app.read_with(cx, |app, _| app.scroll.bounds());
+    assert!(
+        control.left() >= viewport.left()
+            && control.right() <= viewport.right()
+            && control.top() >= viewport.top()
+            && control.bottom() <= viewport.bottom(),
+        "rendered reply {control:?} must fit in its viewport {viewport:?}"
+    );
+}
+
 #[gpui::test]
 fn enter_and_space_activate_a_button_once(cx: &mut TestAppContext) {
     let (app, cx) = setup(cx, 0);
@@ -117,6 +131,207 @@ fn language_confirmation_keeps_keyboard_actions_inside_the_dialog(cx: &mut TestA
 
     press_key(cx, "space");
     app.read_with(cx, |app, _| assert!(app.languages_open));
+}
+
+#[gpui::test]
+fn tab_reveals_the_first_profile_reply_at_the_minimum_window_size(cx: &mut TestAppContext) {
+    let (app, cx) = setup(cx, 2);
+    cx.simulate_resize(gpui::size(px(960.0), px(640.0)));
+    cx.run_until_parked();
+    app.update_in(cx, |app, window, cx| {
+        assert_eq!(window.bounds().size, gpui::size(px(960.0), px(640.0)));
+        app.focus_heading(window, cx);
+    });
+    cx.run_until_parked();
+
+    press_key(cx, "tab");
+    assert_profile_reply_is_rendered_in_viewport(&app, cx);
+    let focused_offset = app.read_with(cx, |app, _| app.scroll.offset().y);
+    press_key(cx, "enter");
+    app.read_with(cx, |app, _| {
+        assert_eq!(
+            app.state.exchanges[0][0].text,
+            app.state.seed.profile_replies[0].text
+        );
+        assert!(
+            focused_offset < px(0.0),
+            "Tab must reveal the focused reply rather than activate it below the viewport"
+        );
+    });
+}
+
+#[gpui::test]
+fn tab_reveals_profile_text_fields_at_the_minimum_window_size(cx: &mut TestAppContext) {
+    let (app, cx) = setup(cx, 2);
+    cx.simulate_resize(gpui::size(px(960.0), px(640.0)));
+    cx.run_until_parked();
+    let field_id = app.read_with(cx, |app, _| {
+        format!("skill-{}", app.state.margaret.competencies[0].id)
+    });
+    app.update_in(cx, |app, window, cx| app.focus_heading(window, cx));
+    cx.run_until_parked();
+
+    let tab_count = app.read_with(cx, |app, _| app.state.seed.profile_replies.len() + 3);
+    for _ in 0..tab_count {
+        press_key(cx, "tab");
+    }
+    app.update_in(cx, |app, window, cx| {
+        assert!(
+            app.fields[&field_id]
+                .read(cx)
+                .focus_handle
+                .is_focused(window),
+            "Tab must reach the first profile text field"
+        );
+        assert!(
+            app.scroll.offset().y < px(0.0),
+            "Tab must reveal the focused text field below the viewport"
+        );
+    });
+}
+
+#[gpui::test]
+fn focus_reveal_keeps_visible_controls_and_manual_scrolling_stable(cx: &mut TestAppContext) {
+    let (app, cx) = setup(cx, 2);
+    cx.simulate_resize(gpui::size(px(960.0), px(640.0)));
+    cx.run_until_parked();
+    let handle = app.read_with(cx, |app, _| {
+        app.controls.borrow()[app.state.seed.profile_replies[0].id.as_str()]
+            .handle
+            .clone()
+    });
+    app.update_in(cx, |_, window, cx| window.focus(&handle, cx));
+    cx.run_until_parked();
+    let revealed_offset = app.read_with(cx, |app, _| app.scroll.offset());
+    assert!(revealed_offset.y < px(0.0));
+
+    app.update_in(cx, |app, window, cx| window.focus(&app.heading_focus, cx));
+    cx.run_until_parked();
+    app.update_in(cx, |_, window, cx| window.focus(&handle, cx));
+    cx.run_until_parked();
+    app.read_with(cx, |app, _| {
+        assert_eq!(app.scroll.offset(), revealed_offset)
+    });
+
+    app.update_in(cx, |app, window, _| {
+        app.scroll.set_offset(point(px(0.0), px(0.0)));
+        window.refresh();
+    });
+    cx.run_until_parked();
+    app.update_in(cx, |app, window, _| {
+        assert!(handle.is_focused(window));
+        assert_eq!(app.scroll.offset(), point(px(0.0), px(0.0)));
+    });
+}
+
+#[gpui::test]
+fn focus_reveal_scrolls_sidebar_without_moving_content(cx: &mut TestAppContext) {
+    let (app, cx) = setup(cx, 2);
+    cx.simulate_resize(gpui::size(px(960.0), px(640.0)));
+    cx.run_until_parked();
+    app.update_in(cx, |app, window, cx| {
+        let handle = app.controls.borrow()["chapter-6"].handle.clone();
+        window.focus(&handle, cx);
+    });
+    cx.run_until_parked();
+    app.read_with(cx, |app, _| {
+        assert!(app.sidebar_scroll.offset().y < px(0.0));
+        assert_eq!(app.scroll.offset(), point(px(0.0), px(0.0)));
+    });
+}
+
+#[gpui::test]
+fn focus_reveal_scrolls_language_options_without_moving_content(cx: &mut TestAppContext) {
+    let (app, cx) = setup(cx, 0);
+    // A narrow viewport makes the language options overflow even with the test font metrics.
+    cx.simulate_resize(gpui::size(px(640.0), px(640.0)));
+    cx.run_until_parked();
+    press_key(cx, "tab");
+    press_key(cx, "enter");
+    app.update_in(cx, |app, window, cx| {
+        let id = format!("locale-{}", app.i18n.locales().last().unwrap().id);
+        let handle = app.controls.borrow()[id.as_str()].handle.clone();
+        window.focus(&handle, cx);
+    });
+    cx.run_until_parked();
+    app.read_with(cx, |app, _| {
+        assert!(app.language_scroll.offset().y < px(0.0));
+        assert_eq!(app.scroll.offset(), point(px(0.0), px(0.0)));
+        assert_eq!(app.sidebar_scroll.offset(), point(px(0.0), px(0.0)));
+    });
+    app.update_in(cx, |app, window, cx| {
+        window.focus(&app.language_menu_focus, cx)
+    });
+    cx.run_until_parked();
+    app.read_with(cx, |app, _| {
+        assert_eq!(app.scroll.offset(), point(px(0.0), px(0.0)))
+    });
+}
+
+#[gpui::test]
+fn focus_reveal_resets_when_a_conditional_control_disappears(cx: &mut TestAppContext) {
+    let (app, cx) = setup(cx, 2);
+    cx.simulate_resize(gpui::size(px(960.0), px(640.0)));
+    cx.run_until_parked();
+    let handle = app.read_with(cx, |app, _| {
+        app.controls.borrow()["publish-profile"].handle.clone()
+    });
+    app.update_in(cx, |_, window, cx| window.focus(&handle, cx));
+    cx.run_until_parked();
+    app.read_with(cx, |app, _| assert!(app.scroll.offset().y < px(0.0)));
+
+    app.update_in(cx, |app, window, cx| {
+        app.handle(UiAction::Domain(Action::PublishProfile), window, cx);
+        app.focus_heading(window, cx);
+    });
+    cx.run_until_parked();
+    app.update_in(cx, |app, window, cx| {
+        assert!(app.state.margaret.published);
+        app.handle(
+            UiAction::Domain(Action::EditCompetency {
+                id: app.state.margaret.competencies[0].id.clone(),
+                label: "Revised skill".into(),
+            }),
+            window,
+            cx,
+        );
+        window.focus(&handle, cx);
+    });
+    cx.run_until_parked();
+    app.read_with(cx, |app, _| {
+        assert!(!app.state.margaret.published);
+        assert!(
+            app.scroll.offset().y < px(0.0),
+            "a restored control must reveal again after losing focus while unrendered"
+        );
+    });
+}
+
+#[gpui::test]
+fn focus_reveal_keeps_a_reply_visible_when_its_action_inserts_content_above_it(
+    cx: &mut TestAppContext,
+) {
+    let (app, cx) = setup(cx, 2);
+    cx.simulate_resize(gpui::size(px(960.0), px(640.0)));
+    cx.run_until_parked();
+    let handle = app.read_with(cx, |app, _| {
+        app.controls.borrow()[app.state.seed.profile_replies[0].id.as_str()]
+            .handle
+            .clone()
+    });
+    app.update_in(cx, |_, window, cx| window.focus(&handle, cx));
+    cx.run_until_parked();
+    let before = app.read_with(cx, |app, _| app.scroll.offset().y);
+    press_key(cx, "enter");
+    assert_profile_reply_is_rendered_in_viewport(&app, cx);
+    app.update_in(cx, |app, window, _| {
+        assert_eq!(app.state.exchanges[0].len(), 2);
+        assert!(handle.is_focused(window));
+        assert!(
+            app.scroll.offset().y < before,
+            "inserted transcript cards must not push the focused reply below the viewport"
+        );
+    });
 }
 
 #[gpui::test]
