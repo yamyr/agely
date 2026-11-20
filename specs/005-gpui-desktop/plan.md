@@ -18,6 +18,11 @@ reads the existing TypeScript story and locale sources into embedded JSON. Its c
 rejects stale generated assets. The existing Rust Codex runner becomes blocking methods
 called on GPUI's background executor.
 
+Locale formats are reviewed canonical input in `scripts/desktop-formatting.json`, initially
+sampled from macOS Intl. The exporter validates their registry and native-format invariants
+before embedding them. Host ICU versions differ, so refreshing these definitions is a separate
+explicit maintenance step, never part of a normal build or freshness check.
+
 The view owns text fields, focus, locale selection and generation-scoped asynchronous
 requests. A window-close or restart cannot apply an obsolete live response. The native
 bundle retains `com.agely.app` and reads its version from Cargo.

@@ -7,7 +7,7 @@ the published 0.1.3 downloads and release history have not been replaced.
 
 | Check | Observed result |
 | --- | --- |
-| `bun run test` | 421 tests passed across 41 files. |
+| `bun run test` | 427 tests passed across 42 files. |
 | Both application and e2e TypeScript checks | Passed. |
 | `bun run e2e` | 350 journeys passed, including both browser window sizes and the French full walkthrough. |
 | `bun run build` and `bun run check:site` | Passed. The existing Vite large-chunk warning remains. |
@@ -25,6 +25,12 @@ against isolated copies with their fixes removed, then passing on current source
 persistence tests also failed before their observer fix and passed afterwards. Two
 additional tests exercise native IME composition, UTF-16 selection and CJK/emoji commits.
 The pure state suite completes the story in all 18 supported languages.
+
+The first CI frontend run exposed host ICU drift in generated locale formats. Reviewed
+canonical format definitions now drive export, with unchanged native output values and
+all four strict byte-comparison checks retained. Freshness passes under Bun 1.4.0,
+Bun 1.3.10 and Node 26.8.1. A regression runs the actual exporter with all Intl formatting
+constructors disabled; malformed or incomplete locale definitions are also rejected.
 
 Dependency policy still rejects unknown sources and wildcard dependencies. Both official
 Zed Git sources require exact revisions. Direct date handling uses `time`; GPUI still

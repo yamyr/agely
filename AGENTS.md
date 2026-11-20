@@ -94,6 +94,8 @@ after changing a screen or page, `/costs-update` to record a cost, and the `spec
 - **Native assets are generated** from shared story and locale sources with
   `bun run desktop:assets`. The GPUI app embeds them and runs offline. Native text, spacing
   and colours come from `src/ui/tokens.css`. The local Codex runner uses background tasks.
+  Reviewed locale formats live in `scripts/desktop-formatting.json`; normal exports must not
+  depend on the host's Intl/ICU data.
 - **The site build skips `*.test.js`** so tests can sit beside the code they test in `site/`.
 - **Recording a cost** means adding a line to `site/costs/costs.json`. Its test enforces that
   every line has an explanation and every payment a source.

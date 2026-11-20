@@ -82,8 +82,12 @@ These principles are recorded in the [project constitution](.specify/memory/cons
 - Vitest and Rust tests for logic, Playwright for browser journeys, and native UI checks for the desktop app.
 - GitHub Actions for frontend, browser, workflow, and Rust checks.
 
-The native app embeds offline JSON generated from the shared story, 18 translation catalogues
-and `src/ui/tokens.css`. Run `bun run desktop:assets` after changing those sources. GPUI is pinned
+The native app embeds offline JSON exported from the shared story, 18 translation catalogues
+and reviewed locale formats in `scripts/desktop-formatting.json`. Run `bun run desktop:assets`
+after changing those sources. The native theme reads the embedded `src/ui/tokens.css`.
+To propose a locale-format update, run `bun scripts/generate-desktop-formatting.ts --write`
+and review the differences; normal builds use the reviewed formats on every operating system.
+GPUI is pinned
 to the official Zed repository at revision `0a514d7ef59c6357878a244fdf8365d03c504767` for its
 accessibility APIs. [Spec 005](specs/005-gpui-desktop/spec.md) describes the migration.
 
