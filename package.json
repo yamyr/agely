@@ -17,14 +17,14 @@
     "check:i18n": "bun scripts/i18n-check.mjs"
   },
   "dependencies": {
-    "@tauri-apps/api": "~2.12.1",
+    "@tauri-apps/api": "~2.12.5",
     "@tauri-apps/plugin-opener": "~2.7.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
-    "@playwright/test": "^1.64.0",
+    "@playwright/test": "^1.65.1",
     "@tauri-apps/cli": "^2",
     "@types/node": "^26.6.6",
     "@types/react": "^19.1.8",
@@ -32,7 +32,7 @@
     "@vitejs/plugin-react": "^6.3.0",
     "happy-dom": "^21.0.4",
     "typescript": "~7.0.2",
-    "vite": "^8.3.7",
+    "vite": "^8.3.8",
     "vitest": "^5.1.0"
   }
 }
