@@ -51,7 +51,7 @@ describe("AGENTS.md", () => {
     const table = agents.slice(agents.indexOf("## Where things are"), agents.indexOf("## Boundaries"));
     const paths = [...table.matchAll(/^\| `([^`]+)` \|/gm)].map((m) => m[1] ?? "");
     expect(paths.length).toBeGreaterThan(4);
-    for (const p of [...paths, "ATTRIBUTION.md", "LICENSE", "scripts/site-check.mjs", "src-tauri/deny.toml", "site/costs/costs.json"]) {
+    for (const p of [...paths, "ATTRIBUTION.md", "LICENSE", "scripts/site-check.mjs", "desktop/deny.toml", "site/costs/costs.json"]) {
       expect(existsSync(path(p)), `${p} is named in AGENTS.md but does not exist`).toBe(true);
     }
   });

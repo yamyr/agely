@@ -51,14 +51,16 @@ Run from the repository root. Bun is the package manager.
 | --- | --- |
 | Install | `bun install` |
 | App in a browser | `bun run dev` |
-| Desktop app | `bun run tauri dev` |
+| Desktop app | `bun run desktop` |
+| Desktop installer | `bun run desktop:build` |
 | Typecheck | `bunx tsc --noEmit` and `bunx tsc -p e2e/tsconfig.json` |
 | Unit tests | `bun run test` |
 | End-to-end tests | `bun run e2e` |
-| App build (Tauri reads `dist/`) | `bun run build` |
+| Browser app build | `bun run build` |
 | Website build (`dist/` plus `dist/demo/`) | `bun run build:site` |
-| Rust checks | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test`, all in `src-tauri/` |
-| Licence and advisory check | `cargo deny check` in `src-tauri/` |
+| Rust checks | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test`, all in `desktop/` |
+| Native asset freshness | `bun scripts/export-desktop.ts --check` |
+| Licence and advisory check | `cargo deny check` in `desktop/` |
 | Website build and check | `bun run check:site` (add a screenshot directory with `bun scripts/site-check.mjs <dir>`) |
 
 `bun run build` and `bun run build:site` both write `dist/` and each clears the other's output.
@@ -76,8 +78,8 @@ after changing a screen or page, `/costs-update` to record a cost, and the `spec
 | --- | --- |
 | `src/demo/` | The walkthrough app: `domain/` is pure logic, `script/` the scripted story, `state/` the reducer, `screens/` the UI, `live/` the optional Codex agent. |
 | `src/product/` | The signed-in product at `#/app`, on stand-ins: `ports/` are the outside services as interfaces with shared contract suites, `standins/` the in-browser adapters, `usecases/` the rules. Screens call use cases only. Spec 004. |
-| `src-tauri/` | Rust shell and native commands. |
-| `e2e/` | Playwright journeys, layout and accessibility checks, and the Tauri IPC stub. |
+| `desktop/` | Native GPUI app, walkthrough state, localization and local Codex runner. |
+| `e2e/` | Playwright journeys, layout and accessibility checks, and the browser agent fixture. |
 | `site/` | The website: landing page, `simulator/` and `costs/`. Plain HTML, CSS and JS modules. |
 | `specs/` | Spec Kit artifacts, one folder per app feature. |
 | `scripts/` | Repository tooling, such as the AI usage counter for the cost ledger. |
@@ -87,9 +89,11 @@ after changing a screen or page, `/costs-update` to record a cost, and the `spec
 - **App features follow Spec Kit** (`/speckit-specify` through `/speckit-implement`). Website
   pages do not need a spec, but their pull request says what the page is for and how it was
   checked.
-- **Port 1420 belongs to `tauri dev`.** The e2e suite uses 1493 for that reason.
-- **Versions move together** in `package.json`, `src-tauri/tauri.conf.json` and
-  `src-tauri/Cargo.toml`. A unit test checks this.
+- **Port 1420 is the browser development server.** The e2e suite uses 1493 to run independently.
+- **Versions move together** in `package.json` and `desktop/Cargo.toml`. A unit test checks this.
+- **Native assets are generated** from shared story and locale sources with
+  `bun run desktop:assets`. The GPUI app embeds them and runs offline. Native text, spacing
+  and colours come from `src/ui/tokens.css`. The local Codex runner uses background tasks.
 - **The site build skips `*.test.js`** so tests can sit beside the code they test in `site/`.
 - **Recording a cost** means adding a line to `site/costs/costs.json`. Its test enforces that
   every line has an explanation and every payment a source.

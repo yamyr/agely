@@ -4,9 +4,9 @@ import { LOCALES } from "../site/i18n/core.js";
 import { auditCatalogs, findMessageLiterals } from "./i18n-check.mjs";
 
 describe("catalog integrity gate", () => {
-  it("keeps advertised languages aligned with the native IPC allowlist", () => {
+  it("keeps advertised languages aligned with the native agent allowlist", () => {
     // Otherwise a newly advertised language would fail every live turn at the native boundary.
-    const rust = readFileSync(new URL("../src-tauri/src/agent/types.rs", import.meta.url), "utf8");
+    const rust = readFileSync(new URL("../desktop/src/agent/types.rs", import.meta.url), "utf8");
     const native = [...rust.matchAll(/#\[serde\(rename = "([^"]+)"\)\]/g)].map((match) => match[1]);
     expect(native).toEqual(LOCALES.map(({ id }) => id));
   });

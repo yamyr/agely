@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { next } from "./helpers";
-import { NOT_INSTALLED, READY, collectProblems, failure, installTauriStub, sequence } from "./tauriStub";
+import { NOT_INSTALLED, READY, collectProblems, failure, installPreviewAgentStub, sequence } from "./previewAgentStub";
 
 const OPENING = {
   message: "Hello Margaret. What did you do before you retired?",
@@ -16,7 +16,7 @@ const FOLLOW_UP = {
 test.describe("US1 — live onboarding interview", () => {
   test("runs live with three suggested replies, a typed reply, and finish", async ({ page }) => {
     const problems = collectProblems(page);
-    await installTauriStub(page, { agent_status: READY, agent_turn: sequence(OPENING, FOLLOW_UP, FOLLOW_UP) });
+    await installPreviewAgentStub(page, { agent_status: READY, agent_turn: sequence(OPENING, FOLLOW_UP, FOLLOW_UP) });
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "Live agent: ready" })).toBeVisible();
     await expect(page.getByText("generated live with test-model")).toBeVisible();
@@ -47,7 +47,7 @@ test.describe("US1 — live onboarding interview", () => {
   });
 
   test("the agent can close the conversation itself", async ({ page }) => {
-    await installTauriStub(page, { agent_status: READY, agent_turn: { ...OPENING, done: true } });
+    await installPreviewAgentStub(page, { agent_status: READY, agent_turn: { ...OPENING, done: true } });
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "Live agent: ready" })).toBeVisible();
     await page.getByRole("button", { name: "Start the walkthrough" }).click();
@@ -58,7 +58,7 @@ test.describe("US1 — live onboarding interview", () => {
 
 test.describe("US2 — live brief chat and debrief", () => {
   test("Dev's chat and Margaret's debrief run live in the right voice", async ({ page }) => {
-    await installTauriStub(page, { agent_status: READY });
+    await installPreviewAgentStub(page, { agent_status: READY });
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "Live agent: ready" })).toBeVisible();
 
@@ -78,7 +78,7 @@ test.describe("US2 — live brief chat and debrief", () => {
 
 test.describe("US3 — setup and fallback", () => {
   test("without Codex the walkthrough is scripted and shows the install step", async ({ page }) => {
-    await installTauriStub(page, { agent_status: NOT_INSTALLED });
+    await installPreviewAgentStub(page, { agent_status: NOT_INSTALLED });
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "Live agent: off — Codex is not installed" })).toBeVisible();
     await expect(page.getByText("npm install -g @openai/codex", { exact: false })).toBeVisible();
@@ -88,7 +88,7 @@ test.describe("US3 — setup and fallback", () => {
   });
 
   test("shows the sign-in step, and Check again turns live on without a restart", async ({ page }) => {
-    await installTauriStub(page, {
+    await installPreviewAgentStub(page, {
       agent_status: sequence(
         { state: "not_signed_in", model: null, detail: "Codex is installed but not signed in.", fix: "In a terminal run: codex login" },
         READY,
@@ -102,7 +102,7 @@ test.describe("US3 — setup and fallback", () => {
   });
 
   test("a failed turn offers Try again and the scripted conversation", async ({ page }) => {
-    await installTauriStub(page, {
+    await installPreviewAgentStub(page, {
       agent_status: READY,
       agent_turn: sequence(failure("timeout", "The agent took longer than 60 seconds."), OPENING),
     });
@@ -119,7 +119,7 @@ test.describe("US3 — setup and fallback", () => {
   });
 
   test("Use the scripted conversation continues the demo", async ({ page }) => {
-    await installTauriStub(page, { agent_status: READY, agent_turn: failure("failed", "Codex could not answer.") });
+    await installPreviewAgentStub(page, { agent_status: READY, agent_turn: failure("failed", "Codex could not answer.") });
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "Live agent: ready" })).toBeVisible();
     await page.getByRole("button", { name: "Start the walkthrough" }).click();
@@ -128,7 +128,7 @@ test.describe("US3 — setup and fallback", () => {
   });
 
   test("the presenter can turn live mode off", async ({ page }) => {
-    await installTauriStub(page, { agent_status: READY });
+    await installPreviewAgentStub(page, { agent_status: READY });
     await page.goto("/");
     await page.getByRole("button", { name: "Turn live agent off" }).click();
     await expect(page.getByRole("heading", { name: "Live agent: ready, turned off" })).toBeVisible();
@@ -138,7 +138,7 @@ test.describe("US3 — setup and fallback", () => {
   });
 
   test("jumping chapters fills earlier conversations from the script", async ({ page }) => {
-    await installTauriStub(page, { agent_status: READY });
+    await installPreviewAgentStub(page, { agent_status: READY });
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "Live agent: ready" })).toBeVisible();
     await jumpToWithinPage(page, "Match");
@@ -151,7 +151,7 @@ async function jumpToWithinPage(page: import("@playwright/test").Page, chapter: 
 }
 
 test("the live interview fits the window with the 16px type floor", async ({ page }) => {
-  await installTauriStub(page, { agent_status: READY, agent_turn: OPENING });
+  await installPreviewAgentStub(page, { agent_status: READY, agent_turn: OPENING });
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Live agent: ready" })).toBeVisible();
   await page.getByRole("button", { name: "Start the walkthrough" }).click();

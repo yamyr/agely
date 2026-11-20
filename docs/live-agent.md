@@ -28,7 +28,7 @@ before, and the start screen tells you what's missing.
 
    ```sh
    bun install
-   bun run tauri dev
+   bun run desktop
    ```
 
    The start screen shows **"Live agent: checking…"**, then **"Live agent: ready"** with the
@@ -47,13 +47,13 @@ around 10 seconds; set `AGELY_CODEX_EFFORT=medium` (or `minimal` / `high`) to ch
 To pick one yourself:
 
 ```sh
-AGELY_CODEX_MODEL=gpt-5.5 bun run tauri dev
+AGELY_CODEX_MODEL=gpt-5.5 bun run desktop
 ```
 
 If Codex is installed somewhere unusual, point Agely at it:
 
 ```sh
-AGELY_CODEX_BIN=/path/to/codex bun run tauri dev
+AGELY_CODEX_BIN=/path/to/codex bun run desktop
 ```
 
 ## What it sends, and what it can touch
@@ -79,7 +79,7 @@ AGELY_CODEX_BIN=/path/to/codex bun run tauri dev
 | *Codex could not check whether you are signed in* | Try `codex login status` in a terminal. If an older Codex rejects your settings, update it or restart Agely with `AGELY_CODEX_BIN` set to a working executable. Then select **Check again**. |
 | *Your ChatGPT plan doesn't allow these models* | Set `AGELY_CODEX_MODEL` to a model your plan allows, restart the app, then **Check again**. |
 | *The live agent check failed* | Check your internet connection, then **Check again**. |
-| *Off in the browser preview* | The live agent only runs in the desktop app (`bun run tauri dev`), not `bun run dev`. |
+| *Off in the browser preview* | Run the desktop app with `bun run desktop` to use the live agent. |
 
 If a turn fails or takes over 60 seconds during a demo, choose **Try again** or **Use the scripted
 conversation**. Either way the demo carries on.
@@ -91,13 +91,18 @@ run with `AGELY_CODEX_BIN=/nonexistent`.
 
 ## For developers
 
-- Rust side: `src-tauri/src/agent/` (`agent_status`, `agent_turn` commands).
-- Frontend: `src/demo/live/` (agent briefs per conversation, state, UI).
-- Spec: `specs/002-live-codex-agent/`.
+- Native runner: `desktop/src/agent/`. GPUI calls `AgentState::status` and `AgentState::turn`
+  on its background executor so Codex processes do not block the window.
+- Native conversation state and UI integration: `desktop/src/live.rs` and `desktop/src/app.rs`.
+- Shared briefs and browser preview UI: `src/demo/live/`. `bun run desktop:assets` exports the
+  briefs and locale catalogues as JSON embedded in the native app.
+- Specs: `specs/002-live-codex-agent/` and `specs/005-gpui-desktop/`.
 - To run against real Codex:
 
   ```sh
-  cargo test --manifest-path src-tauri/Cargo.toml -- --ignored --nocapture
+  cargo test --manifest-path desktop/Cargo.toml live_codex_check_and_one_turn -- --ignored --nocapture
   ```
 
-- An API-key provider can be added later behind the same two commands.
+- Browser Playwright tests use `e2e/previewAgentStub.ts` to exercise conversation states.
+  The opt-in Rust test exercises the actual local Codex runner.
+- An API-key provider can be added later behind the agent interface if a spec requires it.

@@ -39,7 +39,7 @@ Use the chapter list to jump to any part of the story. **Back** preserves your p
 
 The [presenter guide](specs/001-demo-walkthrough/quickstart.md) includes a full dry run and validation steps.
 
-**Live agent (optional, no API key).** If the [Codex CLI](https://github.com/openai/codex) is installed and signed in with ChatGPT on the computer running the desktop app, the three conversations (Margaret's interview, Dev's brief chat and Margaret's debrief) are generated live. Each agent turn offers three suggested replies, or you can type your own. Setup takes three commands: `npm install -g @openai/codex`, `codex login`, `bun run tauri dev`. Without Codex the scripted conversations run as above. See [docs/live-agent.md](docs/live-agent.md).
+**Live agent (optional, no API key).** If the [Codex CLI](https://github.com/openai/codex) is installed and signed in with ChatGPT on the computer running the desktop app, the three conversations (Margaret's interview, Dev's brief chat and Margaret's debrief) are generated live. Each agent turn offers three suggested replies, or you can type your own. Setup takes three commands: `npm install -g @openai/codex`, `codex login`, `bun run desktop`. Without Codex the scripted conversations run as above. See [docs/live-agent.md](docs/live-agent.md).
 
 ## What works today
 
@@ -76,11 +76,16 @@ These principles are recorded in the [project constitution](.specify/memory/cons
 
 ## Built with
 
-- Tauri 2 and Rust for the desktop shell and native commands.
-- React 19, TypeScript, and Vite 8 for the interface and client-side domain logic.
+- GPUI and Rust for the native desktop walkthrough on Apple Silicon Macs.
+- React 19, TypeScript, and Vite 8 for the browser walkthrough and marketplace try-out.
 - Bun for dependency management and scripts.
-- Vitest for unit tests and Playwright for browser journeys at desktop and minimum window sizes.
+- Vitest and Rust tests for logic, Playwright for browser journeys, and native UI checks for the desktop app.
 - GitHub Actions for frontend, browser, workflow, and Rust checks.
+
+The native app embeds offline JSON generated from the shared story, 18 translation catalogues
+and `src/ui/tokens.css`. Run `bun run desktop:assets` after changing those sources. GPUI is pinned
+to the official Zed repository at revision `0a514d7ef59c6357878a244fdf8365d03c504767` for its
+accessibility APIs. [Spec 005](specs/005-gpui-desktop/spec.md) describes the migration.
 
 The foundation was ported from `yademy/elderwise-hbs`.
 
@@ -97,13 +102,16 @@ bun run dev
 
 Open `http://localhost:1420` to run the walkthrough in your browser. Browser mode does not require the Rust toolchain.
 
-For the native desktop window, install Rust stable through [rustup](https://rustup.rs) and the [Tauri platform prerequisites](https://tauri.app/start/prerequisites/). On macOS, install Xcode Command Line Tools with `xcode-select --install`. Then run:
+For the native desktop walkthrough, use an Apple Silicon Mac, install Rust stable through
+[rustup](https://rustup.rs), and install Xcode Command Line Tools with `xcode-select --install`.
+Then run:
 
 ```sh
-bun run tauri dev
+bun run desktop
 ```
 
-Run browser development and native development separately because both use port `1420`.
+This generates the shared native assets and starts GPUI. The native app does not use a web
+server. The marketplace try-out remains available in the browser.
 
 ## Validate changes
 
@@ -123,25 +131,34 @@ bunx tsc -p e2e/tsconfig.json
 bun run e2e
 ```
 
-Playwright starts its own Vite server on port `1493` and uses [stubbed Tauri IPC](e2e/tauriStub.ts). To choose another port, run `E2E_PORT=1494 bun run e2e`. Port `1420` is reserved for development.
+Playwright starts its own Vite server on port `1493` and uses the [browser agent fixture](e2e/previewAgentStub.ts). To choose another port, run `E2E_PORT=1494 bun run e2e`. Port `1420` is reserved for browser development.
 
-After `bun run build` creates `dist/`, run the Rust checks on a machine with the Tauri platform prerequisites:
+Run the native checks on macOS with the Rust toolchain and Xcode Command Line Tools:
 
 ```sh
-cargo fmt --manifest-path src-tauri/Cargo.toml --check
-cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
-cargo test --manifest-path src-tauri/Cargo.toml
+bun scripts/export-desktop.ts --check
+cargo fmt --manifest-path desktop/Cargo.toml --check
+cargo clippy --manifest-path desktop/Cargo.toml --all-targets -- -D warnings
+cargo test --manifest-path desktop/Cargo.toml
+cargo deny --manifest-path desktop/Cargo.toml check
 ```
+
+Native flow changes also need a journey through the actual GPUI window, including keyboard
+focus and accessibility checks. Browser fixtures do not exercise native rendering or the Codex
+process runner.
 
 [Full CI](.github/workflows/ci.yml) checks the frontend on Ubuntu and runs Chromium and Rust checks on macOS. [Fast feedback](.github/workflows/fast-feedback.yml) checks workflows, frontend types and unit tests, and Rust formatting. Wait for full CI to pass before merging.
 
 ## Build an installer
 
 ```sh
-bun run tauri build
+bun run desktop:build
 ```
 
-Tauri builds the frontend and native app, then writes platform-specific bundles to `src-tauri/target/release/bundle/`.
+The script generates native assets and builds the Apple Silicon release binary. It writes
+`macos/Agely.app`, `dmg/Agely_<version>_aarch64.dmg` and `dmg/SHA256SUMS.txt` under
+`desktop/target/aarch64-apple-darwin/release/bundle/`. This developer preview has an ad hoc
+signature and no Apple notarization. Building it does not publish a release.
 
 For a frontend-only production preview, run `bun run build` followed by `bun run preview`.
 
@@ -151,9 +168,9 @@ For a frontend-only production preview, run `bun run build` followed by `bun run
 | --- | --- |
 | `src/demo/` | Walkthrough screens, fictional personas, domain rules, state, and scripted services. |
 | `src/ui/` | Shared design tokens and the React error boundary. |
-| `src/lib/` | Tauri IPC wrapper and error handling. |
-| `src-tauri/` | Rust shell, native commands, permissions, and desktop configuration. |
-| `e2e/` | Playwright journeys, edge cases, layout checks, and the Tauri IPC stub. |
+| `src/lib/` | Browser agent fixture boundary and error handling. |
+| `desktop/` | GPUI app, native walkthrough state, embedded assets, localization and local Codex runner. |
+| `e2e/` | Playwright journeys, edge cases, layout checks, and the browser agent fixture. |
 | `specs/001-demo-walkthrough/` | Demo specification, data model, contracts, tasks, and presenter guide. |
 | `.specify/` | Spec Kit templates, scripts, and the project constitution. |
 | `docs/tooling/` | Notes on the project's optional development tools. |
@@ -161,9 +178,10 @@ For a frontend-only production preview, run `bun run build` followed by `bun run
 | `site/costs/` | Open cost ledger at agely.dev/costs/. Record a cost by adding a line to `costs.json`; `scripts/ai-usage.mjs` totals AI tokens from local agent logs. |
 | `src/product/` | The try-out product at `#/app`: `ports/` (the outside services as interfaces, with contract suites), `standins/` (in-browser adapters), `usecases/` (the rules), `screens/`. |
 | `specs/004-marketplace-foundation/` | Specification, plan, contracts, tasks and verification for the try-out product. |
+| `specs/005-gpui-desktop/` | Native migration specification, architecture, tasks and verification. |
 | `site/simulator/` | Marketplace simulator at agely.dev/simulator/: the demo's matching rule run over a made-up market, with adjustable parameters. `engine.js` is the model and has unit tests. |
 
-Features follow Spec Kit: specify, clarify, plan, tasks, analyze, and implement. Use `src/ui/tokens.css` for shared visual values. Keep versions in `package.json`, `src-tauri/tauri.conf.json`, and `src-tauri/Cargo.toml` in sync; a unit test checks them.
+Features follow Spec Kit: specify, clarify, plan, tasks, analyze, and implement. Use `src/ui/tokens.css` for shared visual values. Keep versions in `package.json` and `desktop/Cargo.toml` in sync; a unit test checks them.
 
 ## What's next
 

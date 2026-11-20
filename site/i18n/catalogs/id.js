@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Your changes could not be saved. Please try again.": "Perubahan Anda tidak dapat disimpan. Silakan coba lagi.",
   "Demo, marketplace, and desktop downloads are easier to find.": "Demo, lokapasar, dan unduhan untuk komputer lebih mudah ditemukan.",
   "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Lebih mudah dibaca di ponsel, tanggal pengeluaran terlihat, dan navigasi dengan papan ketik lebih mudah.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Jika tindakan pada usulan gagal, fokus papan ketik tetap pada tombol agar Anda dapat mencoba lagi.",

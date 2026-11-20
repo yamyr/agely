@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Your changes could not be saved. Please try again.": "Muutoksia ei voitu tallentaa. Yritä uudelleen.",
   "Demo, marketplace, and desktop downloads are easier to find.": "Demo, markkinapaikka ja tietokoneelle ladattavat versiot löytyvät helpommin.",
   "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Selkeämpi luettavuus puhelimella, näkyvät kulujen päivämäärät ja helpompi näppäimistöllä liikkuminen.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Jos tarjoukseen liittyvä toiminto epäonnistuu, näppäimistön kohdistus pysyy painikkeessa, jotta voit yrittää uudelleen.",

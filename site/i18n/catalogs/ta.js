@@ -1,5 +1,6 @@
 // Model-generated Tamil translation draft; requires language review.
 export default {
+  "Your changes could not be saved. Please try again.": "உங்கள் மாற்றங்களைச் சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.",
   "Demo, marketplace, and desktop downloads are easier to find.": "விளக்கம், சந்தை மற்றும் கணினிக்கான பதிவிறக்கங்களை எளிதாகக் கண்டுபிடிக்கலாம்.",
   "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "தொலைபேசியில் படிப்பது எளிதாகியுள்ளது. செலவுகளின் தேதிகள் தெரிகின்றன. விசைப்பலகை வழிசெலுத்தலும் எளிதாகியுள்ளது.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "முன்மொழிவு தொடர்பான செயல் தோல்வியடைந்தால், விசைப்பலகையின் கவனம் பொத்தானிலேயே இருக்கும். இதனால் மீண்டும் முயற்சி செய்யலாம்.",

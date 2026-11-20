@@ -36,7 +36,7 @@ export function LiveAgentPanel() {
       case "not_installed": return t("Install it with: {0} — then select Check again.", "npm install -g @openai/codex");
       case "not_signed_in": return t("In a terminal run: {0} — sign in with ChatGPT, then select Check again.", "codex login");
       case "model_unavailable": return t("Set {0} to a model your plan allows, restart the app, then Check again.", "AGELY_CODEX_MODEL");
-      case "unavailable": return t("Run {0} to use it.", "bun run tauri dev");
+      case "unavailable": return t("Run {0} to use it.", "bun run desktop");
       default: return t("Check your internet connection, then select Check again.");
     }
   };

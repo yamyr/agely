@@ -37,7 +37,8 @@ Compare stated intent with actual changes before judging code quality.
    `tasks.md` (feature = branch's spec dir, or the one the commits reference).
 2. Flag **SCOPE CREEP** (unrelated files, unrequested refactors) and **MISSING
    REQUIREMENTS** (tasks marked `[X]` with no matching code or test, spec acceptance
-   scenarios with no Playwright journey).
+   browser scenarios with no Playwright journey, or native scenarios with no Rust state test
+   and actual native window check).
 3. Emit one line: `Scope Check: CLEAN | DRIFT (<items>) | MISSING (<items>)`. Informational,
    not a gate.
 
@@ -50,7 +51,7 @@ anything until Step 6.
 ## Step 4: Gate scan (by hand)
 
 List every hunk in the diff that touches a gate: `**/*.test.ts(x)`, `e2e/**`,
-`src-tauri/**/tests/**` or `#[cfg(test)]` blocks, `.github/workflows/**`,
+`desktop/**/tests/**` or `#[cfg(test)]` blocks, `.github/workflows/**`,
 `vitest.config.*`, `playwright.config.*`, `tsconfig*.json`, `eslint`/`clippy`/`rustfmt`
 config, `Cargo.toml` `[lints]`, snapshot files, and product-code hunks that add
 `// @ts-ignore`, `@ts-expect-error`, `eslint-disable`, `#[allow(...)]`, `.skip`, `.only`,
@@ -66,8 +67,8 @@ Tag each per the checklist's Gate Integrity tags and keep the list for Step 5 an
    subagent per applicable specialist file, each given the diff base, the specialist file
    path, and told to output JSON lines or `NO FINDINGS`:
    - always: `specialists/testing.md`, `specialists/maintainability.md`
-   - `src/**` UI or `src-tauri/**` changed: `specialists/performance.md`
-   - IPC commands, file/system access, `tauri.conf.json` capabilities/CSP, external input:
+   - `src/**` UI or `desktop/**` changed: `specialists/performance.md`
+   - local process execution, file/system access, generated asset contracts, external input:
      `specialists/security.md`
    - diff > 100 lines: `specialists/simplification.md` (advisory only)
    - diff > 200 lines or a CRITICAL security finding: `specialists/red-team.md`, given the
@@ -77,7 +78,7 @@ Tag each per the checklist's Gate Integrity tags and keep the list for Step 5 an
    "Read the diff for this branch: `DIFF_BASE=$(git merge-base origin/main HEAD) && git diff
    --name-status "$DIFF_BASE"`, then the full non-test diff. Summarize test/fixture changes
    only. Think like an attacker and a chaos engineer. Find ways this code will fail in the
-   demo or in production: edge cases, races, IPC trust-boundary violations, resource leaks,
+   demo or in production: edge cases, races, process/file boundary violations, resource leaks,
    swallowed errors, silent wrong results. No compliments. For each finding: FIXABLE or
    INVESTIGATE, `Severity: Critical|High|Medium|Low`, `Blocks: yes|no` (blocks only if it
    would fail a test, break the app, or lose data or secrets). End with one line:
@@ -114,7 +115,7 @@ Combine core, specialist and adversarial findings; dedupe by `path:line:category
    B) Keep, justified: <one-line reason, marked verified/unverified>, C) Keep, other reason
    (user supplies it), D) Leave open.
 4. Apply approved fixes. For a defect with a regression test, write the test first and show
-   it failing (`bun run test -- <file>` / `cargo test --manifest-path src-tauri/Cargo.toml
+   it failing (`bun run test -- <file>` / `cargo test --manifest-path desktop/Cargo.toml
    <name>`), then fix and show it passing: `[FIXED + TEST] file:line Problem -> fix + test at <path>`.
 5. If you edited anything, re-run Steps 3-6 on the new diff (max 3 cycles). At the cap,
    report non-convergence instead of a clean summary.

@@ -1,7 +1,7 @@
 import process from "node:process";
 import { defineConfig, devices } from "@playwright/test";
 
-// Never 1420: that port belongs to `tauri dev`.
+// Keep browser checks separate from the app development server on 1420.
 const port = Number(process.env.E2E_PORT ?? "1493");
 if (!Number.isInteger(port) || port < 1 || port > 65535 || port === 1420) {
   throw new Error("E2E_PORT must be an integer from 1 to 65535 other than 1420");
@@ -20,7 +20,7 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } },
     },
     {
-      // Minimum window size from src-tauri/tauri.conf.json (SC-004).
+      // Minimum native window size, also checked by the browser walkthrough (SC-004).
       name: "min-960x640",
       use: { ...devices["Desktop Chrome"], viewport: { width: 960, height: 640 } },
     },

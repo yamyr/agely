@@ -1,10 +1,10 @@
 <!--
 Sync Impact Report
-Version: 1.1.0 → 2.0.0 (MAJOR: scope of the voice requirement in principle I)
-Modified: I (exception for the browser-only marketplace try-out in spec 004)
-Affected: spec 004 specification, plan and verification record
+Version: 2.0.0 → 2.0.1 (PATCH: clarify native GPUI architecture and verification)
+Modified: I and IV (native accessibility and flow verification), technical constraints, paths
+Affected: spec 005, AGENTS.md, README.md, live-agent docs and project verification skills
 Templates: plan-template.md reads this file at run time; no template edits needed
-Follow-ups: meet the voice requirement before connecting real marketplace services
+Follow-ups: meet the existing voice requirement before connecting real marketplace services
 -->
 
 # Agely Constitution
@@ -23,8 +23,9 @@ Agely is built for people over 65 before anyone else.
 - Copy MUST use plain language, one decision per screen, and visible keyboard focus.
 - Meaning MUST NOT be carried by colour or animation alone.
 - These rules are tested, not only stated: the Playwright suite MUST check the 16px floor, focus
-  rings and WCAG 2.1 AA (axe) on every chapter of the app. A new screen joins those checks in the
-  same change.
+  rings and WCAG 2.1 AA (axe) on every chapter of the browser app. Native screens MUST verify the
+  same size and focus requirements, keyboard operation and accessible names in the actual GPUI
+  window. A new screen joins its platform's checks in the same change.
 
 Rationale: almost no technology is designed for older people; Agely's supply side is them.
 
@@ -53,10 +54,12 @@ Rationale: the product's value rests on credible expertise and credible claims.
 ### IV. Test-First, Verified Before Done (NON-NEGOTIABLE)
 - Domain logic (matching, price-range overlap, flow state) MUST have unit tests written before
   or with the implementation, and they MUST be seen failing first.
-- Each user-facing flow MUST have at least one Playwright journey running against the Tauri
-  IPC stub.
+- Each browser user-facing flow MUST have at least one Playwright journey. Optional live-agent
+  states use the browser agent fixture. Each native user-facing flow MUST have Rust state tests
+  and a journey through the actual GPUI window, including keyboard and accessibility checks.
 - Work is done only when `tsc`, Vitest, the production build, Playwright, `cargo fmt`,
-  `cargo clippy -D warnings` and `cargo test` all pass.
+  `cargo clippy -D warnings` and `cargo test` all pass. Generated native assets MUST be current,
+  and a native change MUST pass the native window checks above.
 - Website pages in `site/` have no Playwright journeys. Logic there (the simulator's model, the
   ledger's rules) MUST have unit tests, and a changed page MUST be opened in a browser at desktop
   and phone width before it is called done.
@@ -66,16 +69,17 @@ Rationale: the product's value rests on credible expertise and credible claims.
 Rationale: a demo that breaks on stage costs more than the time tests take.
 
 ### V. Simple Until Proven Otherwise
-- Prefer pure TypeScript functions and React state over new dependencies or services.
+- Prefer pure domain functions and platform state over new dependencies or services.
 - No backend, database or network call is added until a spec requires it.
-- `src/ui/tokens.css` is the single source of visual truth; components MUST use its tokens.
+- `src/ui/tokens.css` is the single source of visual truth. Browser components MUST use its
+  tokens, and native components MUST use the values generated from the same file.
 
 Rationale: a prototype must stay easy to change while the product is found.
 
 ### VI. Owned and Attributed
 - Every asset the project ships (fonts, icons, images, video, sample data) MUST be original or
   openly licensed, and MUST be listed in `ATTRIBUTION.md` in the change that adds it.
-- A new dependency's licence MUST be on the allowlist in `src-tauri/deny.toml` (Rust) or be a
+- A new dependency's licence MUST be on the allowlist in `desktop/deny.toml` (Rust) or be a
   permissive licence of the same kind (JavaScript). CI checks the Rust side.
 - Content made with a generative model MUST be recorded as such in `ATTRIBUTION.md`, with the
   terms of the service that made it.
@@ -85,7 +89,12 @@ Rationale: a product about credible expertise cannot be careless about whose wor
 
 ## Product & Technical Constraints
 
-- Desktop app: Tauri 2 (Rust shell) + React 19 + TypeScript (strict) + Vite, managed with Bun.
+- Desktop app: native GPUI and Rust, currently targeting Apple Silicon Macs. Shared story and
+  localization are generated as embedded offline JSON; the native theme reads the embedded
+  shared CSS tokens. Optional local Codex
+  operations run on background tasks.
+- Browser app: React 19 + TypeScript (strict) + Vite, managed with Bun. Browser journeys and the
+  marketplace try-out remain available separately from the native walkthrough.
 - Website: static pages in `site/`, served at agely.dev with the app at `/demo/`. Plain HTML, CSS
   and JavaScript modules; no framework and no build step of its own.
 - Target users: buyers in the United States; experts from any country.
@@ -96,7 +105,7 @@ Rationale: a product about credible expertise cannot be careless about whose wor
 
 ## Development Workflow
 
-- Every feature of the app (`src/`, `src-tauri/`) follows Spec Kit: specify → clarify → plan →
+- Every feature of the app (`src/`, `desktop/`) follows Spec Kit: specify → clarify → plan →
   tasks → analyze → implement. Artifacts live in `specs/<feature>/`.
 - Website pages in `site/` do not need a spec. Their pull request MUST say what the page is for
   and how it was checked.
@@ -106,8 +115,8 @@ Rationale: a product about credible expertise cannot be careless about whose wor
   MUST NOT be weakened to make a change pass.
 - Work happens on a feature branch and lands through a pull request. CI (`ci.yml`) MUST be
   green before merge; reviewer approval is not required for this repository.
-- Versions in `package.json`, `src-tauri/tauri.conf.json` and `src-tauri/Cargo.toml` move in
-  lockstep.
+- Versions in `package.json` and `desktop/Cargo.toml` move in lockstep. The native package entry
+  in `desktop/Cargo.lock` is updated with them.
 
 ## Governance
 
@@ -118,4 +127,4 @@ principles, MINOR for new principles or sections, PATCH for clarifications. Ever
 include a Constitution Check against the principles above, and any justified violation MUST be
 recorded in the plan's Complexity Tracking table.
 
-**Version**: 2.0.0 | **Ratified**: 2026-11-11 | **Last Amended**: 2026-11-14
+**Version**: 2.0.1 | **Ratified**: 2026-11-11 | **Last Amended**: 2026-11-21

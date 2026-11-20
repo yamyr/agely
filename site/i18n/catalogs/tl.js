@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Your changes could not be saved. Please try again.": "Hindi ma-save ang iyong mga pagbabago. Pakisubukan muli.",
   "Demo, marketplace, and desktop downloads are easier to find.": "Mas madaling makita ang demo, pamilihan, at mga download para sa computer.",
   "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Mas malinaw basahin sa telepono, nakikita ang mga petsa ng gastos, at mas madaling mag-navigate gamit ang keyboard.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Kung mabigo ang isang aksyon sa panukala, mananatili sa button ang focus ng keyboard para masubukan mo ulit.",

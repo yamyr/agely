@@ -1,4 +1,4 @@
-/** Mirrors src-tauri/src/agent/types.rs — see specs/002-live-codex-agent/data-model.md. */
+/** Mirrors desktop/src/agent/types.rs — see specs/002-live-codex-agent/data-model.md. */
 import type { ConversationId } from "../domain/types";
 import type { Locale } from "../../../site/i18n/core.js";
 
@@ -26,7 +26,7 @@ export const CHECKING_STATUS: AgentStatus = {
 };
 
 export interface AgentBrief {
-  /** Omission preserves English for older callers; native IPC validates canonical IDs. */
+  /** Omission preserves English for older callers; the native agent validates canonical IDs. */
   readonly locale?: Locale;
   readonly conversation: ConversationId;
   readonly agentRole: string;

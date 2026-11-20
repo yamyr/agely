@@ -63,4 +63,4 @@ jobs:
           components: rustfmt
 
       - name: format
-        run: cargo fmt --manifest-path src-tauri/Cargo.toml --check
+        run: cargo fmt --manifest-path desktop/Cargo.toml --check

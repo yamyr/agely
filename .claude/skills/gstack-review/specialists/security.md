@@ -66,8 +66,9 @@ This checklist goes deeper than the main CRITICAL pass. The main agent already c
 - Deserializing untrusted data (pickle, Marshal, YAML.load, JSON.parse of executable types)
 - Accepting serialized objects from user input or external APIs without schema validation
 
-### Tauri-specific (Agely addition)
-- `#[tauri::command]` handlers: every argument from the webview is untrusted input; validate paths (canonicalize and check prefix), URLs (allowlist), sizes.
-- Capabilities (`src-tauri/capabilities/*.json`) and `tauri.conf.json` `security.csp`: flag any widening; permissions should be scoped to the window and paths that need them.
-- Opener plugin (`@tauri-apps/plugin-opener`): URLs or paths opened from agent/user data without an allowlist.
-- Secrets (API keys for future Stripe/Supabase/voice integrations) must not be bundled into the frontend build or committed; they belong on the Rust side or in an untracked env file.
+### Native GPUI process and file boundaries (Agely addition)
+- Treat local Codex output and persisted locale data as untrusted. Check schemas, bounds and allowed values before updating the flow.
+- Run Codex with argument vectors, an empty temporary directory, a read-only sandbox and bounded execution. Flag changes that widen tool access or leave temporary output behind.
+- Run blocking process work on GPUI's background executor. Reject stale replies after restart, chapter jump, locale change or live-agent disable.
+- Check any external URL or path opened from agent/user data against an allowlist.
+- Secrets for future integrations must not be committed or embedded in either the browser build or the shipped native binary.

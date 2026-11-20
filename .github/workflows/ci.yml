@@ -3,7 +3,7 @@ name: ci
 # Pre-flight checks for every pull request and push to main.
 #
 # Rust checks run on a pinned macOS runner so the crate compiles against the
-# real target frameworks (WKWebView) without surprise macos-latest image
+# real GPUI/macOS frameworks without surprise macos-latest image
 # migrations. Frontend checks run on Ubuntu.
 on:
   pull_request:
@@ -44,6 +44,9 @@ jobs:
       # A missing draft or interpolation slot can hide a name, amount or human action.
       - name: translation catalog integrity
         run: bun run check:i18n
+
+      - name: native asset consistency
+        run: bun scripts/export-desktop.ts --check
 
       - name: production build
         run: bun run build
@@ -104,24 +107,19 @@ jobs:
       - name: Rust cache
         uses: swatinem/rust-cache@v2
         with:
-          workspaces: "./src-tauri -> target"
-
-      # tauri::generate_context! requires the frontendDist path to exist at
-      # compile time; an empty placeholder is enough for check/lint/test.
-      - name: prepare frontendDist placeholder
-        run: mkdir -p dist
+          workspaces: "./desktop -> target"
 
       - name: format
-        run: cargo fmt --manifest-path src-tauri/Cargo.toml --check
+        run: cargo fmt --manifest-path desktop/Cargo.toml --check
 
       - name: lint (clippy, warnings are errors)
-        run: cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
+        run: cargo clippy --locked --manifest-path desktop/Cargo.toml --all-targets -- -D warnings
 
       - name: tests
-        run: cargo test --manifest-path src-tauri/Cargo.toml
+        run: cargo test --locked --manifest-path desktop/Cargo.toml
 
   # Constitution principle VI: every Rust dependency's licence is on the allowlist in
-  # src-tauri/deny.toml, comes from crates.io, and has no known vulnerability.
+  # desktop/deny.toml, comes from approved sources, and has no known vulnerability.
   licences:
     name: licences and advisories
     runs-on: ubuntu-latest
@@ -131,4 +129,4 @@ jobs:
       - name: cargo deny
         uses: EmbarkStudios/cargo-deny-action@v2
         with:
-          manifest-path: src-tauri/Cargo.toml
+          manifest-path: desktop/Cargo.toml

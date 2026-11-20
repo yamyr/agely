@@ -16,6 +16,8 @@ are read, and a confirmed problem is fixed on `main` and credited to the reporte
 ## What is checked automatically
 
 - Rust dependencies are checked for known vulnerabilities and disallowed licences on every pull
-  request (`cargo deny`, configured in `src-tauri/deny.toml`).
+  request (`cargo deny`, configured in `desktop/deny.toml`). GPUI is allowed from the official
+  Zed repository at the exact revision recorded in `desktop/Cargo.toml` and `desktop/Cargo.lock`.
+  Other unknown git sources and registries are rejected.
 - Dependabot opens updates for JavaScript, Rust and GitHub Actions dependencies weekly, and
   security updates as they are published.

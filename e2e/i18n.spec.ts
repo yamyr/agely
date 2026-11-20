@@ -1,11 +1,12 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { createTranslator, formatMoney, type Locale } from "../site/i18n/core.js";
-import { installTauriStub, READY } from "./tauriStub";
+import { installPreviewAgentStub, READY } from "./previewAgentStub";
+import type { AgentTurn } from "../src/demo/live/types";
 
 declare global {
   interface Window {
-    __localizedTurns: Array<{ readonly args: unknown; readonly resolve: (value: unknown) => void }>;
+    __localizedTurns: Array<{ readonly args: unknown; readonly resolve: (value: AgentTurn) => void }>;
   }
 }
 
@@ -49,16 +50,17 @@ test("selecting the active language cancels a pending language change", async ({
 });
 
 test("live requests carry the language and an old reply cannot cross a confirmed restart", async ({ page }) => {
-  await installTauriStub(page, { agent_status: READY });
+  await installPreviewAgentStub(page, { agent_status: READY });
   await page.goto("/?lang=en");
   await expect(page.getByRole("heading", { name: "Live agent: ready", exact: true })).toBeVisible();
   await page.evaluate(() => {
-    const original = window.__TAURI_INTERNALS__;
+    const original = window.__AGELY_PREVIEW__;
+    if (original === undefined) throw new Error("Missing browser agent fixture");
     window.__localizedTurns = [];
-    window.__TAURI_INTERNALS__ = {
+    window.__AGELY_PREVIEW__ = {
       ...original,
-      invoke: (cmd: string, args?: unknown) => cmd !== "agent_turn" ? original.invoke(cmd) : new Promise((resolve) => {
-        window.__localizedTurns.push({ args, resolve });
+      turn: (request) => new Promise((resolve) => {
+        window.__localizedTurns.push({ args: { request }, resolve });
       }),
     };
   });

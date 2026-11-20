@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { expect, test } from "@playwright/test";
 import { createTranslator, formatMoney, LOCALES, type Locale } from "../site/i18n/core.js";
 import { paymentCount, productAudit, productSignIn, productSignOut, seedExperts } from "./productHelpers";
-import { installTauriStub } from "./tauriStub";
+import { installPreviewAgentStub } from "./previewAgentStub";
 
 test("changing marketplace language preserves an in-progress sign-in", async ({ page }) => {
   await page.goto("/?lang=en#/app");
@@ -35,11 +35,11 @@ test("every advertised language can open the localized marketplace", async ({ pa
   }
 });
 
-test("a direct marketplace address in Tauri opens the walkthrough", async ({ page }) => {
-  await installTauriStub(page);
+test("a browser agent fixture preserves a direct marketplace address", async ({ page }) => {
+  await installPreviewAgentStub(page);
   await page.goto("/?lang=en#/app");
-  await expect(page.getByRole("heading", { name: "Experience shouldn't retire." })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Try the product" })).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Sign in to try Agely" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Back to the walkthrough" })).toBeVisible();
 });
 
 for (const locale of ["fr", "ta"] as const satisfies readonly Locale[]) {

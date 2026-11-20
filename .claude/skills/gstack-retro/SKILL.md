@@ -35,7 +35,7 @@ REF=origin/main; SINCE="<since>"
 git log $REF --since="$SINCE" --no-merges --pretty='COMMIT|%h|%an|%ad|%s' --date=format-local:'%Y-%m-%d %H:%M' --shortstat
 git log $REF --since="$SINCE" --merges --oneline | wc -l
 git log $REF --since="$SINCE" --no-merges --name-only --pretty=format: | grep -v '^$' | sort | uniq -c | sort -rn | head -10
-git log $REF --since="$SINCE" --no-merges --numstat --pretty=format: -- '*.test.ts' '*.test.tsx' 'e2e/**' 'src-tauri/tests/**'
+git log $REF --since="$SINCE" --no-merges --numstat --pretty=format: -- '*.test.ts' '*.test.tsx' 'e2e/**' 'desktop/tests/**'
 git log $REF --since="$SINCE" --pretty='%b' | grep -ci 'co-authored-by:.*noreply@anthropic.com'
 gh pr list --state merged --base main --search "merged:>=<start-date>" --limit 200 --json number,title,mergedAt,author 2>/dev/null
 ```
@@ -49,7 +49,7 @@ Compute (show "unavailable", never invent values):
 - Commit type mix from conventional prefixes; flag fix ratio > 50%.
 - Commit size buckets: <100, 100-500, 500-1500, 1500+ changed lines.
 - Hotspots: top 10 files; flag files changed 5+ times.
-- Focus score: % of file changes in the busiest top-level dir (`src/`, `src-tauri/`, `e2e/`,
+- Focus score: % of file changes in the busiest top-level dir (`src/`, `desktop/`, `e2e/`,
   `specs/`, ...).
 - Ship of the week: biggest commit or PR, and why it matters.
 - Streaks: consecutive days with commits, team and the current git user
