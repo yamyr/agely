@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Desktop app
+
+- Replaced the Tauri walkthrough with a native Rust/GPUI app for Apple silicon Macs. Preserved all 13 steps, editable drafts, explicit decisions, English and 17 draft translations, and optional local Codex conversations.
+- Added native Unicode and IME text editing, keyboard navigation, visible focus while scrolling, saved language selection, and background Codex tasks that reject stale replies after a restart.
+- Added shared offline assets, reviewed locale formats, native regression tests and an app/DMG packaging command. The preview uses an ad hoc signature and has no Apple notarization. Published v0.1.3 downloads are unchanged.
+
 ## 0.1.3 — 2026-11-19
 
 ### Website

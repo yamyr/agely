@@ -2,24 +2,43 @@
 
 ## Prerequisites
 
-Bun ≥ 1.3, Rust stable, Playwright Chromium (`bunx playwright install chromium`).
+Bun `1.3.10` and Playwright Chromium (`bunx playwright install chromium`) for browser checks.
+Native checks also need an Apple Silicon Mac, Rust stable and Xcode Command Line Tools.
+See the [desktop guide](../../docs/desktop.md) for setup and the unreleased GPUI architecture.
 
 ## Automated checks
 
 ```sh
-bunx tsc --noEmit && bun run test && bun run build
-bunx tsc -p e2e/tsconfig.json && bun run e2e
-cargo fmt --manifest-path src-tauri/Cargo.toml --check
-cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
-cargo test --manifest-path src-tauri/Cargo.toml
+bunx tsc --noEmit
+bun run test
+bun run build
+bunx tsc -p e2e/tsconfig.json
+bun run e2e
+bun scripts/export-desktop.ts --check
+cargo fmt --manifest-path desktop/Cargo.toml --check
+cargo clippy --locked --manifest-path desktop/Cargo.toml --all-targets -- -D warnings
+cargo test --locked --manifest-path desktop/Cargo.toml
+cargo deny --manifest-path desktop/Cargo.toml check
 ```
 
-Expected: all green. The e2e suite covers the scenarios below in Chromium at 1440×900 and at
-the minimum window size of 960×640.
+Expected: all checks pass. The e2e suite covers browser journeys in Chromium at 1440×900 and
+960×640. It uses `e2e/previewAgentStub.ts` for agent states and does not exercise the native
+window. Run the native dry run below as well, including keyboard focus, accessible controls
+and text editing at the window sizes checked. Keep browser tests headless and muted.
 
 ## Manual dry run (presenter)
 
-Run `bun run tauri dev`, then:
+For the scripted native walkthrough, run:
+
+```sh
+AGELY_CODEX_BIN=/nonexistent AGELY_LOCALE=en bun run desktop
+```
+
+This prevents real Codex calls and fixes the language for this dry run. The same scripted story
+is available in the browser with `bun run dev` at `http://localhost:1420`. To try the optional
+native Codex conversations separately, use the [live-agent guide](../../docs/live-agent.md).
+
+Then:
 
 1. **Start**: the start screen introduces Margaret and Dev and says the data is scripted. Every
    later screen shows "Demo — scripted data".

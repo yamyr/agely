@@ -1,8 +1,12 @@
 # Security
 
-Agely is a prototype. It has no accounts, stores nothing on a server, and moves no money; the
-demo's payments are simulated. The desktop app can run a local Codex CLI for its optional live
-agent, and the website at agely.dev is static.
+Agely is a prototype. Marketplace sign-in, payments and meetings are simulated, and marketplace
+data stays in the current browser. The native walkthrough keeps story edits in memory and saves
+only its chosen language locally. No money moves. The website at agely.dev is static.
+
+The desktop app can run a local Codex CLI using your signed-in account for optional live
+conversations. The [live agent guide](docs/live-agent.md#what-it-sends-and-what-it-can-touch)
+describes what the app sends and the process restrictions.
 
 ## Reporting a problem
 
