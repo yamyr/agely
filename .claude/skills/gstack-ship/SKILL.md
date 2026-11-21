@@ -36,17 +36,18 @@ choices, ask, and wait.
 
 ## Step 3: Checks
 
-Run the full check set from `/gstack-verify` (all eight: tsc, Vitest, build, e2e typecheck,
-Playwright, cargo fmt, clippy -D warnings, cargo test), following its fix loop and its rules
+Run the full check set from `/gstack-verify`, including catalogue integrity, native asset
+freshness, licences and website checks, following its fix loop and its rules
 (never weaken a gate to get green). If something stays red after the loop, STOP and report
 `BLOCKED` with the failing check and log lines.
 
 ## Step 4: Test coverage audit
 
-For every changed source file under `src/` and `src-tauri/src/`:
+For every changed source file under `src/` and `desktop/src/`:
 - Name the test that covers its changed behavior (`file::test name`), or mark `[GAP]`.
 - Domain logic (matching, price-range overlap, flow state) MUST have unit tests
-  (constitution Principle IV). Each user-facing flow MUST have a Playwright journey in `e2e/`.
+  (constitution Principle IV). Each browser flow MUST have a Playwright journey in `e2e/`.
+  Each native flow MUST have Rust state tests and actual GPUI window, keyboard and accessibility checks.
 - For each `[GAP]` that is cheap to close, write the test, run it, and include it. Never
   commit a failing test. Report remaining gaps in the PR body.
 
@@ -68,17 +69,17 @@ a note in the PR body. After review fixes, rerun the affected checks from Step 3
 
 ## Step 7: Version (only if the user asked for a release)
 
-Agely keeps `package.json`, `src-tauri/tauri.conf.json` and `src-tauri/Cargo.toml` versions in
-lockstep (constitution). Do not bump unless the user asked. If they did, bump all three to the
-same value (and `Cargo.lock` via `cargo check --manifest-path src-tauri/Cargo.toml`), and
-mention it in the PR body. There is no CHANGELOG in this repo; do not create one.
+Agely keeps `package.json` and `desktop/Cargo.toml` versions in lockstep (constitution).
+Do not bump unless the user asked. If they did, bump both to the same value, update
+`desktop/Cargo.lock` via `cargo check --manifest-path desktop/Cargo.toml`, update the existing
+`CHANGELOG.md`, and mention the release in the PR body.
 
 ## Step 8: Commit (bisectable chunks)
 
 If everything is already committed, skip. Never create an empty commit.
 1. Group changes with their tests; spec/doc changes with the code they describe. Under ~50
    lines across fewer than 4 files may be one commit.
-2. Order dependencies first (Rust command -> TS wrapper -> UI -> e2e). Each commit builds alone.
+2. Order dependencies first (domain/assets -> platform integration -> UI -> journeys). Each commit builds alone.
 3. Conventional subject (`feat:`, `fix:`, `test:`, `docs:`, `chore:`), plain words, brief body.
    End each message with the attribution trailer the session requires (for example
    `Co-Authored-By: ...`), if any.
@@ -86,7 +87,7 @@ If everything is already committed, skip. Never create an empty commit.
 ## Step 9: Verification gate
 
 **No completion claims without fresh evidence.** If any content changed after Step 3's green
-run, rerun the affected checks now (all eight if unsure). Print the final check table. Do not
+run, rerun the affected checks now (the full set if unsure). Print the final check table. Do not
 push on red.
 
 ## Step 10: Push and PR
@@ -120,7 +121,7 @@ push on red.
 
 ## Final line
 
-`SHIPPED: <PR url> checks=<8/8> review=<clean|N open> coverage_gaps=<n>` or
+`SHIPPED: <PR url> checks=<12/12> review=<clean|N open> coverage_gaps=<n>` or
 `BLOCKED: <reason>`.
 
 ## Rules

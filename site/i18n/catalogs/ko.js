@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Your changes could not be saved. Please try again.": "변경 사항을 저장하지 못했습니다. 다시 시도해 주세요.",
   "Demo, marketplace, and desktop downloads are easier to find.": "데모, 마켓플레이스, 데스크톱 다운로드를 더 쉽게 찾을 수 있습니다.",
   "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "휴대전화에서 더 읽기 쉬워졌고, 지출 날짜가 표시되며 키보드 탐색이 쉬워졌습니다.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "제안 관련 작업에 실패해도 키보드 포커스가 버튼에 남아 있어 다시 시도할 수 있습니다.",

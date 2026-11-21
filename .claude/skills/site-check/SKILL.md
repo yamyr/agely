@@ -35,7 +35,8 @@ phone width. This is how.
 
 5. If you added a page, add its path to `PAGES` in `scripts/site-check.mjs` in the same change.
 
-6. Rebuild the app output if you need it next: `bun run build` (Tauri reads `dist/`).
+6. Rebuild the browser app output if you need it next with `bun run build`. The browser app
+   and site builds replace each other's `dist/` output. Native GPUI assets are generated separately.
 
 ## Report
 

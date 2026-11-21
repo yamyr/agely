@@ -1,5 +1,6 @@
 // Model-generated translation draft; requires language review.
 export default {
+  "Your changes could not be saved. Please try again.": "No se han podido guardar tus cambios. Vuelve a intentarlo.",
   "Demo, marketplace, and desktop downloads are easier to find.": "La demo, el mercado y las descargas para ordenador son más fáciles de encontrar.",
   "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Lectura más clara en móviles, fechas de gastos visibles y navegación con teclado más sencilla.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Si falla una acción sobre una propuesta, el botón conserva el foco del teclado para que puedas intentarlo de nuevo.",

@@ -2,13 +2,21 @@
 
 **Experience shouldn't retire.**
 
-▶ **[Watch the demo](https://agely.dev/)** on the Agely landing page (source in `site/`), **[try it in your browser](https://agely.dev/demo/)**, or **[run a whole market in the simulator](https://agely.dev/simulator/)**.
-
-Get the Apple Silicon Mac app from the [releases page](https://agely.dev/releases/) or browse the [changelog](CHANGELOG.md).
-
 Agely is an expert network where older adults turn decades of experience into paid, 15-minute sessions. Our longer-term goal is an AI engine each expert owns: a growing collection of their approved questions, checks, and workflows.
 
 This hackathon prototype follows Margaret, a retired procurement director, and Dev, a hardware founder, from their first conversations to a completed session and Margaret's first saved workflow.
+
+| Try Agely | What opens |
+| --- | --- |
+| [Browser walkthrough](https://agely.dev/demo/) | The scripted Margaret and Dev story, with no account needed. |
+| [Marketplace try-out](https://agely.dev/app) | Both roles in one browser, using simulated services. |
+| [Website and demo video](https://agely.dev/) | An introduction to the project. |
+| [Market simulator](https://agely.dev/simulator/) | A fictional market with adjustable assumptions. |
+| [Published Mac downloads](https://agely.dev/releases/) | Release history and Apple silicon installers. |
+
+The native Rust/GPUI rewrite is an **unreleased developer preview**. The published v0.1.3
+installer still uses Tauri. To try GPUI, build this branch using the [native desktop guide](docs/desktop.md).
+See the [changelog](CHANGELOG.md) for released and unreleased changes.
 
 ## The problem
 
@@ -39,7 +47,11 @@ Use the chapter list to jump to any part of the story. **Back** preserves your p
 
 The [presenter guide](specs/001-demo-walkthrough/quickstart.md) includes a full dry run and validation steps.
 
-**Live agent (optional, no API key).** If the [Codex CLI](https://github.com/openai/codex) is installed and signed in with ChatGPT on the computer running the desktop app, the three conversations (Margaret's interview, Dev's brief chat and Margaret's debrief) are generated live. Each agent turn offers three suggested replies, or you can type your own. Setup takes three commands: `npm install -g @openai/codex`, `codex login`, `bun run tauri dev`. Without Codex the scripted conversations run as above. See [docs/live-agent.md](docs/live-agent.md).
+The native desktop app can use an installed, signed-in [Codex CLI](https://github.com/openai/codex)
+for Margaret's interview, Dev's brief chat and Margaret's debrief. It offers suggested replies
+and free text, with retry and a scripted fallback. Browser conversations stay scripted.
+The optional live mode uses your ChatGPT plan; no OpenAI API key is needed.
+See the [live agent guide](docs/live-agent.md) for setup, privacy and offline testing.
 
 ## What works today
 
@@ -76,13 +88,31 @@ These principles are recorded in the [project constitution](.specify/memory/cons
 
 ## Built with
 
-- Tauri 2 and Rust for the desktop shell and native commands.
-- React 19, TypeScript, and Vite 8 for the interface and client-side domain logic.
+- GPUI and Rust for the native desktop walkthrough on Apple Silicon Macs.
+- React 19, TypeScript, and Vite 8 for the browser walkthrough and marketplace try-out.
 - Bun for dependency management and scripts.
-- Vitest for unit tests and Playwright for browser journeys at desktop and minimum window sizes.
+- Vitest and Rust tests for logic, Playwright for browser journeys, and native UI checks for the desktop app.
 - GitHub Actions for frontend, browser, workflow, and Rust checks.
 
+The desktop app renders native controls without a WebView or JavaScript runtime. It embeds
+the shared story and translations as offline JSON and reads the shared CSS design tokens.
+The browser walkthrough and marketplace use React. The website in `site/` uses plain HTML,
+CSS and JavaScript modules.
+
+The [native desktop guide](docs/desktop.md) explains the architecture, generated assets,
+packaging and migration limits. [Spec 005](specs/005-gpui-desktop/spec.md) records the rewrite's requirements.
+
 The foundation was ported from `yademy/elderwise-hbs`.
+
+## Languages
+
+The website, browser apps and native walkthrough share English source messages and 17
+translated catalogs. The translations are model-generated drafts awaiting native-speaker
+review. Language selection, English fallback and draft disclosures remain visible in the UI.
+Prices stay in USD when the language changes.
+
+See [translation maintenance](CONTRIBUTING.md#maintain-translations) before changing messages
+or locale formats. Native builds embed their translations and need no translation download.
 
 ## Run locally
 
@@ -97,13 +127,17 @@ bun run dev
 
 Open `http://localhost:1420` to run the walkthrough in your browser. Browser mode does not require the Rust toolchain.
 
-For the native desktop window, install Rust stable through [rustup](https://rustup.rs) and the [Tauri platform prerequisites](https://tauri.app/start/prerequisites/). On macOS, install Xcode Command Line Tools with `xcode-select --install`. Then run:
+For the native desktop walkthrough, use an Apple Silicon Mac, install Rust stable through
+[rustup](https://rustup.rs), and install Xcode Command Line Tools with `xcode-select --install`.
+Until the GPUI migration lands on `main`, switch to its preview branch, then run:
 
 ```sh
-bun run tauri dev
+git switch codex/agely-gpui
+bun run desktop
 ```
 
-Run browser development and native development separately because both use port `1420`.
+This generates the shared native assets and starts GPUI. The native app does not use a web
+server. The marketplace try-out remains available in the browser.
 
 ## Validate changes
 
@@ -112,6 +146,7 @@ Run the frontend checks and production build:
 ```sh
 bunx tsc --noEmit
 bun run test
+bun run check:i18n
 bun run build
 ```
 
@@ -123,25 +158,42 @@ bunx tsc -p e2e/tsconfig.json
 bun run e2e
 ```
 
-Playwright starts its own Vite server on port `1493` and uses [stubbed Tauri IPC](e2e/tauriStub.ts). To choose another port, run `E2E_PORT=1494 bun run e2e`. Port `1420` is reserved for development.
+Playwright starts its own Vite server on port `1493` and uses the [browser agent fixture](e2e/previewAgentStub.ts). To choose another port, run `E2E_PORT=1494 bun run e2e`. Port `1420` is reserved for browser development.
 
-After `bun run build` creates `dist/`, run the Rust checks on a machine with the Tauri platform prerequisites:
+Check the website separately:
 
 ```sh
-cargo fmt --manifest-path src-tauri/Cargo.toml --check
-cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings
-cargo test --manifest-path src-tauri/Cargo.toml
+bun run check:site
 ```
+
+The browser and website builds both replace `dist/`. Build the one you intend to serve.
+
+Run the native checks on macOS with the Rust toolchain and Xcode Command Line Tools:
+
+```sh
+bun scripts/export-desktop.ts --check
+cargo fmt --manifest-path desktop/Cargo.toml --check
+cargo clippy --locked --manifest-path desktop/Cargo.toml --all-targets -- -D warnings
+cargo test --locked --manifest-path desktop/Cargo.toml
+cargo deny --manifest-path desktop/Cargo.toml check
+```
+
+Native flow changes also need a journey through the actual GPUI window, including keyboard
+focus and accessibility checks. Browser fixtures do not exercise native rendering or the Codex
+process runner.
 
 [Full CI](.github/workflows/ci.yml) checks the frontend on Ubuntu and runs Chromium and Rust checks on macOS. [Fast feedback](.github/workflows/fast-feedback.yml) checks workflows, frontend types and unit tests, and Rust formatting. Wait for full CI to pass before merging.
 
 ## Build an installer
 
 ```sh
-bun run tauri build
+bun run desktop:build
 ```
 
-Tauri builds the frontend and native app, then writes platform-specific bundles to `src-tauri/target/release/bundle/`.
+The script generates native assets and builds the Apple Silicon release binary. It writes
+`macos/Agely.app`, `dmg/Agely_<version>_aarch64.dmg` and `dmg/SHA256SUMS.txt` under
+`desktop/target/aarch64-apple-darwin/release/bundle/`. This developer preview has an ad hoc
+signature and no Apple notarization. Building it does not publish a release.
 
 For a frontend-only production preview, run `bun run build` followed by `bun run preview`.
 
@@ -151,9 +203,9 @@ For a frontend-only production preview, run `bun run build` followed by `bun run
 | --- | --- |
 | `src/demo/` | Walkthrough screens, fictional personas, domain rules, state, and scripted services. |
 | `src/ui/` | Shared design tokens and the React error boundary. |
-| `src/lib/` | Tauri IPC wrapper and error handling. |
-| `src-tauri/` | Rust shell, native commands, permissions, and desktop configuration. |
-| `e2e/` | Playwright journeys, edge cases, layout checks, and the Tauri IPC stub. |
+| `src/lib/` | Browser agent fixture boundary and error handling. |
+| `desktop/` | GPUI app, native walkthrough state, embedded assets, localization and local Codex runner. |
+| `e2e/` | Playwright journeys, edge cases, layout checks, and the browser agent fixture. |
 | `specs/001-demo-walkthrough/` | Demo specification, data model, contracts, tasks, and presenter guide. |
 | `.specify/` | Spec Kit templates, scripts, and the project constitution. |
 | `docs/tooling/` | Notes on the project's optional development tools. |
@@ -161,9 +213,12 @@ For a frontend-only production preview, run `bun run build` followed by `bun run
 | `site/costs/` | Open cost ledger at agely.dev/costs/. Record a cost by adding a line to `costs.json`; `scripts/ai-usage.mjs` totals AI tokens from local agent logs. |
 | `src/product/` | The try-out product at `#/app`: `ports/` (the outside services as interfaces, with contract suites), `standins/` (in-browser adapters), `usecases/` (the rules), `screens/`. |
 | `specs/004-marketplace-foundation/` | Specification, plan, contracts, tasks and verification for the try-out product. |
+| `specs/005-gpui-desktop/` | Native migration specification, architecture, tasks and verification. |
+| `docs/desktop.md` | GPUI setup, architecture, generated assets, packaging and known limits. |
+| `docs/live-agent.md` | Optional native Codex setup, process boundaries and offline fixture. |
 | `site/simulator/` | Marketplace simulator at agely.dev/simulator/: the demo's matching rule run over a made-up market, with adjustable parameters. `engine.js` is the model and has unit tests. |
 
-Features follow Spec Kit: specify, clarify, plan, tasks, analyze, and implement. Use `src/ui/tokens.css` for shared visual values. Keep versions in `package.json`, `src-tauri/tauri.conf.json`, and `src-tauri/Cargo.toml` in sync; a unit test checks them.
+Features follow Spec Kit: specify, clarify, plan, tasks, analyze, and implement. Use `src/ui/tokens.css` for shared visual values. Keep versions in `package.json` and `desktop/Cargo.toml` in sync; a unit test checks them.
 
 ## What's next
 

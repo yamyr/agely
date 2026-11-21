@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Your changes could not be saved. Please try again.": "无法保存您的更改。请重试。",
   "Demo, marketplace, and desktop downloads are easier to find.": "演示、交易平台和桌面版下载更容易找到了。",
   "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "手机上的文字更易阅读，支出日期清晰可见，键盘操作更方便。",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "如果对提案的操作失败，键盘焦点会留在按钮上，方便你重试。",

@@ -1,7 +1,7 @@
 # Pre-Landing Review Checklist (Agely)
 
 <!-- Adapted from garrytan/gstack review/checklist.md @ f0cd9f8c (MIT). Ruby/Python/SQL-
-     specific items replaced with TypeScript/React/Rust/Tauri equivalents; gstack helper
+     specific items replaced with TypeScript/React/Rust/GPUI equivalents; gstack helper
      binaries (gate-diff, decision-search, approval-classes, pregate) removed. -->
 
 ## Instructions
@@ -14,8 +14,8 @@ Review the merge-base diff against `main`, including uncommitted and new source.
   (`.claude/skills/**`) are application.
 - **CI/infra:** `.github/**`.
 - **scripts/tooling:** shell scripts, lint/format config, `tsconfig*.json`.
-- **application:** everything else (`src/`, `src-tauri/`, `e2e/`, `package.json`,
-  `bun.lock`, `Cargo.toml`, `tauri.conf.json`, skill Markdown). When in doubt, application.
+- **application:** everything else (`src/`, `desktop/`, `e2e/`, `package.json`,
+  `bun.lock`, `Cargo.toml`, generated native assets, skill Markdown). When in doubt, application.
 - **mixed:** more than one of the above.
 
 On application/mixed diffs run every category. On CI/infra, scripts/tooling or docs-only
@@ -38,18 +38,17 @@ Repo Conventions; report the rest once as `Not applicable (PR type: <type>): <ca
 - Stale closures: `useEffect`/`useCallback` reading state not in its deps, so an update is
   lost or applied to old data.
 
-### Tauri IPC Trust Boundary
-- `#[tauri::command]` functions accepting paths, URLs or shell arguments from the webview
-  without validation (path traversal, SSRF, command injection).
-- New capabilities/permissions in `src-tauri/capabilities/*.json` or `tauri.conf.json`
-  broader than needed (`fs:default` on `$HOME`, `shell:allow-execute`, wildcard scopes);
-  CSP loosened (`unsafe-inline`, `unsafe-eval`, `*`).
-- Command errors swallowed into `Ok(())`/`unwrap_or_default()` so the UI shows success on failure.
-- `unwrap()`/`expect()` on IPC input or I/O in command handlers (panics kill the app).
+### Native Process and File Boundaries
+- Local Codex execution accepts unvalidated executable paths, arguments or generated output.
+- Codex execution weakens its read-only sandbox, empty temporary directory, timeout or cleanup.
+- Locale preferences or generated asset loading accept invalid data or write outside the
+  intended application directory.
+- Process or file errors swallowed into `Ok(())`/`unwrap_or_default()` so the UI shows success on failure.
+- `unwrap()`/`expect()` on external input or I/O in native handlers (panics kill the app).
 
 ### XSS / Unsafe Rendering
 - `dangerouslySetInnerHTML`, `innerHTML`, `eval`, `new Function` on non-constant data.
-- User or agent text interpolated into URLs passed to the opener plugin without allowlisting.
+- User or agent text interpolated into external URLs without allowlisting.
 
 ### LLM / Agent Output Trust Boundary
 - Agent-generated values (profiles, prices, matches) persisted or shown as confirmed without
@@ -89,7 +88,7 @@ timeout, lint rule, type check, CI job, snapshot. Work three levels:
   Ask one question: **does this relaxation silence the failure it was added for, or is it
   justified by a measurement or decision visible in this diff?**
 - **Finding:** a read hunk that fails the question. Also read for RH-2 (a mock or fixture
-  presented as the proof a claim needs, e.g. only the Tauri IPC stub exercised for logic
+  presented as the proof a claim needs, e.g. only the browser agent fixture exercised for logic
   that lives in Rust) and RH-5 (a test that cannot fail: asserts its own setup or mirrors
   the implementation).
 - Confidence scores identification, not justification: a confirmed relaxation with unclear
@@ -106,16 +105,16 @@ timeout, lint rule, type check, CI job, snapshot. Work three levels:
 ## Pass 2 - INFORMATIONAL
 
 ### Async Correctness
-- Un-awaited promises (`invoke(...)` with no `await`/`.catch`), floating promises in event handlers.
-- Blocking work in async Rust commands (`std::fs`, `std::thread::sleep` inside `async fn`);
-  use `tauri::async_runtime::spawn_blocking` or `tokio` equivalents.
-- Effects without cleanup (listeners from `@tauri-apps/api/event` `listen` never unlistened,
-  intervals never cleared).
+- Un-awaited promises or floating promises in browser event handlers.
+- Blocking process or file work on GPUI's UI executor. Run blocking Codex operations on the
+  background executor.
+- Stale background replies applied after restart, chapter jump, locale change or live-agent disable.
+- Effects or subscriptions without cleanup, including intervals never cleared.
 
 ### Type Coercion at Boundaries
-- Values crossing the TS <-> Rust IPC boundary where types drift: `number` vs `u64`
-  precision, `null` vs `Option`, camelCase vs snake_case serde renames, missing
-  `#[serde(rename_all = "camelCase")]`.
+- Values crossing the shared TypeScript-to-JSON-to-Rust boundary where types drift: `number`
+  vs integer precision, `null` vs `Option`, camelCase vs snake_case serde renames, missing fields
+  or outdated generated assets.
 - Money: prices are per 15 minutes in USD (constitution). Flag floats for currency math
   where rounding matters; flag unit mismatches (per-hour vs per-15-min).
 
@@ -151,7 +150,7 @@ timeout, lint rule, type check, CI job, snapshot. Work three levels:
   of memoized children.
 
 ### Dead Code & Consistency
-- Version mismatch: `package.json`, `src-tauri/tauri.conf.json`, `src-tauri/Cargo.toml`
+- Version mismatch: `package.json` and `desktop/Cargo.toml`
   must move in lockstep (constitution).
 
 ### LLM Prompt Issues
@@ -176,16 +175,16 @@ A finding must name a concrete consequence; style preference alone is not a find
 
 ## Sideways sweep (every finding)
 
-- **Siblings.** Grep the same pattern at every other call site (other IPC commands, other
+- **Siblings.** Grep the same pattern at every other call site (other native handlers, other
   components, other flow steps); read each match; rate severity on the worst sibling and
   list siblings under one finding.
-- **Forced-CRITICAL.** Data loss, a trust-boundary bypass (IPC validation, capability scope,
+- **Forced-CRITICAL.** Data loss, a trust-boundary bypass (process argument validation, sandbox scope,
   human-confirmation step skipped) and uncapped spend (paid API call or retry loop with no
   cap) are CRITICAL on sight; nothing downgrades them.
 - **New cache in front of a guarded call:** name every check a cache hit skips.
 - **Imports moved from static to dynamic:** list side effects no longer loaded at startup.
-- **A changed function with parity claims:** find mirrors (TS twin of a Rust function, the
-  IPC stub in `e2e/tauriStub.ts` mirroring a real command) and flag each left unchanged.
+- **A changed function with parity claims:** find mirrors (shared TS and Rust flow rules,
+  generated asset contracts, `e2e/previewAgentStub.ts` modelling agent replies) and flag each left unchanged.
 
 ---
 
@@ -193,7 +192,7 @@ A finding must name a concrete consequence; style preference alone is not a find
 
 ```
 AUTO-FIX (apply without asking):         ASK (needs human judgment):
-- dead code / unused vars & imports      - security (IPC, XSS, injection, capabilities)
+- dead code / unused vars & imports      - security (process/files, XSS, injection, sandbox)
 - stale comments contradicting code      - races / async ordering
 - magic numbers -> named constants       - design decisions, user-visible behavior
 - missing output validation (small)      - large fixes (>20 lines)

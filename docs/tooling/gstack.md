@@ -27,7 +27,7 @@ the upstream file, and each directory has a copy of the MIT license (`LICENSE.gs
 
 | Skill | From | Why |
 |-------|------|-----|
-| `gstack-verify` | `verify/` | Runs the constitution's "done" list (tsc, Vitest, build, e2e typecheck, Playwright, cargo fmt, clippy `-D warnings`, cargo test) in a fix loop. Never weakens a gate. |
+| `gstack-verify` | `verify/` | Runs the constitution's "done" list, catalogue integrity, native asset freshness, cargo-deny and website checks in a fix loop. Native screens also need actual window checks. Never weakens a gate. |
 | `gstack-review` (+ `checklist.md`, `specialists/`) | `review/` | Pre-landing review against `main`. Includes gstack's gate-integrity check, which catches weakened tests, `@ts-ignore`, `#[allow]` and dropped CI steps. Also scope-drift checks against `specs/<feature>/`, specialist and adversarial subagents, and fix-first handling. No human reviewers are required here, so this is the main review gate before a PR lands. |
 | `gstack-ship` | `ship/` | Merges main, runs verify, audits coverage and spec tasks, runs review, makes bisectable commits, pushes, and opens or updates a PR. It never merges. It runs only when the user invokes it (`disable-model-invocation: true`). |
 | `gstack-retro` | `retro/` | Weekly retro built from plain `git log` and `gh pr list`, plus Spec Kit task progress. |
@@ -38,18 +38,18 @@ the upstream file, and each directory has a copy of the MIT license (`LICENSE.gs
   gbrain/artifact sync, Conductor/Capy/Codex/Greptile integrations, the version-queue and
   receipt machinery, and every `~/.claude/skills/gstack/...` path.
 - **Base branch:** fixed to `main`. **Package manager:** Bun (`bun run test`, `bun run e2e`,
-  `bun run build`, `bunx tsc`). **Rust:** `cargo fmt/clippy/test --manifest-path src-tauri/Cargo.toml`.
+  `bun run build`, `bunx tsc`). **Rust:** `cargo fmt/clippy/test --manifest-path desktop/Cargo.toml`.
 - **verify:** gstack's auto-detected `gstack-checks` is replaced with a fixed table that mirrors
   `.github/workflows/ci.yml` and constitution Principle IV.
 - **review checklist:** the Ruby, Python and SQL items are replaced with TypeScript, React, Rust
-  and Tauri ones: IPC trust boundary, capabilities and CSP, serde casing, un-awaited `invoke`,
-  `listen` cleanup. Agely constitution checks are added: tokens.css, 16px/56px minimums, demo
+  and GPUI ones: local process and file boundaries, generated asset contracts, background tasks,
+  stale replies and effect cleanup. Agely constitution checks are added: tokens.css, 16px/56px minimums, demo
   labelling, "agents propose, people decide". The gate scan is done by hand, not with
   `gstack-gate-diff`. The specialists are copied nearly verbatim with gstack references removed,
-  plus a short Tauri section in `security.md`.
-- **ship:** VERSION and CHANGELOG are dropped because the repo has neither. A version bump happens
-  only on request and keeps `package.json`, `tauri.conf.json` and `Cargo.toml` in lockstep. The
-  attribution trailer is whatever the session requires.
+  plus a native process section in `security.md`.
+- **ship:** a version bump happens only on request and keeps `package.json` and
+  `desktop/Cargo.toml` in lockstep, with `desktop/Cargo.lock` updated. Requested releases update
+  the existing `CHANGELOG.md`. The attribution trailer is whatever the session requires.
 - **retro:** metrics are computed with git instead of `gstack-retro-metrics`. A snapshot history
   in `docs/retros/` is written only after the user says yes.
 
@@ -65,7 +65,7 @@ NEEDS BINARY means it can't work without gstack's compiled runtime.
 | autoplan, plan-eng-review, plan-ceo-review | OVERLAPS | Plan review: covered by `speckit-plan` (Constitution Check), `speckit-analyze`, `speckit-checklist`. Each is 1-2k lines tied to gstack's runtime. Could be ported later if plan reviews prove weak. |
 | plan-design-review, design-review, design-consultation, design-shotgun, design-html, design-motion | NEEDS BINARY / IRRELEVANT | Need gstack's `design` binary or browser plus ffmpeg. The design system already exists (`src/ui/tokens.css`). |
 | plan-devex-review, devex-review | IRRELEVANT | Developer-experience audits for APIs, CLIs and SDKs. Agely is an end-user desktop app. |
-| qa, qa-only | NEEDS BINARY | Browser QA drives the `browse` daemon (Aside or gstack's bundled Chromium). Agely has Playwright e2e against the Tauri IPC stub. Port worth considering later on top of Playwright. |
+| qa, qa-only | NEEDS BINARY | Browser QA drives the `browse` daemon (Aside or gstack's bundled Chromium). Agely has Playwright e2e with a browser agent fixture and separate native GPUI checks. Port worth considering later on top of Playwright. |
 | browse, scrape, skillify, open-gstack-browser, setup-browser-cookies, pair-agent | NEEDS BINARY | Browser daemon, cookie import from your real browser, ngrok tunnel. Not installed. |
 | benchmark, canary | NEEDS BINARY / IRRELEVANT | Web performance and post-deploy monitoring for deployed websites. There is no deployment yet. |
 | land-and-deploy, setup-deploy | IRRELEVANT | No deploy target. PRs merge on green CI. |

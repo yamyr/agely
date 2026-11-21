@@ -1,5 +1,6 @@
 // Model-generated Hindi draft translations.
 export default {
+  "Your changes could not be saved. Please try again.": "आपके बदलाव सहेजे नहीं जा सके। कृपया फिर से कोशिश करें।",
   "Demo, marketplace, and desktop downloads are easier to find.": "डेमो, बाज़ार और कंप्यूटर के लिए डाउनलोड अब आसानी से मिलते हैं।",
   "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "फ़ोन पर पढ़ना आसान है, खर्चों की तारीखें दिखाई देती हैं और कीबोर्ड से आगे बढ़ना सरल है।",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "अगर प्रस्ताव से जुड़ी कोई कार्रवाई विफल हो जाए, तो कीबोर्ड फ़ोकस बटन पर बना रहता है ताकि आप फिर से कोशिश कर सकें।",

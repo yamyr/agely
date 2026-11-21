@@ -10,20 +10,23 @@ tool cannot judge.
 
 ## What the tools check
 
-| Rule | App (`src/`) | Website (`site/`) |
-| --- | --- | --- |
-| No text below 16px | `e2e/layout.spec.ts` | `scripts/site-check.mjs` |
-| Visible focus ring on every control | `e2e/layout.spec.ts` | by hand, see below |
-| WCAG 2.1 AA: contrast, names, roles, labels | `e2e/a11y.spec.ts` | `scripts/site-check.mjs` |
-| No horizontal overflow | `e2e/layout.spec.ts` | `scripts/site-check.mjs` |
+| Rule | Browser (`src/`) | Native (`desktop/`) | Website (`site/`) |
+| --- | --- | --- | --- |
+| No text below 16px | `e2e/layout.spec.ts` | Shared token tests and actual window | `scripts/site-check.mjs` |
+| Visible focus ring on every control | `e2e/layout.spec.ts` | GPUI keyboard/viewport tests and actual window | by hand, see below |
+| Contrast, names, roles, labels | `e2e/a11y.spec.ts` (WCAG 2.1 AA) | Shared color tokens and macOS accessibility tree | `scripts/site-check.mjs` |
+| No horizontal overflow | `e2e/layout.spec.ts` | Actual native window at the sizes checked | `scripts/site-check.mjs` |
 
 ```bash
 bunx playwright test e2e/a11y.spec.ts e2e/layout.spec.ts   # app
 bun run check:site            # website
+cargo test --locked --manifest-path desktop/Cargo.toml   # native state, input, keyboard and tokens
 ```
 
-A new app screen must be reachable from the chapter list, or added to the loop in both specs, in
-the same change. A new website page is added to `PAGES` in `scripts/site-check.mjs`.
+A new browser screen must be reachable from the chapter list, or added to the loop in both
+specs, in the same change. A native screen needs the corresponding GPUI tests and an actual
+window check; browser results do not establish native accessibility. A new website page is
+added to `PAGES` in `scripts/site-check.mjs`.
 
 ## When a check fails
 
@@ -43,9 +46,10 @@ Do these for every new screen and say in the pull request that you did.
 1. **Controls are big enough.** Primary actions use `--control-h` (56px). Anything tappable is at
    least 44px in both directions.
 2. **Keyboard only.** Tab through the screen. Every control is reachable, in reading order, and
-   you can always see where focus is.
+   you can always see where focus is. A scroll pane must bring newly focused controls into view.
 3. **Not colour alone.** State (selected, met, failed, draft) is also carried by a word, an icon
    or a border style. Look at the screen in greyscale if unsure.
 4. **One decision per screen**, in plain words. The button says what will happen.
-5. **Zoom.** At 200% browser zoom nothing is cut off or overlaps.
+5. **Zoom.** At 200% browser zoom nothing is cut off or overlaps. For native windows, record the
+   actual sizes checked and report any unverified system scaling settings separately.
 6. **Motion.** Nothing moves unless the person asked for it.

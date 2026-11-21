@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { collectProblems, installTauriStub } from "./tauriStub";
+import { collectProblems, installPreviewAgentStub } from "./previewAgentStub";
 
 test("opens on the demo start screen in a plain browser", async ({ page }) => {
   const problems = collectProblems(page);
@@ -12,10 +12,10 @@ test("opens on the demo start screen in a plain browser", async ({ page }) => {
   expect(problems).toEqual([]);
 });
 
-test("reads native build info through the Tauri bridge", async ({ page }) => {
+test("renders the version supplied by an explicit browser preview fixture", async ({ page }) => {
   const problems = collectProblems(page);
-  await installTauriStub(page);
+  await installPreviewAgentStub(page);
   await page.goto("/");
-  await expect(page.getByText("Agely v0.0.0-e2e")).toBeVisible();
+  await expect(page.getByText("Web preview v0.0.0-e2e")).toBeVisible();
   expect(problems).toEqual([]);
 });

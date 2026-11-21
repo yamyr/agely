@@ -1,5 +1,6 @@
 // Model-generated draft translations.
 export default {
+  "Your changes could not be saved. Please try again.": "Endringene dine kunne ikke lagres. Prøv igjen.",
   "Demo, marketplace, and desktop downloads are easier to find.": "Demoen, markedsplassen og nedlastinger til datamaskinen er lettere å finne.",
   "Clearer reading on phones, visible expense dates, and easier keyboard navigation.": "Lettere å lese på telefon, synlige utgiftsdatoer og enklere tastaturnavigasjon.",
   "After a failed proposal action, the button keeps keyboard focus so you can retry.": "Hvis en handling for et forslag mislykkes, beholder knappen tastaturfokuset, slik at du kan prøve igjen.",

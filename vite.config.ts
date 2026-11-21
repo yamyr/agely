@@ -7,15 +7,13 @@ import react from "@vitejs/plugin-react";
 import { configDefaults } from "vitest/config";
 import { compactCatalogModule } from "./scripts/compact-catalogs.mjs";
 
-const host = process.env.TAURI_DEV_HOST;
-
 const { version } = JSON.parse(
   readFileSync(fileURLToPath(new URL("./package.json", import.meta.url)), "utf-8"),
 ) as { version: string };
 
 // Website build (agely.dev): the landing page in site/ is served at / and the app at /demo/.
 // Cloudflare Pages sets CF_PAGES=1; locally use `bun run build:site`. Without the flag the build
-// is the plain app in dist/, which is what Tauri's frontendDist expects.
+// is the standalone browser walkthrough in dist/.
 const siteBuild = process.env.AGELY_SITE_BUILD === "1" || process.env.CF_PAGES === "1";
 
 const rootPath = (relative: string) => fileURLToPath(new URL(relative, import.meta.url));
@@ -67,25 +65,12 @@ export default defineConfig(async ({ command }) => ({
     exclude: [...configDefaults.exclude, "e2e/**"],
   },
 
-  // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
-  //
-  // 1. prevent Vite from obscuring rust errors
   clearScreen: false,
-  // 2. tauri expects a fixed port, fail if that port is not available
   server: {
     port: 1420,
     strictPort: true,
-    host: host || false,
-    hmr: host
-      ? {
-          protocol: "ws",
-          host,
-          port: 1421,
-        }
-      : undefined,
     watch: {
-      // 3. tell Vite to ignore watching `src-tauri`
-      ignored: ["**/src-tauri/**"],
+      ignored: ["**/desktop/target/**"],
     },
   },
 }));
